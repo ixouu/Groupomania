@@ -1,0 +1,26 @@
+$color-1 : #0511F2;
+$color-2 : #999DF2;
+$color-3 : #4951F2;
+$color-4 : #3A3B3C;
+$color-5 : #F9FAFB;
+$color-6 : #B9BDFD;
+$color-7 : #FABC20;
+$color-8 : #C70505;
+$color-9 : #17be01;
+
+$font-1 : 'Lato', sans-serif;
+
+$breakpoints: (
+    mobile: 600px,
+    tablettes : 1200px,
+    largeScreen : 1800px,
+);
+
+$title-mobile-size : 20px;
+$label-mobile-size: 18px;
+$input-mobile-size: 18px;
+
+$title-largescreen-size : 30px;
+$label-largescreen-size: 24px;
+$input-largescreen-size: 20px;
+$text-largescreen-size: 20px;

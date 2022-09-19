@@ -1,0 +1,31 @@
+// Responsive
+
+@mixin mobile-only {
+    @media screen and  (max-width : map-get($breakpoints, mobile)){
+      @content
+    }
+  };
+
+@mixin tablettes-only {
+    @media screen and (min-width: map-get($breakpoints, mobile)) and (max-width : map-get($breakpoints, tablettes)) {
+      @content
+    }
+  };
+  
+@mixin largeScreen-only {
+  @media screen and (min-width : map-get($breakpoints, largeScreen)) {
+    @content
+  }
+};
+  
+@mixin mobile-btn {
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+}
+
+@mixin largeScreen-btn {
+  width: 240px;
+  height: 70px;
+  font-size: 22px;
+}
