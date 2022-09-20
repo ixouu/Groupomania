@@ -1,10 +1,18 @@
 import React from 'react';
+import {ReactComponent as Logo} from "../../images/logo.svg";
+import Navbar from '../Navbar';
 
 const Header = () => {
     return (
-        <div>
-            
-        </div>
+        <header>
+            <div className="header-logo">
+                <Logo className="header-logo"/>
+            </div>
+            <div className="header-title">
+                <h1>Bienvenue</h1>
+            </div>
+            <Navbar/>
+        </header>
     );
 }
 

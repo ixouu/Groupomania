@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast'
 
 import NoAccount from './NoAccount';
 import ErrorModal from '../Modals/ErrorModal';
@@ -9,7 +10,9 @@ const Login = () => {
 
     document.title = "Groupomania - Acceuil";
     const navigate = useNavigate();
-
+    const validateLogin = () => toast.success('Connexion établie',{
+        duration : 2000,
+    })
     const data = {
         email : "",
         password: ""
@@ -37,7 +40,11 @@ const Login = () => {
                 })
                 const data = res.data
                 localStorage.setItem("user", JSON.stringify(data));
-                
+                validateLogin();
+                const timer = setTimeout(() =>{
+                    navigate('/home')
+                },2000)
+                return () => clearTimeout(timer)
             })
             .catch((err) =>{
                 console.log(err);
@@ -62,6 +69,7 @@ const Login = () => {
 
   return (
     <>
+        <div><Toaster/></div>
         <form className='login-form'>
             <div className='form-div'>
                 <label htmlFor="email">Adresse Email</label>

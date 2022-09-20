@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from '../../pages/Welcome';
+import Welcome from '../../pages/Welcome';
 import Signup from '../../pages/Signup';
-import Error from '../../pages/Error'
+import Home from '../../pages/Home'
+import Error from '../../pages/Error';
 
 const Index = () => {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<Home />}/>
+                <Route path='/' element={<Welcome />}/>
                 <Route path='/signup' element={<Signup />}/>
+                <Route path='/home' element={<Home />}/>
                 <Route path='*' element={<Error />}/>
             </Routes>
         </Router>
