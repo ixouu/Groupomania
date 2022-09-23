@@ -4,6 +4,8 @@ require('dotenv').config({path: './config/.env'});
 const express = require('express');
 const app = express();
 
+const path = require("path");
+
 // import config.db
 require('./config/db')
 
@@ -20,7 +22,7 @@ const xss = require('xss-clean')
 const helmet = require('helmet');
 
 // secure HTTP headers
-app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // import cors
 const cors = require('cors')
@@ -58,10 +60,10 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Serving static files
-app.use(express.static(`$(__dirname)/upload`));
-app.use('/upload/post', express.static('upload/post'))
-app.use('/upload/profile', express.static('upload/profile'))
+app.use('/upload/post', express.static(path.join(__dirname, "upload/post")));
+app.use('/upload/profile', express.static(path.join(__dirname, "upload/profile")));
 // use package cors
+
 app.use(cors());
 
 

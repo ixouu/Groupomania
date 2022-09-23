@@ -1,0 +1,51 @@
+.admin-title{
+    padding:  32px 0 32px 10%;
+}
+
+.admin{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 10% 0 10%;
+}
+
+.admin-panel, .admin-content{
+    width: 50%;
+    height: auto;
+}
+
+.admin-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.admin-actions{
+    width: 80%;
+    height: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 20px;
+}
+
+.admin-action{
+    width: 200px;
+    height: 100px;
+    border-radius: 20px;
+    background-color: $color-5;
+    display: flex;
+    align-items: center;
+    margin: 0 10% 30px 10%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    i{
+        padding: 0 16px 0 8px;
+        font-size: 35px;
+        color: $color-8
+    }
+}
+
+.admin-content{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: $color-5;
+    border-radius: 20px;
+    height: 600px;
+}
+

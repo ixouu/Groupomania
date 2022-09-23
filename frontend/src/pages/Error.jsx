@@ -8,7 +8,7 @@ const Error = () => {
             <div className="error-logo">
                 <Logo/>
             </div>
-            <main className='erro-main'>
+            <main className='error-main'>
                 <h1>DÉSOLÉ</h1>
                 <h2>Cette page n'existe pas (plus).</h2>
                 <h3>Retournez sur <Link to="/">la page d'acceuil de Groupomania</Link>.</h3>

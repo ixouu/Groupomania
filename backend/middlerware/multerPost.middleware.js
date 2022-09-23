@@ -27,4 +27,4 @@ const storage = multer.diskStorage({
 });
 
 // Define a unique object
-module.exports = multer({ storage: storage }).single('imageUrl');
+module.exports = multer({ storage: storage }).single('file');

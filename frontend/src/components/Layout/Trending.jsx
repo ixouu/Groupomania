@@ -1,10 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 
 const Trending = () => {
+
+    
     return (
-        <div className='trending'>
+        <section className='trending'>
             <h2>Top Posts</h2>
-        </div>
+        </section>
     );
 }
 

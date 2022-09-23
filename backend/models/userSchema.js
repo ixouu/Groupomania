@@ -49,12 +49,13 @@ const userSchema = new mongoose.Schema(
         },
         bio: {
             type: String,
-            required: false,
+            required: true,
+            default : '',
             max: 1024,
         },
         photo: {
             type: String,
-            default: './upload/profile/random-user.png',
+            default: 'http://localhost:5000/upload/profile/random-user.png',
             required: false,
         },
         followers: {
