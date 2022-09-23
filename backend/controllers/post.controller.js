@@ -22,14 +22,12 @@ module.exports.createPost = catchAsync (async (req, res, next) => {
         return res.status(400).send({ message : "can not send an empty message"})
     }
     const post = req.file ? {
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
         ...req.body
     } : {
         ...req.body
     }
-    await postModel.create(
-        post
-    )
+    await postModel.create(post)
         .then( () => {
             res.status(201).json({
                 status : 'success',
