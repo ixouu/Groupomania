@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost } from '../../redux/actions/post.actions';
@@ -9,22 +9,15 @@ import { accountServices } from '../../utils/services/accountServices';
 
 import toast, { Toaster } from 'react-hot-toast';
 
-const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes }) => {
+const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
 
-    const [postingComment, setPostingComment] = useState(false);
-    const [comment, setComment] = useState('');
-    const [showCommentsList , setShowCommentsList] = useState(false);
-    const [errorComment, setErrorComment] = useState(false)
-
+    // REDUX
+    const dispatch = useDispatch();
     const users = useSelector((state) => state.usersReducer);
     const user = useSelector((state)=> state.userReducer).user;
     const allComments = useSelector((state) => state.commentReducer)
-    const author = users.find((user) =>  user._id === posterId);
-    const date = accountServices.transformDate(createdAt);
-    const time = accountServices.getTime(createdAt);
 
-    const dispatch = useDispatch();
-
+    // HOT TOAST 
     const validateComment = () => toast.success('Commentaire ajouté',{
         duration : 2000,
     })
@@ -34,6 +27,21 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
     const validateUnlike= () => toast.success('Like supprimé',{
         duration : 2000,
     })
+    
+    // POSTS
+    const author = users.find((user) =>  user._id === posterId);
+    const date = accountServices.transformDate(createdAt);
+    const time = accountServices.getTime(createdAt);
+
+    // COMMENTS
+    const [postingComment, setPostingComment] = useState(false);
+    const [comment, setComment] = useState('');
+    const [showCommentsList , setShowCommentsList] = useState(false);
+    const [errorComment, setErrorComment] = useState(false);
+
+    const handleShowCommentsButton = () => {
+        showCommentsList ? setShowCommentsList(false) : setShowCommentsList(true) 
+    }
 
     const handleAddCommentButton = () => {
         postingComment ? setPostingComment(false) : setPostingComment(true) 
@@ -67,9 +75,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
         })
         return postCommentsFound
     }
-    const handleShowCommentsButton = () => {
-        showCommentsList ? setShowCommentsList(false) : setShowCommentsList(true) 
-    }
+
 
     const findCommentUserName = (userId) => {
         const userToFind = users.filter(user => user._id === `${userId}`);
@@ -79,7 +85,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
     }   
 
     const commentsList = () => {
-        // No comments to display 
+        // If no comments to display 
         if (findPostComments().length === 0) {
             return (
                 <div className='post-commentsList'>
@@ -87,6 +93,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
                 </div>
             )
         }
+        // If comments to display
         return (
             <div className='post-commentsList'>
                 {findPostComments().length === 1 
@@ -108,7 +115,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
             )
     } 
 
-
+    // LIKES
     const handleSumbitLike = async (e) => {
         e.preventDefault();
         if (likes.includes(user._id)){
@@ -163,7 +170,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, comments,likes })
         }
     }
 
-
+    // POST 
     return (
         <div className='postContainer'>
             <div className="postContainer-header">

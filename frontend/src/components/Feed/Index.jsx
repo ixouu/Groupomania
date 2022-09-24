@@ -16,7 +16,6 @@ const Feed = () => {
                 content={post.content} 
                 imageUrl={post.imageUrl} 
                 createdAt={post.createdAt} 
-                comments ={post.comments} 
                 likes={post.likes}/>
             })}
         </div>
