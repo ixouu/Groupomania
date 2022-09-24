@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
+import toast, { Toaster } from 'react-hot-toast'
+
+import { accountServices } from '../../utils/services/accountServices';
+import Axios from '../../utils/services/callerService';
 
 import NoAccount from './NoAccount';
 import ErrorModal from '../Modals/ErrorModal';
@@ -8,8 +12,15 @@ import ErrorModal from '../Modals/ErrorModal';
 const Login = () => {
 
     document.title = "Groupomania - Acceuil";
+
+
     const navigate = useNavigate();
 
+
+    const validateLogin = () => toast.success('Connexion établie',{
+        duration : 2000,
+    })
+    
     const data = {
         email : "",
         password: ""
@@ -25,27 +36,37 @@ const Login = () => {
     const [wrongInformations, setWrongInformations] = useState(false)
 
     // Login request
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         setWrongInformations(false)
         e.preventDefault();
         try{
-            axios.post("http://localhost:5000/api/user/login", loginData)
-            .then((res)=>{
-                setLoginData({
-                    email: '',
-                    password: ''
-                })
-                const data = res.data
-                localStorage.setItem("user", JSON.stringify(data));
-                
+            const response = await Axios.post("/user/login", loginData)
+            // store informations to the local storage
+            accountServices.saveToken(response.data.accessToken);
+            accountServices.saveRoles(response.data.roles);
+            accountServices.saveUserId(response.data.userId);
+            // localStorage.setItem("user", JSON.stringify(response.data.userId));
+            // localStorage.setItem("token", JSON.stringify(response.data.accessToken));
+            // localStorage.setItem("role", JSON.stringify(response.data.roles));
+            // initialize the inputs
+            setLoginData({
+                email: '',
+                password: ''
             })
-            .catch((err) =>{
-                console.log(err);
-                setWrongInformations(true);
-            })
+            validateLogin();
+            const timer = setTimeout(() =>{
+                accountServices.isAdmin()
+                ? navigate('/admin')
+                : navigate('/home');
+            },2000)
+            return () => clearTimeout(timer)
         }
         catch(err){
-            setErrorModalIsOpen(!errorModalIsOpen)
+            if(!err.response.status === 400 || !err.response.status === 403){
+                setErrorModalIsOpen(!errorModalIsOpen)
+            } else {
+                setWrongInformations(true);
+            }
         }
         
     }
@@ -62,6 +83,7 @@ const Login = () => {
 
   return (
     <>
+        <div><Toaster/></div>
         <form className='login-form'>
             <div className='form-div'>
                 <label htmlFor="email">Adresse Email</label>

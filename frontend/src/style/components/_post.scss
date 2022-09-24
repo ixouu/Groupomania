@@ -1,0 +1,150 @@
+.postContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 30px 0;
+
+    .postContainer-header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .post-author_photo{
+            width: 50px;
+            border-radius: 15px;
+            margin-right: 5px;
+        }
+        .post-author{
+            font-size: 20px;
+        }
+        .post-date{
+            margin-left: auto;
+            font-size: 14px;
+            font-style: italic;
+        }
+    }
+
+    .postContainer-content{
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        .post-content{
+            font-size: 18px;
+        }
+    }
+    .postContainer-footer{
+        padding-top: 16px;
+        display: flex;
+        text-align: center;
+        
+        .post-likes, .post-comments{
+            width: 50%;
+            font-size: 18px;
+        }
+        .post-likes_count, .post-comments_count{
+            padding: 5px 0 5px 0;
+        }
+        .post-showComments{
+            transition: .2s all;
+            cursor: pointer;
+            &:hover{
+                font-weight: 800;
+            }
+        }
+        .post-likes_addLike, .post-comment_addComment{
+            position: relative;
+            padding: 5px 0 5px 0;
+            &::before{
+                content: '';
+                height: 1px;
+                background-color: $color-4;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            &::after{
+                content: '';
+                height: 1px;
+                background-color: $color-4;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+        button{
+            background-color: transparent;
+            font-family: $font-1;
+            font-size: 18px;
+            color: $color-4;
+            transition: .2s all;
+            &:hover{
+                font-weight: 800;
+            }
+            i{
+                margin-right: 5px;
+            }
+        }
+    }
+    .post-newComment{
+        margin-top: 5px;
+        form{
+            display: flex;
+            align-items: center;
+        }
+        #newComment{
+            width: 90%;
+            background-color: $color-6;
+            font-size: 18px;
+            height: 30px;
+            border-radius: 5px;
+            padding: 0 0 0 15px;
+            &::placeholder{
+                font-family: $font-1;
+            }
+        }
+        .sendComment{
+            font-size: 18px;
+            background-color: transparent;
+            text-align: center;
+            color: $color-1;
+            transition: all .1s ease-out;
+            margin-left: 5px;
+            cursor: pointer;
+            &:hover{
+                font-size: 20px;
+            }
+        }
+    }
+   
+}
+
+// COMMENTS LIST
+.post-commentsList{
+    padding-top: 10px;
+    h4{
+        font-size: 18px;
+    }
+
+    .post-comment_container{
+        margin: 10px;
+        padding: 10px;
+        position: relative;
+        width: 90%;
+        background-color: $color-6;
+        border-radius: 20px;
+        // COMMENTER NAME
+        h5{
+            font-size: 18px;
+        }
+        // COMMENT DATE
+        span {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-style: italic;
+            font-size: 14px;
+        }
+    }
+}

@@ -7,14 +7,15 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const postSchema = new mongoose.Schema(
     {
-        PosterId : {
+        posterId : {
             type : String,
             required: true
         },
         content: {
             type: String,
             required: true,
-            maxlength: 500,
+            minlength: 3,
+            maxlength: 1000,
         },
         imageUrl: {
             type: String,

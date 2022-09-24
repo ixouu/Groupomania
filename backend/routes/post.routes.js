@@ -25,8 +25,4 @@ router.delete('/:id',auth, verifyRoles(ROLE_LIST.Admin),  postController.deleteP
 // like a post
 router.put('/like-post/:id', auth, postController.likePost);
 
-// dislike a post
-router.put('/dislike-post/:id', auth, postController.dislikePost);
-
-
 module.exports = router;

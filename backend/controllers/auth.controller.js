@@ -135,7 +135,8 @@ exports.login = catchAsync (async (req,res,next) =>{
        );
        res.status(200).json({
                accessToken,
-               userId : user._id
+               userId : user._id,
+               roles
            })
    } else if (!match) {
         return res.status(403).json({

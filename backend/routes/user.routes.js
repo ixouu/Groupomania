@@ -16,7 +16,7 @@ router.post("/login", authController.login);
 router.post("/logout", authController.logout);
 
 // GET all users
-router.get('/', auth, userController.getAllUsers);
+router.get('/', userController.getAllUsers);
 
 // GET one user
 router.get('/:id', auth, userController.getUser);
