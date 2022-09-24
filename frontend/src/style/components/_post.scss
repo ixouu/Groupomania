@@ -8,6 +8,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+
         .post-author_photo{
             width: 50px;
             border-radius: 15px;
@@ -42,6 +43,13 @@
         }
         .post-likes_count, .post-comments_count{
             padding: 5px 0 5px 0;
+        }
+        .post-showComments{
+            transition: .2s all;
+            cursor: pointer;
+            &:hover{
+                font-weight: 800;
+            }
         }
         .post-likes_addLike, .post-comment_addComment{
             position: relative;
@@ -110,4 +118,33 @@
         }
     }
    
+}
+
+// COMMENTS LIST
+.post-commentsList{
+    padding-top: 10px;
+    h4{
+        font-size: 18px;
+    }
+
+    .post-comment_container{
+        margin: 10px;
+        padding: 10px;
+        position: relative;
+        width: 90%;
+        background-color: $color-6;
+        border-radius: 20px;
+        // COMMENTER NAME
+        h5{
+            font-size: 18px;
+        }
+        // COMMENT DATE
+        span {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-style: italic;
+            font-size: 14px;
+        }
+    }
 }

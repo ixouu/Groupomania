@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 import toast, { Toaster } from 'react-hot-toast'
 
 import { accountServices } from '../../utils/services/accountServices';

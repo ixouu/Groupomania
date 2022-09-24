@@ -11,7 +11,7 @@ export const createPost = (data) => {
             data
         })
         .then((res) => {
-            dispatch({type : CREATE_POST, payload : data})
+            dispatch({type: CREATE_POST, payload: data})
         })
         .catch((err) => console.log(err))
     }
@@ -25,7 +25,7 @@ export const likePost = (postId, data) => {
             data
         })
         .then((res) => {
-            dispatch({type : LIKE_POST,payload : data})
+            dispatch({type: LIKE_POST,payload: data})
         })
         .catch((err) => console.log(err))
     }
