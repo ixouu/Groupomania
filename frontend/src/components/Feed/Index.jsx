@@ -10,7 +10,8 @@ const Feed = () => {
         <div className='feed'>
             {posts.map(post => {
                 return <Post 
-                key={post._id} 
+                key={post._id}
+                postId= {post._id}
                 posterId={post.posterId} 
                 content={post.content} 
                 imageUrl={post.imageUrl} 

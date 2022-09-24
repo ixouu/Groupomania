@@ -122,30 +122,30 @@ module.exports.likePost = catchAsync (async (req, res, next) => {
     if (!ObjectID.isValid(req.params.id )){
         return res.status(400).send("post unknown");
     }
-    const postToUpdate = await postModel.findById(req.params.id)
-    // check if the id isn't in the likes array
-    if (postToUpdate.likes.includes(req.body.id)){
-        return res.status(403).json({ message : 'the user already liked this post' })
+    const postToUpdate = await postModel.findById(req.params.id);
+    // Check like value
+    if (req.body.like > 1 || req.body.like < 0){
+        return res.status(400).json({message: 'Invalid action'})
     }
-    await postToUpdate.updateOne(
-        {$push : { likes : req.body.id }}
-    )
-    return res.status(201).json({ status : "success"})
-});
-
-// dislike post
-module.exports.dislikePost = catchAsync (async (req, res, next) => {
-    if (!ObjectID.isValid(req.params.id )){
-        return res.status(400).send("post unknown");
+    switch (req.body.like){
+        case 1 :
+            // check if the id isn't in the likes array
+            if (postToUpdate.likes.includes(req.body.userId)){
+                return res.status(403).json({ message : 'the user already liked this post' })
+            }
+            await postToUpdate.updateOne(
+                {$push : { likes : req.body.userId }}
+            )
+            return res.status(201).json({ status : "success"})
+        case 0 : 
+            if (!postToUpdate.likes.includes(req.body.userId)){
+                return res.status(403).json({ message : 'the user is not in the like array' })
+            }
+            await postToUpdate.updateOne(
+                { $pull : { likes : req.body.userId }}
+            )
+            return res.status(204).json({ status : "success"})
+        default : res.status(400).json({message: 'Invalid action'})
     }
-    const postToUpdate = await postModel.findById(req.params.id)
-    // check if the id is in the likes array
-    if (!postToUpdate.likes.includes(req.body.id)){
-        return res.status(403).json({ message : 'the user is not in the like array' })
-    }
-    await postToUpdate.updateOne(
-        { $pull : { likes : req.body.id }}
-    )
-    return res.status(204).json({ status : "success"})
 });
 
