@@ -38,6 +38,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
     const [comment, setComment] = useState('');
     const [showCommentsList , setShowCommentsList] = useState(false);
     const [errorComment, setErrorComment] = useState(false);
+    const [disabledSendCommentBtn, setDisabledSendCommentBtn] = useState(false)
 
     const handleShowCommentsButton = () => {
         showCommentsList ? setShowCommentsList(false) : setShowCommentsList(true) 
@@ -45,6 +46,39 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
 
     const handleAddCommentButton = () => {
         postingComment ? setPostingComment(false) : setPostingComment(true) 
+    }
+
+    const handleComment = (comment) => {
+        if( comment.length > 400){
+            setErrorComment(true);
+            setDisabledSendCommentBtn(true);
+        }
+        if ( comment.length <= 400 && errorComment) {
+            setErrorComment(false);
+            setDisabledSendCommentBtn(false);
+        }
+        setComment(comment)
+    }
+
+    const sendCommentBtn = () => {
+        if (disabledSendCommentBtn === true){
+            return (
+            <button 
+                className='sendComment'
+                onClick={(e) => handleSumbitComment(e)}
+                disabled>
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            )
+        }else {
+            return (
+                <button 
+                    className='sendComment'
+                    onClick={(e) => handleSumbitComment(e)}>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                )
+        }
     }
 
     const handleSumbitComment = async (e) => {
@@ -114,6 +148,16 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
             </div>   
             )
     } 
+    // Manage the height of the text area 
+    const textArea = document.getElementsByTagName("textarea");
+    for (let i = 0 ; i < textArea.length ; i++){
+        textArea[i].setAttribute("style", "height:" + (textArea[i].scrollHeight) + "px;overflow-y:hidden;");
+        textArea[i].addEventListener("input", OnInput, false);
+    }
+    function OnInput() {
+    this.style.height = 0;
+    this.style.height = (this.scrollHeight) + "px";
+    }
 
     // LIKES
     const handleSumbitLike = async (e) => {
@@ -142,7 +186,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
             return (
                 <button
                     onClick = {(e) => handleSumbitLike(e)}
-                    style = {{ color: "#0511F2" , fontWeight : '600'}}
+                    style = {{ color: "#0511F2"}}
                 ><i class="fa-solid fa-thumbs-up"></i>J'aime</button>
             )
         } else {
@@ -159,7 +203,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
         if (likes.includes(user._id)){
             return (
                 <span 
-                style={{ color : "#0511F2", fontWeight : '600'}}
+                style={{ color : "#0511F2"}}
                 ><i class="fa-solid fa-heart"></i> Vous et {likes.length} </span>
             )
         }
@@ -216,14 +260,11 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
                             id = "newComment" 
                             placeholder = 'Commenter...'
                             value = {comment}
-                            onChange = {(e)=> setComment(e.target.value)}
+                            onChange = {(e)=> handleComment(e.target.value)}
                         ></textarea>
-                        <button 
-                            className='sendComment'
-                            onClick={(e) => handleSumbitComment(e)}
-                        ><i class="fa-solid fa-paper-plane"></i></button>
+                        {sendCommentBtn()}
                     </form>
-                    {errorComment && <p>Votre commentaire est trop long, 400 caratères maximum svp</p>}
+                    {errorComment && <p className='post-comment_error'>Votre commentaire est trop long, 400 caratères maximum svp</p>}
                 </div>
             }
             {showCommentsList && commentsList()}

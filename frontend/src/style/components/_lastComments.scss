@@ -10,7 +10,7 @@
 
     // LAST COMMENT EXTRACT
     .lastComment-content{
-        margin: 0 0 5px 0;
+        margin: 5px 0 0 10px;
     }
     // TIME DIFFERENCE
     .lastComment-timer{
@@ -22,10 +22,11 @@
         margin-right: 5px;
     }
     // LAST COMMENT LINK TO POST
-    a{
+    .lastComment-postLink{
         color: $color-4;
         font-weight: 600;
         font-style: italic;
         text-decoration: underline;
     }
 }
+
