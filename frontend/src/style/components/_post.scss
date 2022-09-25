@@ -1,8 +1,14 @@
 .postContainer{
     display: flex;
     flex-direction: column;
-    width: 80%;
-    padding: 30px 0;
+    width: 100%;
+    padding: 30px;
+    margin: 0 0 20px 0;
+    border-radius: 20px;
+    background-color: $color-5;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+
 
     .postContainer-header{
         display: flex;
@@ -29,20 +35,19 @@
         flex-direction: column;
         padding-top: 16px;
         .post-content{
-            font-size: 18px;
+            font-size: 20px;
         }
     }
     .postContainer-footer{
         padding-top: 16px;
         display: flex;
-        text-align: center;
         
         .post-likes, .post-comments{
             width: 50%;
             font-size: 18px;
         }
         .post-likes_count, .post-comments_count{
-            padding: 5px 0 5px 0;
+            padding: 5px 0 5px 30%;
         }
         .post-showComments{
             transition: .2s all;
@@ -53,7 +58,7 @@
         }
         .post-likes_addLike, .post-comment_addComment{
             position: relative;
-            padding: 5px 0 5px 0;
+            padding: 5px 0 5px 30%;
             &::before{
                 content: '';
                 height: 1px;
@@ -88,20 +93,22 @@
         }
     }
     .post-newComment{
-        margin-top: 5px;
+        margin-top: 10px;
         form{
             display: flex;
             align-items: center;
+            position: relative;
         }
         #newComment{
-            width: 90%;
+            width: 100%;
             background-color: $color-6;
             font-size: 18px;
             height: 30px;
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 0 0 0 15px;
             &::placeholder{
                 font-family: $font-1;
+                color: $color-4;
             }
         }
         .sendComment{
@@ -110,7 +117,8 @@
             text-align: center;
             color: $color-1;
             transition: all .1s ease-out;
-            margin-left: 5px;
+            position: absolute;
+            right: 10px;
             cursor: pointer;
             &:hover{
                 font-size: 20px;
@@ -131,7 +139,7 @@
         margin: 10px;
         padding: 10px;
         position: relative;
-        width: 90%;
+        width: 95%;
         background-color: $color-6;
         border-radius: 20px;
         // COMMENTER NAME

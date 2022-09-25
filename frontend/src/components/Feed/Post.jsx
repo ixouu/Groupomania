@@ -172,7 +172,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
 
     // POST 
     return (
-        <div className='postContainer'>
+        <div className='postContainer' id={postId}>
             <div className="postContainer-header">
                 <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo'/>
                 <h2 className='post-author'>{author.firstName} {author.lastName}</h2>

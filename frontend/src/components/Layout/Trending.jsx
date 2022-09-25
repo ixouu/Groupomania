@@ -7,7 +7,7 @@ const Trending = () => {
     
     return (
         <section className='trending'>
-            <h2>Top Posts</h2>
+            <h2>Publications populaires</h2>
         </section>
     );
 }

@@ -1,0 +1,31 @@
+.lastComments{
+    // TITLE
+    .lastComment-title{
+        margin-bottom: 15px;
+    }
+}
+
+.lastComment-container{
+    margin-bottom: 15px;
+
+    // LAST COMMENT EXTRACT
+    .lastComment-content{
+        margin: 0 0 5px 0;
+    }
+    // TIME DIFFERENCE
+    .lastComment-timer{
+        font-size: 14px;
+        padding: 5px;
+        background-color: $color-7;
+        border-radius: 30px;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    // LAST COMMENT LINK TO POST
+    a{
+        color: $color-4;
+        font-weight: 600;
+        font-style: italic;
+        text-decoration: underline;
+    }
+}
