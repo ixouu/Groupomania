@@ -4,13 +4,13 @@
 
 .admin{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    padding: 0 10% 0 10%;
+    padding: 0 10% 0 10%
 }
 
 .admin-panel, .admin-content{
-    width: 50%;
+    width: 100%;
     height: auto;
 }
 
@@ -20,14 +20,13 @@
     justify-content: space-between;
 }
 .admin-actions{
-    width: 80%;
     height: 100%;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border-radius: 20px;
+    display: flex;
+    width: 100%;
 }
 
 .admin-action{
-    width: 200px;
+    min-width: 200px;
     height: 100px;
     border-radius: 20px;
     background-color: $color-5;
@@ -35,6 +34,7 @@
     align-items: center;
     margin: 0 10% 30px 10%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    cursor: pointer;
     i{
         padding: 0 16px 0 8px;
         font-size: 35px;
@@ -42,10 +42,69 @@
     }
 }
 
+// ADMIN CONTENT 
+
 .admin-content{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     background-color: $color-5;
     border-radius: 20px;
-    height: 600px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+
+    section{
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        display : flex;
+        flex-direction: column;
+        background-color: $color-5;
+        border-radius: 20px;
+        padding: 15px;
+    }
+    // DELETE BTN
+    .admin-user_delete, .admin-post_delete, .admin-comment_delete{
+        margin: 5px 10px 5px 5px;
+        width: 20px;
+        height: 20px;
+        background-color: $color-8 ;
+        color: $color-5;
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+    // USERS
+    .admin-user{
+        margin: 10px;
+        padding: 10px;
+        min-width: 30%;
+    }
+
+    // POSTS 
+    .admin-post {
+        margin: 10px;
+        padding: 10px;
+        width: 100%;
+        height: 200px;
+
+        .admin-post_author{
+            padding-bottom: 15px;
+        }
+
+        .admin-post_content{
+            padding: 0 10%;
+        }
+    }
+
+    // COMMENTS 
+    .admin-comment {
+        margin: 10px;
+        padding: 10px;
+        width: 100%;
+        height: 90px;
+    }
 }
+
+
 

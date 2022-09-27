@@ -5,9 +5,17 @@ const initialSate = {};
 export default function postReducer (state = initialSate, action){
     switch (action.type) {
         case CREATE_POST : 
-            return [action.payload, ...state];
+            return {...state, ...action.payload};
         case LIKE_POST : 
-            return state
+        return state.map((post) => {
+            if (post._id === action.payload.postId) {
+              return {
+                ...post,
+                likers: [action.payload.userId, ...post.likers],
+              };
+            }
+            return post;
+          });
         default : 
             return state
     }

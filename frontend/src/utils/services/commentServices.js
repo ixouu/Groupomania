@@ -6,7 +6,6 @@ const getTimeDifference = (timestamp) => {
  if( timeDifference < 60000){
     return '1 min';
  }
- console.log(timeDifference % 6000)
  // more than a minute less than a hour 
 if (timeDifference > 60000 && timeDifference < 3600000){
     const minutes = Math.round(timeDifference / 60000)

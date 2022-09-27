@@ -49,7 +49,6 @@ const userSchema = new mongoose.Schema(
         },
         bio: {
             type: String,
-            required: true,
             default : '',
             max: 1024,
         },

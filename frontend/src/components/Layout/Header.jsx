@@ -32,6 +32,11 @@ const Header = () => {
             <nav>
             <div><Toaster/></div>
             <ul>
+                {accountServices.isAdmin() &&
+                    <li>
+                        <Link to ="/admin">Administration</Link>
+                    </li>
+                }
                 <li>
                     <Link to={`/profil/?id=${userId}`}><i class="fa-solid fa-user"></i>Mon profil</Link>
                 </li>

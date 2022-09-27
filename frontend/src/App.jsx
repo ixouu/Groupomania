@@ -9,6 +9,7 @@ import Error from './pages/Error';
 import Profil from './pages/Profil';
 import AdminDashboard from './pages/AdminDashboard';
 import Unauthorized from './pages/Unauthorized';
+import User from "./components/User/Index";
 
 import AuthGuard from "./utils/AuthGuard";
 import AuthAdmin from "./utils/AuthAdmin";
@@ -54,6 +55,17 @@ const App = () => {
           <AuthGuard>
             <Profil />
           </AuthGuard>}/>
+
+          <Route path='user/' element={ 
+          <AuthGuard>
+            <User />
+          </AuthGuard>}/> 
+
+          <Route path='user/:id' element={ 
+          <AuthGuard>
+            <User />
+          </AuthGuard>}/> 
+
           <Route path='admin' element={
           <AuthAdmin>
             <AdminDashboard />

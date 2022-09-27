@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { commentServices } from '../../utils/services/commentServices';
 
 const LastComments = () => {
@@ -11,10 +10,9 @@ const LastComments = () => {
         <section className='lastComments'>
             <h2 className='lastComment-title'>Les derniers commentaires</h2>
             { 
-                lastComments.map((comment) =>{
-                    console.log(comment.post._id);
+                lastComments.map((comment, index) =>{
                     return (
-                        <div className="lastComment-container">
+                        <div className="lastComment-container" key={index}>
                             <span className="lastComment-timer">{commentServices.getTimeDifference(comment.updatedAt)}</span>
                             <span className='lastComment-postLink' onClick={() => window.location.replace(`./home/#${comment.post._id}`)}>Voir le post</span>
                             <p className='lastComment-content'>{comment.content}</p>

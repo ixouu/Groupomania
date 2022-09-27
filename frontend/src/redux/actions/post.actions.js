@@ -17,7 +17,7 @@ export const createPost = (data) => {
     }
 }
 
-export const likePost = (postId, data) => {
+export const likePost = (postId, data, userId) => {
     return (dispatch) => {
         return Axios({
             method : 'put',
@@ -25,7 +25,7 @@ export const likePost = (postId, data) => {
             data
         })
         .then((res) => {
-            dispatch({type: LIKE_POST,payload: data})
+            dispatch({type: LIKE_POST,payload: {postId, userId}})
         })
         .catch((err) => console.log(err))
     }

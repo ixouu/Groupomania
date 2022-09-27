@@ -8,7 +8,6 @@ export const UPLOAD_PHOTO = 'UPLOAD_PHOTO'
 
 
 export const getUser = (userId) => {
-    console.log(userId)
     return (dispatch) => {
         return Axios.get(`user/${userId}`)
         .then((res) => {
