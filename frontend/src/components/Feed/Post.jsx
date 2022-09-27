@@ -1,23 +1,24 @@
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import { UidContext } from '../AppContext'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { likePost } from '../../redux/actions/post.actions';
-import { getPosts } from '../../redux/actions/posts.actions';
+import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
 import { createComment, getComments } from '../../redux/actions/comment.actions';
 
 import { accountServices } from '../../utils/services/accountServices';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
-const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
+
+const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
 
     // REDUX
     const dispatch = useDispatch();
     const users = useSelector((state) => state.usersReducer);
-    const user = useSelector((state)=> state.userReducer).user;
+    const user = useSelector((state) => state.userReducer)
     const allComments = useSelector((state) => state.commentReducer);
-
+    const uid = useContext(UidContext)
     // HOT TOAST 
     const validateComment = () => toast.success('Commentaire ajouté',{
         duration : 2000,
@@ -118,59 +119,38 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
 
     // LIKES
 
+    const [liked, setLiked] = useState(false);
+
+    useEffect (() => {
+        console.log(uid);
+        console.log(likes)
+        if (likes.includes(uid)){
+            setLiked(true);
+        } 
+        else setLiked(false)
+    }, [liked, likes, uid])
+
     const handleSumbitLike = (e) => {
-        const userId = user._id
+        console.log(uid)
         e.preventDefault();
-        if (likes.includes(userId)){
-            const data = {
-                userId : userId ,
-                like : 0
-            };
-            dispatch(likePost(postId, data, userId));
-            // await dispatch(getPosts());
-            validateUnlike();
-        } else {
-            const data = {
-                userId : userId,
-                like : 1
-            };
-            dispatch(likePost(postId, data, userId));
-            // await dispatch(getPosts());
-            validateLike();
-        }
+        const data = {
+            userId : uid,
+            like : 1,
+        };
+        dispatch(likePost(postId, data, uid));
+        setLiked(true);
+        validateLike();
     }
 
-    const likeButton = () => {
-        if (likes.includes(user._id)){
-            return (
-                <button
-                    onClick = {(e) => handleSumbitLike(e)}
-                    style = {{ color: "#0511F2" , fontWeight : '600'}}
-                ><i class="fa-solid fa-thumbs-up"></i>J'aime</button>
-            )
-        } else {
-            
-            return (
-                <button
-                    onClick = {(e) => handleSumbitLike(e)}
-                ><i class="fa-regular fa-thumbs-up"></i>J'aime</button>
-            )
-        }
-    }
-
-    const likeLength = () => {
-        if (likes.includes(user._id)){
-            return (
-                <span 
-                style={{ color : "#0511F2", fontWeight : '600'}}
-                ><i class="fa-solid fa-heart"></i> Vous et {likes.length} </span>
-            )
-        }
-        else {
-            return (
-                <span><i class="fa-regular fa-heart"></i> {likes.length}</span>
-            )
-        }
+    const handleSumbitDislike = (e) => {
+        e.preventDefault();
+        const data = {
+            userId : uid,
+            like : 0,
+        };
+        dispatch(dislikePost(postId, data, uid));
+        setLiked(false);
+        validateUnlike();
     }
 
     // POST 
@@ -188,10 +168,22 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
             <div className='postContainer-footer'>
                 <div className="post-likes">
                     <div className="post-likes_count">
-                        {likeLength()}
+                    <span><i className="fa-regular fa-heart"></i> {likes.length}</span>
                     </div>
                     <div className="post-likes_addLike">
-                       {likeButton()}
+                       {liked && (
+                        <button
+                            onClick = {(e) => handleSumbitDislike(e)}
+                            style = {{ color: "#0511F2" , fontWeight : '600'}}
+                            ><i className="fa-solid fa-thumbs-up"></i>J'aime
+                        </button>
+                       )}
+                       {liked === false && (
+                        <button
+                        onClick = {(e) => handleSumbitLike(e)}
+                        ><i className="fa-regular fa-thumbs-up"></i>J'aime
+                        </button>
+                       )}
                     </div>
                 </div>
                 <div className="post-comments">
@@ -207,7 +199,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
                     <div className="post-comment_addComment">
                         <button 
                             onClick={() => handleAddCommentButton()}
-                        ><i class="fa-regular fa-message"></i> Commenter</button>
+                        ><i className="fa-regular fa-message"></i> Commenter</button>
                     </div>
                 </div>
             </div>
@@ -224,7 +216,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt,likes }) => {
                         <button 
                             className='sendComment'
                             onClick={(e) => handleSumbitComment(e)}
-                        ><i class="fa-solid fa-paper-plane"></i></button>
+                        ><i className="fa-solid fa-paper-plane"></i></button>
                     </form>
                     {errorComment && <p>Votre commentaire est trop long, 400 caratères maximum svp</p>}
                 </div>

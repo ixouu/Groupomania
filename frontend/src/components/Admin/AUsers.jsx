@@ -16,7 +16,7 @@ const AUsers = ({users}) => {
             {users.map((user) => {
                 return (
                     <section key={user._id} className='admin-user'>
-                        <button className='admin-user_delete' onClick={(e) => handleDelete(e)}><i class="fa-solid fa-xmark"></i></button>
+                        <button className='admin-user_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
                         <p>{user.firstName} {user.lastName}</p>
                     </section>
                 )

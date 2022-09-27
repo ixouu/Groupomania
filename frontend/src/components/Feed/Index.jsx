@@ -4,12 +4,12 @@ import Post from './Post';
 
 const Feed = () => {
 
-    const posts = useSelector((state) => state.postsReducer);
+    const posts = useSelector((state) => state.postReducer);
 
     return (
         <div className='feed'>
-            {posts.map(post => {
-                return <Post 
+            { posts.map((post) => 
+                 <Post 
                 key={post._id}
                 postId= {post._id}
                 posterId={post.posterId} 
@@ -17,7 +17,7 @@ const Feed = () => {
                 imageUrl={post.imageUrl} 
                 createdAt={post.createdAt} 
                 likes={post.likes}/>
-            })}
+            )}
         </div>
     );
 }

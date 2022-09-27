@@ -41,13 +41,7 @@ module.exports.createPost = catchAsync (async (req, res, next) => {
 //  get all posts
 module.exports.getPosts = catchAsync (async (req, res, next) => {
     const posts = await postModel.find().populate('comments').sort({createdAt : -1});
-    res.status(200).json({
-        status : 'success',
-        results: posts.length,
-        data : {
-            posts
-        }
-    })
+    res.status(200).json({posts})
 });
 
 // get one post

@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     }
     
     // POSTS
-    const posts = useSelector((state) => state.postsReducer);
+    const posts = useSelector((state) => state.postReducer);
     const [displayPosts, setDisplayPosts] = useState(false);
     const handlePosts = () => {
         setDisplayPosts(true)
@@ -53,15 +53,15 @@ const AdminDashboard = () => {
                 <div className="admin-panel">
                     <section className='admin-actions'>
                         <div className='admin-action admin-actions_users' onClick={ () => handleUsers()}>
-                            <i class="fa-solid fa-users"></i>
+                            <i className="fa-solid fa-users"></i>
                             <span>Gestion des utilisateurs</span> 
                         </div>
                         <div className='admin-action admin-actions_posts'onClick={ () => handlePosts()}>
-                            <i class="fa-solid fa-clipboard"></i>
+                            <i className="fa-solid fa-clipboard"></i>
                             <span>Gestion des postes</span>
                         </div>
                         <div className='admin-action admin-actions_comments'onClick={ () => handleComments()}>
-                            <i class="fa-solid fa-comments"></i>
+                            <i className="fa-solid fa-comments"></i>
                             <span>Gestion des commentaires</span>
                         </div>
                     </section>

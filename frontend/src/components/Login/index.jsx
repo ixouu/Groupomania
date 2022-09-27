@@ -87,7 +87,7 @@ const Login = () => {
         <form className='login-form'>
             <div className='form-div'>
                 <label htmlFor="email">Adresse Email</label>
-                <i class="fa-solid fa-envelope"></i>
+                <i className="fa-solid fa-envelope"></i>
                 <input 
                     id="email"
                     type="email"
@@ -99,7 +99,7 @@ const Login = () => {
             </div>
             <div className='form-div'>
                 <label htmlFor="password">Mot de passe</label>
-                <i class="fa-solid fa-key"></i>
+                <i className="fa-solid fa-key"></i>
                 <input 
                     id="password" 
                     type="password" 

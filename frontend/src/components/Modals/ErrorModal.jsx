@@ -10,7 +10,7 @@ const ErrorModal = ({open, onClose}) => {
             <div className="overlay" onClick={onClose}></div>
                 <div className='errorModal'>
                 <button  className="modal-close" onClick={onClose}>&times;</button>
-                <div className="errorModal-icon"><i class="fa-solid fa-xmark"></i></div>
+                <div className="errorModal-icon"><i className="fa-solid fa-xmark"></i></div>
                 <h3>Une erreur est survenue, veuillez réessayer.</h3>
             </div>
         </>,

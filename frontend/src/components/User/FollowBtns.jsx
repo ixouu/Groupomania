@@ -16,9 +16,9 @@ const FollowBtns = ({ followers }) => {
     }
   }
 
-  const followBtn = <button className='followUser-btn'><i class="fa-solid fa-user-plus"></i></button>
+  const followBtn = <button className='followUser-btn'><i className="fa-solid fa-user-plus"></i></button>
 
-  const unfollowBtn = <button className='unfollowUser-btn'><i class="fa-solid fa-user-minus"></i></button>
+  const unfollowBtn = <button className='unfollowUser-btn'><i className="fa-solid fa-user-minus"></i></button>
   
 
     return (

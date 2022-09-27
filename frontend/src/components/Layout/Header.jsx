@@ -38,10 +38,10 @@ const Header = () => {
                     </li>
                 }
                 <li>
-                    <Link to={`/profil/?id=${userId}`}><i class="fa-solid fa-user"></i>Mon profil</Link>
+                    <Link to={`/profil/?id=${userId}`}><i className="fa-solid fa-user"></i>Mon profil</Link>
                 </li>
                 <li>
-                    <button onClick={() => logout()} className='header-logout'><i class="fa-solid fa-arrow-right-from-bracket"></i>Se déconnecter</button>
+                    <button onClick={() => logout()} className='header-logout'><i className="fa-solid fa-arrow-right-from-bracket"></i>Se déconnecter</button>
                 </li>
             </ul>
         </nav>

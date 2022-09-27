@@ -7,7 +7,7 @@ import store from "./redux/reducers/index";
 
 import { getUser } from './redux/actions/user.actions';
 import { getUsers } from './redux/actions/users.actions';
-import { getPosts } from './redux/actions/posts.actions';
+import { getPosts } from './redux/actions/post.actions';
 import { getComments } from './redux/actions/comment.actions'; 
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

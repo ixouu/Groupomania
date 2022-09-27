@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 import { accountServices } from "../../utils/services/accountServices";
 
-import { createPost } from "../../redux/actions/post.actions";
-import { getPosts } from "../../redux/actions/posts.actions";
+import { createPost, getPosts } from "../../redux/actions/post.actions";
 import { useDispatch } from "react-redux";
 
 import toast, { Toaster } from 'react-hot-toast';
@@ -25,7 +24,7 @@ const CreatePost = () => {
         setFile(img);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!content || content.length < 3 || !content.length > 500) {
             setIsError(true);
@@ -34,7 +33,7 @@ const CreatePost = () => {
             data.append("posterId", posterId);
             data.append("content", content);
             file && data.append("file", file);
-            await dispatch(createPost(data));
+            dispatch(createPost(data));
             dispatch(getPosts());
             cancel();
             toast.success('Poste créé',{
@@ -110,7 +109,7 @@ const CreatePost = () => {
                 <div className="newPost-errorContainer">
                     {isError && (
                         <p className="newPost-error">
-                            <i class="fa-solid fa-circle-exclamation"></i> Votre
+                            <i className="fa-solid fa-circle-exclamation"></i> Votre
                             poste doit contenir entre 3 caractères minimum et 500
                             maximum !{" "}
                         </p>

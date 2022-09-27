@@ -17,7 +17,7 @@ const AComments = ({ comments }) => {
             {comments.map((comment) => {
                 return (
                     <section key={comment._id} className='admin-comment'>
-                        <button className='admin-comment_delete' onClick={(e) => handleDelete(e)}><i class="fa-solid fa-xmark"></i></button>
+                        <button className='admin-comment_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
                         <p className='admin-comment_content'>{comment.content}</p>
                     </section>
                 )

@@ -11,7 +11,7 @@ const SucessModal = ({ email, firstName, open, onClose}) => {
             <div className="overlay" onClick={onClose}></div>
                 <div className='successModal'>
                 <button  className="modal-close" onClick={onClose}>&times;</button>
-                <div className="successModal-icon"><i class="fa-solid fa-check"></i></div>
+                <div className="successModal-icon"><i className="fa-solid fa-check"></i></div>
                 <h2>Bienvenue {firstName} !</h2>
                 <h3>Vous pouvez vous connectez avec votre adresse {email}</h3>
                 <div className="successModal-redirect">
