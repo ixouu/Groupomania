@@ -5,10 +5,10 @@ import { UidContext } from './components/AppContext'
 import Layout from "./components/Layout";
 import Welcome from './pages/Welcome';
 import Signup from './pages/Signup';
-import Home from './pages/Home';
+import Home from './components/Home/Index';
 import Error from './pages/Error';
 import Profil from './pages/Profil';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import Unauthorized from './pages/Unauthorized';
 import User from "./components/User/Index";
 
@@ -27,14 +27,16 @@ const App = () => {
 
   useEffect(() => {
     setUserId(accountServices.getUserId())
-    if (userId) dispatch(getUser(userId))
+    if (userId) {
+      dispatch(getUser(userId))
+    }
   },[dispatch, userId])
 
   const currentUser = useSelector((state) => state.userReducer);
 
   
   return (
-   <UidContext.Provider value={userId}>
+   <UidContext.Provider value={currentUser.user}>
       <Routes>
         <Route path="/" element={<Layout/>}>
           {/* Public Routes */}

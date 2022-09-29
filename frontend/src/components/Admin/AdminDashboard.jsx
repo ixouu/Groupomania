@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-import Footer from '../components/Layout/Footer';
-import Header from '../components/Layout/Header';
+import Footer from '../Layout/Footer';
+import Header from '../Layout/Header';
 
-import AUsers from '../components/Admin/AUsers'
-import APosts from '../components/Admin/APosts'
-import AComments from '../components/Admin/AComments'
+import AUsers from './AUsers'
+import APosts from './APosts'
+import AComments from './AComments'
 
 import { useSelector } from 'react-redux';
-import { pureFinalPropsSelectorFactory } from 'react-redux/es/connect/selectorFactory';
 
 
 const AdminDashboard = () => {
@@ -35,7 +34,7 @@ const AdminDashboard = () => {
     }
 
     // COMMENTS
-    const comments = useSelector((state) => state.commentReducer);
+    const comments = useSelector((state) => state.commentReducer).comments;
     const [displayComments, setDisplayComments] = useState(false);
     const handleComments = () => {
         setDisplayComments(true)
@@ -58,7 +57,7 @@ const AdminDashboard = () => {
                         </div>
                         <div className='admin-action admin-actions_posts'onClick={ () => handlePosts()}>
                             <i className="fa-solid fa-clipboard"></i>
-                            <span>Gestion des postes</span>
+                            <span>Gestion des posts</span>
                         </div>
                         <div className='admin-action admin-actions_comments'onClick={ () => handleComments()}>
                             <i className="fa-solid fa-comments"></i>

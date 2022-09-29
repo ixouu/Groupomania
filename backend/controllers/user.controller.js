@@ -5,9 +5,7 @@ const getAuthUser = require('../middlerware/verifyUser.middleware');
 // Middleware who catch errors Async function
 const catchAsync = fn => {
     return (req, res, next) => {
-        fn(req, res, next).catch(err => {
-            res.status(500).json({err})
-        })
+        fn(req, res, next).catch(next)
     }
 }
 
@@ -119,7 +117,7 @@ module.exports.followUser = catchAsync (async (req, res, next) => {
     await userToUpdate.updateOne(
         { $push: { following: req.body.userIdToFollow } },
     )
-    return res.status(200).json({status: "success"})
+    return res.status(200).json({status: "success", userToUpdate})
 });
 
 

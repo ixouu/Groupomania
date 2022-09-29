@@ -4,7 +4,7 @@ import { commentServices } from '../../utils/services/commentServices';
 
 const LastComments = () => {
 
-    const lastComments = useSelector((state) => state.commentReducer).slice(0, 4);
+    const lastComments = useSelector((state) => state.commentReducer).comments.slice(0, 5);
 
     return (
         <section className='lastComments'>

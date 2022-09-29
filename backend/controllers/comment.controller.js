@@ -1,15 +1,11 @@
 // schemas import
-const postModel = require('../models/postSchema')
-const userModel = require('../models/userSchema')
 const commentModel = require('../models/commentSchema')
 const ObjectID = require("mongoose").Types.ObjectId;
 
 // Middleware who catch errors Async function
 const catchAsync = fn => {
     return (req, res, next) => {
-        fn(req, res, next).catch(err => {
-            res.status(500).json({err})
-        })
+        fn(req, res, next).catch(next)
     }
 }
 
@@ -89,7 +85,5 @@ module.exports.deleteComment = catchAsync (async (req,res,next) => {
         return res.status(400).send("ID unknown");
     }
     await commentModel.deleteOne({_id : req.params.id})
-    return res.status(204).json({
-      status: "success",
-    })
+    res.status(200).json({ message: "Successfully deleted. " })
 });

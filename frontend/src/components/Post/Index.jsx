@@ -1,10 +1,13 @@
 
-import {useState, useEffect, useContext} from 'react';
-import { UidContext } from '../AppContext'
+import {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+
+import CommentBtn from './CommentBtn';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
-import { createComment, getComments } from '../../redux/actions/comment.actions';
+import { getComments } from '../../redux/actions/comment.actions';
+import { createComment } from '../../redux/actions/comment.actions';
 
 import { accountServices } from '../../utils/services/accountServices';
 
@@ -16,9 +19,8 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     // REDUX
     const dispatch = useDispatch();
     const users = useSelector((state) => state.usersReducer);
-    const user = useSelector((state) => state.userReducer)
-    const allComments = useSelector((state) => state.commentReducer);
-    const uid = useContext(UidContext)
+    const user = useSelector((state) => state.userReducer).user
+    const allComments = useSelector((state) => state.commentReducer).comments;
     // HOT TOAST 
     const validateComment = () => toast.success('Commentaire ajouté',{
         duration : 2000,
@@ -41,6 +43,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     const [showCommentsList , setShowCommentsList] = useState(false);
     const [errorComment, setErrorComment] = useState(false);
 
+    
     const handleShowCommentsButton = () => {
         showCommentsList ? setShowCommentsList(false) : setShowCommentsList(true) 
     }
@@ -59,9 +62,11 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                 post : postId,
                 content : comment
             } 
-            await dispatch(createComment(data));
-            await dispatch(getPosts());
-            await dispatch(getComments());
+            
+            await dispatch(createComment(data))
+            dispatch(getPosts())
+            dispatch(getComments())
+            findPostComments();
             validateComment();
             setComment('');
             setPostingComment(false);
@@ -118,26 +123,23 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     } 
 
     // LIKES
-
     const [liked, setLiked] = useState(false);
 
     useEffect (() => {
-        console.log(uid);
-        console.log(likes)
-        if (likes.includes(uid)){
+        if (likes.includes(user._id)){
             setLiked(true);
         } 
         else setLiked(false)
-    }, [liked, likes, uid])
+    }, [liked, likes, user._id])
 
     const handleSumbitLike = (e) => {
-        console.log(uid)
+        console.log(user._id)
         e.preventDefault();
         const data = {
-            userId : uid,
+            userId : user._id,
             like : 1,
         };
-        dispatch(likePost(postId, data, uid));
+        dispatch(likePost(postId, data, user._id));
         setLiked(true);
         validateLike();
     }
@@ -145,20 +147,20 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     const handleSumbitDislike = (e) => {
         e.preventDefault();
         const data = {
-            userId : uid,
+            userId : user._id,
             like : 0,
         };
-        dispatch(dislikePost(postId, data, uid));
+        dispatch(dislikePost(postId, data, user._id));
         setLiked(false);
         validateUnlike();
     }
 
     // POST 
     return (
-        <div className='postContainer'>
+        <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
                 <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo'/>
-                <h2 className='post-author'>{author.firstName} {author.lastName}</h2>
+                <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>
             <div className="postContainer-content">
@@ -166,37 +168,35 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                 {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img'/>}
             </div>
             <div className='postContainer-footer'>
-                <div className="post-likes">
-                    <div className="post-likes_count">
-                    <span><i className="fa-regular fa-heart"></i> {likes.length}</span>
-                    </div>
-                    <div className="post-likes_addLike">
-                       {liked && (
-                        <button
-                            onClick = {(e) => handleSumbitDislike(e)}
-                            style = {{ color: "#0511F2" , fontWeight : '600'}}
-                            ><i className="fa-solid fa-thumbs-up"></i>J'aime
-                        </button>
-                       )}
-                       {liked === false && (
-                        <button
-                        onClick = {(e) => handleSumbitLike(e)}
-                        ><i className="fa-regular fa-thumbs-up"></i>J'aime
-                        </button>
-                       )}
-                    </div>
+
+                <div className="post-counts">
+                 <span className='likes_count'>{likes.length} J'aime</span>
+                 <span onClick={() => handleShowCommentsButton()} className = "post-showComments">
+                    {findPostComments().length} {findPostComments().length > 1
+                    ? <span> commentaires</span>
+                    : <span> commentaire</span>}
+                 </span>
                 </div>
-                <div className="post-comments">
-                    <div className="post-comments_count">
-                        <span 
-                            onClick={() => handleShowCommentsButton()}
-                            className = "post-showComments"
-                        >{findPostComments().length} {findPostComments().length > 1
-                        ? <span> commentaires</span>
-                        : <span> commentaire</span>
-                        }</span>
+
+                <div className="post-actions">
+                    {/* Add Like */}
+                    <div className="post-actions_addLike">
+                        {liked && (
+                            <button
+                                onClick = {(e) => handleSumbitDislike(e)}
+                                style = {{ color: "#222F40" , fontWeight : '600'}}
+                                ><i className="fa-solid fa-thumbs-up"></i>J'aime
+                            </button>
+                        )}
+                        {liked === false && (
+                            <button
+                            onClick = {(e) => handleSumbitLike(e)}
+                            ><i className="fa-regular fa-thumbs-up"></i>J'aime
+                            </button>
+                        )}
                     </div>
-                    <div className="post-comment_addComment">
+                    {/* Add comment */}
+                    <div className="post-action_addComment">
                         <button 
                             onClick={() => handleAddCommentButton()}
                         ><i className="fa-regular fa-message"></i> Commenter</button>

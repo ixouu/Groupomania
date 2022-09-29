@@ -32,7 +32,6 @@ import FollowBtns from './FollowBtns';
         }
     }
 
-    console.log(user()[0])
     
   return (
     <>
@@ -50,8 +49,8 @@ import FollowBtns from './FollowBtns';
                         </div>
                         <div className="user-follow_bloc">
                             <div className="user-follow">
-                                <Followers followers={user()[0].followers}/>
-                                <FollowBtns followers={user()[0].followers}/>
+                                <Followers followers={user()[0].followers} />
+                                <FollowBtns followers={user()[0].followers} currentUser={userIdToFind}/>
                             </div>
                             <Following following={user()[0].following}/>
                         </div>

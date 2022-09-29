@@ -209,12 +209,12 @@ const Signup = () => {
                             placeholder="Renseignez votre mot de passe"
                             value={password}
                             onChange={ (e) => handleChange(e.target.value)}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
+                            onFocus={(e) => handleFocus(e.target)}
+                            onBlur={(e) => handleBlur(e.target)}
                             required
                         />
                     </div>
-                    {pwdRequisite ?  <Progress pwdLength={pwdLength} pwdSpecialChar={pwdSpecialChar}  pwdCapLetter={pwdCapLetter}/> : null}
+                    {pwdRequisite && <Progress pwdLength={pwdLength} pwdSpecialChar={pwdSpecialChar}  pwdCapLetter={pwdCapLetter}/>}
                   
 
                     <div className="form-div">

@@ -1,18 +1,21 @@
 .trending-star{
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    padding: 0 10px;
+    padding: 0 0 0 15px;
 }
 
 .trending-gold{
-    background-color: #F2CF66;
+    .fa-star{
+        color: #F2CF66;
+    }
 }
 .trending-silver{
-    background-color: #E7E8E7;
+    .fa-star{
+        color: #a9aca9;
+    }
 }
 .trending-bronze{
-    background-color: #BF6322;
+    .fa-star{
+        color: #BF6322;
+    }
 }
 
 .trending-title{
@@ -34,8 +37,8 @@
 .trending-post {
     padding: 15px 0 15px 0;
     margin:  5px 0 5px 0;
-    background-color: $color-6;
-    border-radius: 10px;
+    background-color:#D9D9D9;
+    border-radius: 5px;
 
     .trending-content{
         white-space: nowrap;
@@ -59,6 +62,3 @@
 
 
 
-.fa-star{
-    padding-right: 5px;
-}

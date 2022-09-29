@@ -24,7 +24,7 @@ const CreatePost = () => {
         setFile(img);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!content || content.length < 3 || !content.length > 500) {
             setIsError(true);
@@ -33,7 +33,7 @@ const CreatePost = () => {
             data.append("posterId", posterId);
             data.append("content", content);
             file && data.append("file", file);
-            dispatch(createPost(data));
+            await dispatch(createPost(data));
             dispatch(getPosts());
             cancel();
             toast.success('Poste créé',{

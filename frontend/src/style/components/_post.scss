@@ -4,29 +4,42 @@
     width: 100%;
     padding: 30px;
     margin: 0 0 20px 0;
-    border-radius: 20px;
+    border-radius: 5px;
     background-color: $color-5;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
+    @include mobile-only{
+        padding: 16px;
+    }
 
 
     .postContainer-header{
         display: flex;
         flex-direction: row;
         align-items: center;
+        @include mobile-only{
+            flex-direction: column;
+        }
 
         .post-author_photo{
-            width: 50px;
+            width: 70px;
             border-radius: 15px;
             margin-right: 5px;
         }
         .post-author{
             font-size: 20px;
+            font-weight: bold;
+            color : $color-1;
+            &:hover{
+                text-decoration: underline;
+            }
         }
         .post-date{
             margin-left: auto;
             font-size: 14px;
             font-style: italic;
+            @include mobile-only{
+                margin-left: 0;
+            }
         }
     }
 
@@ -36,29 +49,36 @@
         padding-top: 16px;
         .post-content{
             font-size: 20px;
+            padding-bottom: 10px;
         }
     }
     .postContainer-footer{
         padding-top: 16px;
         display: flex;
-        
-        .post-likes, .post-comments{
-            width: 50%;
+        flex-direction: column;
+
+        .post-counts{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
             font-size: 18px;
-        }
-        .post-likes_count, .post-comments_count{
-            padding: 5px 0 5px 30%;
-        }
-        .post-showComments{
-            transition: .2s all;
-            cursor: pointer;
-            &:hover{
-                font-weight: 800;
+            padding-bottom: 10px;
+            @include mobile-only{
+                font-size: 16px;
+            }
+            .likes_count{
+                margin-right: 10px;
             }
         }
-        .post-likes_addLike, .post-comment_addComment{
+        .post-actions{
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 18px;
+            padding-top: 10px;
             position: relative;
-            padding: 5px 0 5px 30%;
+            @include mobile-only{
+                font-size: 16px;
+            }
             &::before{
                 content: '';
                 height: 1px;
@@ -68,14 +88,12 @@
                 top: 0;
                 left: 0;
             }
-            &::after{
-                content: '';
-                height: 1px;
-                background-color: $color-4;
-                width: 100%;
-                position: absolute;
-                bottom: 0;
-                right: 0;
+        }
+        .post-showComments{
+            transition: .2s all;
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
             }
         }
         button{
@@ -84,8 +102,11 @@
             font-size: 18px;
             color: $color-4;
             transition: .2s all;
+            @include mobile-only{
+                font-size: 16px;
+            }
             &:hover{
-                font-weight: 800;
+                text-decoration: underline;
             }
             i{
                 margin-right: 5px;
@@ -144,6 +165,9 @@
     padding-top: 10px;
     h4{
         font-size: 18px;
+        @include mobile-only{
+            font-size: 16px;
+        }
     }
 
     .post-comment_container{
@@ -152,10 +176,17 @@
         position: relative;
         width: 95%;
         background-color: $color-6;
-        border-radius: 20px;
+        border-radius: 5px;
+        @include mobile-only{
+            display: flex;
+            flex-direction: column;
+        }
         // COMMENTER NAME
         h5{
             font-size: 18px;
+            @include mobile-only{
+                font-size: 16px;
+            }
         }
         // COMMENT DATE
         span {
@@ -164,6 +195,12 @@
             right: 10px;
             font-style: italic;
             font-size: 14px;
+            @include mobile-only{
+                position: relative;
+                top: 0;
+                left: 0;
+                padding-bottom: 5px;
+            }
         }
     }
 }

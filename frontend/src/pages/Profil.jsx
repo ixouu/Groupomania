@@ -40,8 +40,8 @@ const Profil = () => {
         data.append("name", currentUser.name);
         data.append("userId", currentUser._id);
         data.append("photo", img);
-        await dispatch(uploadPhoto(currentUser._id, data));
-        await dispatch(getUser(currentUser._id));
+        dispatch(uploadPhoto(currentUser._id, data));
+        dispatch(getUser(currentUser._id));
         setImg(null);
         toast.success('Photo mise à jour',{
             duration : 2000,

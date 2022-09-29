@@ -14,7 +14,11 @@ const store = configureStore({
     usersReducer,
     postReducer,
     commentReducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+   })
 }, composeWithDevTools(applyMiddleware(thunk)));
 
 

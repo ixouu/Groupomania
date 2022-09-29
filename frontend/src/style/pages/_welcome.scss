@@ -81,6 +81,14 @@
                 }
             }
         }
+        .form-div{
+            padding: 10px 0;
+            width: 70%;
+            position: relative;
+            @include largeScreen-only{
+                width: 50%;
+            }
+        }
     }
  
     .welcome-noaccount{
@@ -89,11 +97,7 @@
     }
 }
 
-.form-div{
-    padding: 10px 0;
-    width: 70%;
-    position: relative;
-}
+
 
 // LOGIN
 

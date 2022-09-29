@@ -7,9 +7,18 @@ header{
     position: relative;
     justify-content: space-evenly;
     cursor: pointer;
+    @include mobile-only{
+        flex-direction: column;
+        height: 15vh;
+        margin-top: 0;
+    }
     .header-logo{
         height: 80%;
         width: 300px;
+        @include mobile-only{
+            width: 100px;
+            height: auto;
+        }
     }
     &::after{
         content: '';
@@ -21,11 +30,21 @@ header{
     }
     h1{
         font-size: 20px;
+        letter-spacing: 0.2px;
+        word-spacing: 6px;
+        @include mobile-only{
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
     }
     nav{
+        @include mobile-only{
+            font-size: 14px;
+        }
         ul{
             display: flex;
             flex-direction: row;
+
         }
         li{
             padding: 0 15px;
@@ -43,9 +62,13 @@ header{
                 color: $color-4 ;
                 transition: all .3s ease-out;
                 font-size: 1rem;
+                background-color: transparent;
                 &:hover{
                     text-decoration: underline;
                     color: $color-8;
+                }
+                @include mobile-only{
+                    font-size: 14px;
                 }
             }
         }

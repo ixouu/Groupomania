@@ -3,7 +3,7 @@ const getTimeDifference = (timestamp) => {
  const timestampParsed = Date.parse(timestamp);
  const timeDifference = getTimeNow - timestampParsed;
  // less than 1 min 
- if( timeDifference < 60000){
+ if( timeDifference <= 60000){
     return '1 min';
  }
  // more than a minute less than a hour 

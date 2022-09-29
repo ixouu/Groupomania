@@ -6,16 +6,20 @@ import toast, { Toaster } from 'react-hot-toast'
 import { accountServices } from '../../utils/services/accountServices';
 import Axios from '../../utils/services/callerService';
 
+import { useDispatch } from "react-redux";
+import { getUser } from '../../redux/actions/user.actions'
+import store from '../../redux/reducers/index'
+
 import NoAccount from './NoAccount';
 import ErrorModal from '../Modals/ErrorModal';
 
 const Login = () => {
 
+    
+
     document.title = "Groupomania - Acceuil";
-
-
     const navigate = useNavigate();
-
+    const dispatch = useDispatch()
 
     const validateLogin = () => toast.success('Connexion établie',{
         duration : 2000,
@@ -45,9 +49,8 @@ const Login = () => {
             accountServices.saveToken(response.data.accessToken);
             accountServices.saveRoles(response.data.roles);
             accountServices.saveUserId(response.data.userId);
-            // localStorage.setItem("user", JSON.stringify(response.data.userId));
-            // localStorage.setItem("token", JSON.stringify(response.data.accessToken));
-            // localStorage.setItem("role", JSON.stringify(response.data.roles));
+            dispatch(getUser(response.data.userId));
+            store.dispatch(getUser());
             // initialize the inputs
             setLoginData({
                 email: '',
