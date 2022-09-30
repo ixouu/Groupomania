@@ -20,8 +20,6 @@ export default function commentReducer (state = initialState, action){
             return {
                 ...state,
                 comments: state.comments.map((comment) =>{
-                    console.log(comment._id)
-                    console.log(action.payload.id)
                     if (comment._id === action.payload.id){
                         return {
                             ...comment,
@@ -36,4 +34,3 @@ export default function commentReducer (state = initialState, action){
             return state
     }
 }
-//comments : [...state.comments, action.payload.data.content]

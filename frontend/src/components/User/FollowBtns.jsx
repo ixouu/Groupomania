@@ -11,6 +11,7 @@ const FollowBtns = ({ followers, currentUser }) => {
   const dispatch = useDispatch()
   const uid = accountServices.getUserId()
   const [isFollowing, setIsFollowing] = useState(false);
+  
   useEffect(() => {
     if (followers.includes(uid)){
       setIsFollowing(true);
