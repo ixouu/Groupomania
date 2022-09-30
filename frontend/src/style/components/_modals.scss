@@ -22,7 +22,7 @@
 }
 
 
-.successModal, .errorModal {
+.successModal, .errorModal, .followingModal, .followerModal {
         width: 30%;
         height: 400px;
         background-color: $color-5;
@@ -115,6 +115,30 @@
             }
         }
         
+}
+// FOLLOWING MODAL, FOLLOWER MODAL
+.followingModal, .followerModal{
+    justify-content: flex-start;
+    h3{
+        padding-bottom: 10px;
+    }
+    .modal-content{
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        
+    }
+    .followingModal-userCard, .followerModal-userCard{
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-size: 20px;
+        color: $color-5;
+        background-color: $color-7;
+        cursor: pointer;
+        min-width: 50%;
+        text-align: center;
+    }
 }
 
 @keyframes loaderAnim {

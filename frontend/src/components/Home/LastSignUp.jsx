@@ -6,7 +6,7 @@ import { getUsers } from '../../redux/actions/users.actions'
 const LastSignUp = () => {
 
     const users = useSelector((state) => state.usersReducer)
-    const sortedUsers = users.reverse()
+    const sortedUsers = [...users].reverse()
     const slicedUsers = sortedUsers.slice(0,4)
     return (
         <section className='LastSignUp'>
