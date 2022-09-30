@@ -1,22 +1,58 @@
-import React, {useEffect, useState}from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteComment, getComments } from '../../redux/actions/comment.actions';
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteComment, updateComment } from '../../redux/actions/comment.actions';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const AComments = ({ comments }) => {
 
     const dispatch = useDispatch()
-    const [isDeleted, setIsDeleted] = useState(false)
 
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [commentContent, setCommentContent] = useState('');
+    const [currentCommentId, setCurrentCommentId] = useState('')
+
+
+    const validateDelete = () => toast.success('Commentaire supprimé', {
+        duration : 2000
+    })
+    const validateUpdate = () => toast.success('Commentaire mise à jour', {
+        duration : 2000
+    })
 
     const handleDelete = (e) => {
         e.preventDefault();
-        if(isDeleted) setIsDeleted(false)
         const commentId = e.target.closest('section').id
-        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce post? ') === true) {
-           dispatch(deleteComment(commentId))
-           setIsDeleted(true)
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ') === true) {
+           dispatch(deleteComment(commentId));
+           validateDelete();
+        } else {
+            return
+        }
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        setIsUpdating(true);
+        setCommentContent(e.target.closest('section').innerText);
+        setCurrentCommentId(e.target.closest('section').id)
+    }
+
+    const cancelUpdate = () => {
+        setIsUpdating(false);
+        setCommentContent('');
+        setCurrentCommentId('');
+    }
+
+    const sumbitUpdate = () => {
+        const data = {
+            content : commentContent
+        }
+        console.log(currentCommentId);
+        if (window.confirm('Êtes-vous sûr de vouloir modifier ce commentaire ?') === true) {
+            dispatch(updateComment(currentCommentId, data));
+            cancelUpdate();
+            validateUpdate();
         } else {
             return
         }
@@ -24,16 +60,26 @@ const AComments = ({ comments }) => {
 
     return (
            <>
+            <div><Toaster/></div>
+            {isUpdating && 
+                <form className='admin-comment_form'>
+                    <label htmlFor="admin-comment_textarea" className='admin-comment_label'>Edition du commentaire</label>
+                    <textarea id="admin-comment_textarea" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
+                    <button className='admin-comment_btnCancel' onClick={() => cancelUpdate()}><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                    <button className='admin-comment_btnSend' onClick={ () => sumbitUpdate()}><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            } 
             {comments.map((comment) => {
                 return (
                     <section key={comment._id} id={comment._id} className='admin-comment'>
                         <button className='admin-comment_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
+                        <button className='admin-comment_update' onClick={(e) => handleUpdate(e)}><i class="fa-solid fa-pen-to-square"></i></button>
                         <p className='admin-comment_content'>{comment.content}</p>
                     </section>
                 )
             })
             }
-        </>
+            </>
     );
 }
 

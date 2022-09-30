@@ -15,8 +15,6 @@ import ErrorModal from '../Modals/ErrorModal';
 
 const Login = () => {
 
-    
-
     document.title = "Groupomania - Acceuil";
     const navigate = useNavigate();
     const dispatch = useDispatch()
