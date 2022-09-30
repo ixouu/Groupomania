@@ -23,6 +23,7 @@ const Header = () => {
     }
     return (
         <header>
+            <div><Toaster/></div>
             <div className="header-logo">
                 <Link to="/home"> <Logo className="header-logo"/> </Link>
             </div>
@@ -30,16 +31,20 @@ const Header = () => {
                 <h1>Bienvenue {currentUser.user.firstName}</h1>
             </div>
             <nav>
-            <div><Toaster/></div>
-            <ul>
-                <li>
-                    <Link to={`/profil/?id=${userId}`}><i class="fa-solid fa-user"></i>Mon profil</Link>
-                </li>
-                <li>
-                    <button onClick={() => logout()} className='header-logout'><i class="fa-solid fa-arrow-right-from-bracket"></i>Se déconnecter</button>
-                </li>
-            </ul>
-        </nav>
+                <ul>
+                    {accountServices.isAdmin() &&
+                        <li>
+                            <Link to ="/admin">Administration</Link>
+                        </li>
+                    }
+                    <li>
+                        <Link to={`/profil/?id=${userId}`}><i className="fa-solid fa-user"></i>Mon profil</Link>
+                    </li>
+                    <li>
+                        <button onClick={() => logout()} className='header-logout'><i className="fa-solid fa-arrow-right-from-bracket"></i>Se déconnecter</button>
+                    </li>
+                </ul>
+            </nav>
         </header>
     );
 }

@@ -1,20 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getUsers } from '../../redux/actions/user.actions';
+import { Link } from 'react-router-dom';
+import { getUsers } from '../../redux/actions/users.actions'
 
 const LastSignUp = () => {
 
     const users = useSelector((state) => state.usersReducer)
-
+    const sortedUsers = users.reverse()
+    const slicedUsers = sortedUsers.slice(0,4)
     return (
         <section className='LastSignUp'>
             <h2>Dernières Inscriptions</h2>
             {
-                users.map((user, index) =>{
+                slicedUsers.map((user, index) =>{
                     return (
                         <div key={index} className="LastSignUp-user">
                             <img src={`${user.photo}`} alt={`photo de ${user.lastName}`} className='LastSignUp-img'/>
-                            <p className='LastSignUp-Name'>{user.firstName} {user.lastName}</p> 
+                            <Link to={`../user/?id=${user._id}`}><p className='LastSignUp-Name'>{user.firstName} {user.lastName}</p> </Link>
                         </div>
                         )
                 })
@@ -24,3 +26,4 @@ const LastSignUp = () => {
 }
 
 export default LastSignUp;
+

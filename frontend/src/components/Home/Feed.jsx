@@ -1,15 +1,14 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { useSelector } from 'react-redux';
-import Post from './Post';
+import Post from '../Post/Index';
+import { isEmpty } from '../../utils/isEmpty'
 
-const Feed = () => {
-
-    const posts = useSelector((state) => state.postsReducer);
+const Feed = ({ posts }) => {
 
     return (
         <div className='feed'>
-            {posts.map(post => {
-                return <Post 
+            {!isEmpty(posts[0]) && posts.map((post) => 
+                 <Post 
                 key={post._id}
                 postId= {post._id}
                 posterId={post.posterId} 
@@ -17,7 +16,7 @@ const Feed = () => {
                 imageUrl={post.imageUrl} 
                 createdAt={post.createdAt} 
                 likes={post.likes}/>
-            })}
+            )}
         </div>
     );
 }

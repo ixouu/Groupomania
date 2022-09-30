@@ -1,0 +1,107 @@
+.user{
+    padding: 30px 10% 0 10%;
+    @include mobile-only{
+        padding: 30px 5% 0 5%;
+    }
+    @include largeScreen-only{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.user-card{
+    display: flex;
+    flex-direction: row;
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid $color-4;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    @include mobile-only{
+        flex-direction: column-reverse;
+        padding: 16px;
+    }
+    @include largeScreen-only{
+        width: 70%;
+    }
+}
+
+.user-card_left, .user-card_right{
+    width: 50%;
+    @include mobile-only{
+        width: 100%;
+    }
+}
+
+.user-card_left{
+    .user-name{
+        margin-bottom: 30px;
+    }
+    .user-bio{
+        margin-bottom: 30px;
+        p{
+            display: inline-block;
+            background-color: $color-6;
+            width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            @include mobile-only{
+                width: 100%;
+            }
+            @include largeScreen-only{
+                width: 60%;
+            }
+        }
+    }
+}
+
+
+.user-card_right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        border-radius: 30px;
+        max-width: 400px;
+        @include largeScreen-only{
+            max-width: 500px;
+        }
+        @include mobile-only{
+            max-width: 300px;
+        }
+    }
+}
+
+
+.user-follow_bloc{
+    display: flex;
+    flex-direction: column;
+
+    .followUser-btn, .unfollowUser-btn{
+        margin-left: 10px;
+        padding: 3px;
+        border-radius: 3px;
+        font-size: 16px;
+        cursor: pointer;
+        color : $color-5;
+    }
+
+    .followUser-btn{
+        background-color: $color-9;
+    }
+
+    .unfollowUser-btn{
+        background-color: $color-8;
+    }
+
+    .user-follower_btn, .user-following_btn{
+        background-color: $color-3;
+        color: $color-5;
+        width: 150px;
+        padding: 5px 0 5px 0;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    
+
+}

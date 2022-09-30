@@ -16,12 +16,9 @@ const jwt = require('jsonwebtoken')
 // Middleware who catch errors Async function
 const catchAsync = fn => {
     return (req, res, next) => {
-        fn(req, res, next).catch(err => {
-            res.status(500).json({err})
-        })
+        fn(req, res, next).catch(next)
     }
 }
-
 // function that hides emails
 function hideEmails(email) {
     const startOfEmail = email.slice(0, 2)
@@ -41,6 +38,7 @@ const hashPassword = async (password, saltRounds) =>{
 
 // middleware signup , user doesn't exist yet
 exports.signUp = catchAsync (async (req, res, next) => {
+    
     const {email, password} = req.body;
     if(!email || !password){
         return res.status(403).json({
@@ -117,7 +115,6 @@ exports.login = catchAsync (async (req,res,next) =>{
            message : "User or email are incorrect"
        })
    }
-    console.log(user);
     // verifying the password
    const match = await bcrypt.compare(password, user.password);
     if (match){

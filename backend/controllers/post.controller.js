@@ -7,9 +7,7 @@ const userModel = require("../models/userSchema");
 // Middleware who catch errors Async function
 const catchAsync = fn => {
     return (req, res, next) => {
-        fn(req, res, next).catch(err => {
-            res.status(500).json({err})
-        })
+        fn(req, res, next).catch(next)
     }
 }
 
@@ -41,13 +39,7 @@ module.exports.createPost = catchAsync (async (req, res, next) => {
 //  get all posts
 module.exports.getPosts = catchAsync (async (req, res, next) => {
     const posts = await postModel.find().populate('comments').sort({createdAt : -1});
-    res.status(200).json({
-        status : 'success',
-        results: posts.length,
-        data : {
-            posts
-        }
-    })
+    res.status(200).json({posts})
 });
 
 // get one post
@@ -105,16 +97,8 @@ module.exports.deletePost = catchAsync (async (req, res, next) => {
         return res.status(400).send("post unknown");
     }
     const postToDelete = await postModel.findOne({_id: req.params.id})
-    if (postToDelete.userId !== getAuthUserId(req)){
-        return res.status(400).send('Unauthorized operation')
-    }
-    await postToDelete.deleteOne({_id: req.params.id})
-    .then(() =>{
-        return res.status(204).json({
-            status: 'success'
-        })
-    })
-
+    await postModel.findByIdAndRemove(req.params.id)
+    res.status(200).json({ message: "Successfully deleted. " })
 });
 
 // like post
