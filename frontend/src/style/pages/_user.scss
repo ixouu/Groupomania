@@ -41,14 +41,14 @@
         p{
             display: inline-block;
             background-color: $color-6;
-            width: 80%;
+            width: 100%;
             padding: 10px;
             border-radius: 10px;
             @include mobile-only{
                 width: 100%;
             }
             @include largeScreen-only{
-                width: 60%;
+                width: 80%;
             }
         }
     }
@@ -101,6 +101,7 @@
         font-size: 16px;
         border-radius: 5px;
         margin-bottom: 10px;
+        cursor: pointer;
     }
     
 

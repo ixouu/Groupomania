@@ -1,5 +1,7 @@
 import React from 'react'
 
+import FollowingModal from './FollowingModal';
+
 const Following = ({ following }) => {
 
   return (

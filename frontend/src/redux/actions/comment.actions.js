@@ -2,7 +2,8 @@ import Axios from "../../utils/services/callerService";
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const UPDATE_COMMENT = ' UPDATE_COMMENT';
 
 export const getComments = () => {
     return (dispatch) => {
@@ -42,4 +43,18 @@ export const deleteComment = (id) => {
         })
         .catch((err) => console.log(err))
     }
-} 
+}
+
+export const updateComment = (id, data) => {
+    return (dispatch) => {
+        return Axios({
+            method : 'put',
+            url : `comment/${id}`,
+            data
+        })
+        .then((res) => {
+            dispatch({ type: UPDATE_COMMENT, payload : {id, data} })
+        })
+        .catch((err) => console.log(err))
+    }
+}
