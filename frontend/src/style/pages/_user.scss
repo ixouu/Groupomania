@@ -94,11 +94,12 @@
     }
 
     .user-follower_btn, .user-following_btn{
-        background-color: $color-3;
+        background-color: $color-2;
         color: $color-5;
-        width: 150px;
-        padding: 5px 0 5px 0;
+        width: 160px;
+        padding: 5px;
         font-size: 16px;
+        height: 40px;
         border-radius: 5px;
         margin-bottom: 10px;
         cursor: pointer;

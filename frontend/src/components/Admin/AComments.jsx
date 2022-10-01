@@ -16,7 +16,7 @@ const AComments = ({ comments }) => {
     const validateDelete = () => toast.success('Commentaire supprimé', {
         duration : 2000
     })
-    const validateUpdate = () => toast.success('Commentaire mise à jour', {
+    const validateUpdate = () => toast.success('Commentaire édité', {
         duration : 2000
     })
 

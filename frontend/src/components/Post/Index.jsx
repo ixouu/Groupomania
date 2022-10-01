@@ -2,7 +2,7 @@
 import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
-import CommentBtn from './CommentBtn';
+import LikesPhotos from './LikesPhotos';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
@@ -154,7 +154,6 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
         setLiked(false);
         validateUnlike();
     }
-
     // POST 
     return (
         <div className='postContainer' id={`${postId}`}>
@@ -170,12 +169,13 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
             <div className='postContainer-footer'>
 
                 <div className="post-counts">
-                 <span className='likes_count'>{likes.length} J'aime</span>
-                 <span onClick={() => handleShowCommentsButton()} className = "post-showComments">
-                    {findPostComments().length} {findPostComments().length > 1
-                    ? <span> commentaires</span>
-                    : <span> commentaire</span>}
-                 </span>
+                    <LikesPhotos likes={likes} likesLength={likes.length}/>
+                    <span className='likes_count'>{likes.length} J'aime</span>
+                    <span onClick={() => handleShowCommentsButton()} className = "post-showComments">
+                        {findPostComments().length} {findPostComments().length > 1
+                        ? <span> commentaires</span>
+                        : <span> commentaire</span>}
+                    </span>
                 </div>
 
                 <div className="post-actions">
