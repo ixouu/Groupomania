@@ -23,7 +23,7 @@ const AComments = ({ comments }) => {
     const handleDelete = (e) => {
         e.preventDefault();
         const commentId = e.target.closest('section').id
-        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ') === true) {
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?') === true) {
            dispatch(deleteComment(commentId));
            validateDelete();
         } else {

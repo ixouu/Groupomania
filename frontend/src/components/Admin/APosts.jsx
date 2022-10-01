@@ -45,7 +45,6 @@ const APosts = ({ posts }) => {
         const data = {
             imageUrl : ''
         }
-        console.log(data);
         if (window.confirm('Êtes-vous sûr de vouloir supprimer cette image ?') === true) {
             await dispatch(adminEditPost(postId, data));
             cancelUpdate();

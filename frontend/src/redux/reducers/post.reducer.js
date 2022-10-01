@@ -44,8 +44,7 @@ export default function postReducer (state = initialSate, action){
                   ...post,
                   imageUrl: action.payload.data.imageUrl
                 }
-              }
-               else {
+              }else {
                 return post
               }
             })
