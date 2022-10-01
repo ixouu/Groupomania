@@ -16,7 +16,10 @@ router.get('/:id',auth, postController.getOnePost);
 // create post
 router.post('/', auth, multer, postController.createPost);
 
-// Update post
+// Admin Update All posts
+router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), multer, postController.adminEditPost);
+
+// user Update post
 router.put('/:id', auth, multer, postController.editPost);
 
 // Delete post

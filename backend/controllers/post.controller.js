@@ -53,6 +53,33 @@ module.exports.getOnePost = catchAsync (async (req, res, next) => {
     res.status(200).json(post)
 });
 
+//  admin update post
+module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
+    // check if the post is in the database
+    let postIsExisting = await postModel.findOne({_id: req.params.id});
+    if (postIsExisting === null) {
+        return res.status(400).json({message: "post not found"});
+    }
+    const updateContent = req.file ? {
+    // parse to be able to update the image
+    ...req.body,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+    } : { ...req.body}
+    await postModel.findByIdAndUpdate(
+        req.params.id, {
+            ...updateContent
+        }
+    )
+        .then(() => {
+            res.status(204).json({
+                status : 'success',
+                data: {
+                    updateContent
+                }
+            })
+        })
+});
+
 //  update post
 module.exports.editPost =  catchAsync (async (req, res, next) => {
     // check if the post is in the database

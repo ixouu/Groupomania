@@ -127,22 +127,6 @@
                 .fa-plus{
                     font-size: 14px;
                 }
-
-                // LIKERS LIST TRANSITIONS 
-                .likersNames-transistion-enter{
-                    opacity: 0;
-                }
-                .likersNames-transistion-enter-active{
-                    opacity: 1;
-                    transition: all .3s ease-out;
-                }
-                .likersNames-transistion-exit{
-                    opacity: 1;
-                }
-                .likersNames-transistion-exit-active{
-                    opacity: 0;
-                    transition: all .3s ease-out;
-                }
             }
         }
         .post-actions{

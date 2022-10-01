@@ -44,11 +44,11 @@ const AComments = ({ comments }) => {
         setCurrentCommentId('');
     }
 
-    const sumbitUpdate = () => {
+    const sumbitUpdate = (e) => {
+        e.preventDefault();
         const data = {
             content : commentContent
         }
-        console.log(currentCommentId);
         if (window.confirm('Êtes-vous sûr de vouloir modifier ce commentaire ?') === true) {
             dispatch(updateComment(currentCommentId, data));
             cancelUpdate();
@@ -66,7 +66,7 @@ const AComments = ({ comments }) => {
                     <label htmlFor="admin-comment_textarea" className='admin-comment_label'>Edition du commentaire</label>
                     <textarea id="admin-comment_textarea" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
                     <button className='admin-comment_btnCancel' onClick={() => cancelUpdate()}><i class="fa-solid fa-arrow-rotate-left"></i></button>
-                    <button className='admin-comment_btnSend' onClick={ () => sumbitUpdate()}><i class="fa-solid fa-paper-plane"></i></button>
+                    <button className='admin-comment_btnSend' onClick={ (e) => sumbitUpdate(e)}><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             } 
             {comments.map((comment) => {
