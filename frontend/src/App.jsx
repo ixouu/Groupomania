@@ -70,6 +70,11 @@ const App = () => {
             <AuthGuard>
               <User />
             </AuthGuard>}/> 
+            
+            <Route path='user/*' element={ 
+            <AuthGuard>
+              <Error />
+            </AuthGuard>}/> 
 
             <Route path='admin' element={
             <AuthAdmin>

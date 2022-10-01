@@ -96,7 +96,7 @@ const APosts = ({ posts }) => {
                         <div className='admin-post_imgContainer'>
                             <img src={post.imageUrl} alt="Image du post" className='admin-post_img'/>
                             <div className='admin-post_imgBtnContainer'>
-                                <button className='btn admin-post_deleteImgBtn' onClick={(e) => handleDeleteImg(e)}>Supprimer</button>
+                                <button className='btn admin-post_deleteImgBtn' onClick={(e) => handleDeleteImg(e)}>Supprimer la photo</button>
                             </div>
                         </div>}
                     </section>
