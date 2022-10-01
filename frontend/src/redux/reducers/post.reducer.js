@@ -34,12 +34,18 @@ export default function postReducer (state = initialSate, action){
         case ADMIN_EDIT_POST : 
         console.log(action.payload.id)
           return state.map((post) => { 
-              if (post._id === action.payload.id){
+              if (post._id === action.payload.id && action.payload.data.content !== undefined){
                 return{
                   ...post,
                   content: action.payload.data.content
                 }
-              } else {
+              }else if (post._id === action.payload.id && action.payload.data.imageUrl !== undefined){
+                return {
+                  ...post,
+                  imageUrl: action.payload.data.imageUrl
+                }
+              }
+               else {
                 return post
               }
             })

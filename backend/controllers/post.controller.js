@@ -60,10 +60,6 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
     if (postIsExisting === null) {
         return res.status(400).json({message: "post not found"});
     }
-    // check if the request body is not empty
-    if (!req.body.content) {
-        return res.status(400).send({message: "can not send an empty message"})
-    }
     const updateContent = req.file ? {
     // parse to be able to update the image
     ...req.body,
@@ -84,7 +80,7 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
         })
 });
 
-//  admin update post
+//  update post
 module.exports.editPost =  catchAsync (async (req, res, next) => {
     // check if the post is in the database
     let postIsExisting = await postModel.findOne({_id: req.params.id});

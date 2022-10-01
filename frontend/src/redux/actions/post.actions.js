@@ -84,6 +84,7 @@ export const deletePost = (id) => {
 }
 
 export const adminEditPost = (id, data) => {
+    console.log(id)
     return (dispatch) => {
         return Axios({
             method : 'put',

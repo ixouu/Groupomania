@@ -10,6 +10,8 @@ const APosts = ({ posts }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [postContent, setPostContent] = useState('');
     const [currentPostId, setCurrentPostId] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
+
 
     const validateDelete = () => toast.success('Post supprimé', {
         duration : 2000
@@ -30,9 +32,27 @@ const APosts = ({ posts }) => {
     }
     const handleUpdate = (e) => {
         e.preventDefault();
-        setPostContent(e.target.closest('section').innerText);
+        const section = e.target.closest('section')
+        const content = section.querySelector('.admin-post_content').innerText
+        setPostContent(content);
         setCurrentPostId(e.target.closest('section').id);
         setIsEditing(true);
+    }
+
+    const handleDeleteImg = async (e) => {
+        e.preventDefault();
+        const postId = e.target.closest('section').id
+        const data = {
+            imageUrl : ''
+        }
+        console.log(data);
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer cette image ?') === true) {
+            await dispatch(adminEditPost(postId, data));
+            cancelUpdate();
+            validateUpdate();
+        } else {
+            return
+        }
     }
 
     const sumbitUpdate = async (e) => {
@@ -54,14 +74,14 @@ const APosts = ({ posts }) => {
         setPostContent('');
         setCurrentPostId('');
     }
-
+  
     return (
         <>
             <div><Toaster/></div>
             {isEditing && 
                 <form className='admin-post_form'>
                     <label htmlFor="admin-post_textarea" className='admin-post_label'>Edition du post</label>
-                    <textarea id="admin-post_textarea" value={postContent} onChange={(e) => setPostContent(e.target.value)}></textarea>
+                    <textarea id="admin-post_textarea" value={postContent} onChange={(e) => setPostContent(e.target.value)} ></textarea>
                     <button className='admin-post_btnCancel' onClick={() => cancelUpdate()}><i class="fa-solid fa-arrow-rotate-left"></i></button>
                     <button className='admin-post_btnSend' onClick={ (e) => sumbitUpdate(e)}><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
@@ -72,6 +92,13 @@ const APosts = ({ posts }) => {
                         <button className='admin-post_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
                         <button className='admin-post_update' onClick={(e) => handleUpdate(e)}><i class="fa-solid fa-pen-to-square"></i></button>
                         <p className='admin-post_content'>{post.content}</p>
+                        {post.imageUrl &&
+                        <div className='admin-post_imgContainer'>
+                            <img src={post.imageUrl} alt="Image du post" className='admin-post_img'/>
+                            <div className='admin-post_imgBtnContainer'>
+                                <button className='btn admin-post_deleteImgBtn' onClick={(e) => handleDeleteImg(e)}>Supprimer</button>
+                            </div>
+                        </div>}
                     </section>
                 )
             })
