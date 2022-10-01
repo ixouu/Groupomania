@@ -5,6 +5,7 @@ export const LIKE_POST = 'LIKE_POST';
 export const DISLIKE_POST = 'DISLIKE_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const DELETE_POST = 'DELETE_POSTS';
+export const ADMIN_EDIT_POST = 'ADMIN_EDIT_POST'
 
 export const getPosts = () => {
     return (dispatch) => {
@@ -81,3 +82,17 @@ export const deletePost = (id) => {
         .catch((err) => console.log(err))
     }
 }
+
+export const adminEditPost = (id, data) => {
+    return (dispatch) => {
+        return Axios({
+            method : 'put',
+            url : `post/admin/${id}`,
+            data
+        })
+        .then((res) => {
+            dispatch({type: ADMIN_EDIT_POST, payload: { id, data } }) 
+            })
+            .catch((err) => console.log(err))
+        }
+    }

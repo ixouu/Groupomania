@@ -87,7 +87,10 @@
     .admin-comment_delete, 
     .admin-comment_update,
     .admin-comment_btnCancel,
-    .admin-comment_btnSend{
+    .admin-comment_btnSend,
+    .admin-post_btnSend,
+    .admin-post_btnCancel,
+    .admin-post_update{
         margin: 5px 10px 5px 5px;
         width: 20px;
         height: 20px;
@@ -161,7 +164,7 @@
     }
 }
     // UPDATE BTNS
-    .admin-comment_update {
+    .admin-comment_update, .admin-post_update {
         right: 10px;
         top: 40px;
         background-color: $color-4;
@@ -171,8 +174,8 @@
     }
 
 
-    // UPDATE COMMENT FORM
-    .admin-comment_form {
+    // UPDATE COMMENT - UPDATE POST FORM
+    .admin-comment_form, .admin-post_form {
         display: flex;
         flex-direction: column;
         position: relative;
@@ -182,11 +185,11 @@
         @include largeScreen-only{
             width: 60%;
         }
-        .admin-comment_label{
+        .admin-comment_label, .admin-post_label{
             font-size: 18px;
             font-weight: bold;
         }
-        #admin-comment_textarea{
+        #admin-comment_textarea, #admin-post_textarea{
             width: 100%;
             display: block;
             font-family: $font-1;
@@ -196,15 +199,17 @@
             padding: 10px;
 
         }
-        .admin-comment_btnCancel{
+        .admin-comment_btnCancel, .admin-post_btnCancel{
             background-color: $color-8 ;
             right: 10px;
             top: 20px;
+            cursor: pointer;
         }
-        .admin-comment_btnSend{
+        .admin-comment_btnSend, .admin-post_btnSend{
             background-color: $color-9 ;
             right: 10px;
             top: 50px;
+            cursor: pointer;
         }
     }
 
