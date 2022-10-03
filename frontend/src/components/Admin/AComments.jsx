@@ -23,7 +23,7 @@ const AComments = ({ comments }) => {
     const handleDelete = (e) => {
         e.preventDefault();
         const commentId = e.target.closest('section').id
-        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ') === true) {
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?') === true) {
            dispatch(deleteComment(commentId));
            validateDelete();
         } else {
@@ -65,15 +65,15 @@ const AComments = ({ comments }) => {
                 <form className='admin-comment_form'>
                     <label htmlFor="admin-comment_textarea" className='admin-comment_label'>Edition du commentaire</label>
                     <textarea id="admin-comment_textarea" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
-                    <button className='admin-comment_btnCancel' onClick={() => cancelUpdate()}><i class="fa-solid fa-arrow-rotate-left"></i></button>
-                    <button className='admin-comment_btnSend' onClick={ (e) => sumbitUpdate(e)}><i class="fa-solid fa-paper-plane"></i></button>
+                    <button className='admin-comment_btnCancel' onClick={() => cancelUpdate()}><i className="fa-solid fa-arrow-rotate-left"></i></button>
+                    <button className='admin-comment_btnSend' onClick={ (e) => sumbitUpdate(e)}><i className="fa-solid fa-paper-plane"></i></button>
                 </form>
             } 
             {comments.map((comment) => {
                 return (
                     <section key={comment._id} id={comment._id} className='admin-comment'>
                         <button className='admin-comment_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
-                        <button className='admin-comment_update' onClick={(e) => handleUpdate(e)}><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button className='admin-comment_update' onClick={(e) => handleUpdate(e)}><i className="fa-solid fa-pen-to-square"></i></button>
                         <p className='admin-comment_content'>{comment.content}</p>
                     </section>
                 )

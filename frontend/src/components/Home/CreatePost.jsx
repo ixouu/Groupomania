@@ -55,7 +55,7 @@ const CreatePost = () => {
     return (
         <>
             <div><Toaster/></div>
-            <div className="newPost">
+            <section className="newPost">
                 <h3>Creer une nouvelle publiation :</h3>
                 <form>
                     <textarea
@@ -115,7 +115,7 @@ const CreatePost = () => {
                         </p>
                     )}
                 </div>
-            </div>
+            </section>
         </>
     );
 };

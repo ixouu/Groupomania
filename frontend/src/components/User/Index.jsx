@@ -26,9 +26,9 @@ import FollowBtns from './FollowBtns';
 
     const userBio = () => {
         if (user()[0].bio === ''){
-            return <p> {user()[0].firstName} n'a pas encore écrit sa bio</p>
+            return <span> {user()[0].firstName} n'a pas encore écrit sa bio</span>
         } else {
-            return <p>{user()[0].bio}</p>
+            return <span>{user()[0].bio}</span>
         }
     }
 

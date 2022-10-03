@@ -61,26 +61,30 @@ module.exports.updateUser = catchAsync ( async (req, res, next) =>{
     )
         .then( () => {
             res.status(200).json({
-                status : 'success',
+                status : 'success'
             })
         })
 });
 
-// delete user
-module.exports.deleteUser = catchAsync (async (req, res, next) =>{
-    // check if the user is in the database
-    if (!ObjectID.isValid(req.params.id)){
-        return res.status(400).send("ID unknown");
-    }
-    const userToDelete = await userModel.findById({_id: req.params.id})
-    await userToDelete.deleteOne({_id: req.params.id})
-        .then( () =>{
+// admin update user
+module.exports.adminUpdateUser = catchAsync ( async (req, res, next) => {
+        // check if the user is in the database
+        if (!ObjectID.isValid(req.params.id)){
+            return res.status(400).send("ID unknown");
+        }
+        console.log(req.body)
+        console.log(req.params.id)
+        await userModel.findByIdAndUpdate(req.params.id, {
+            ...req.body
+        },{
+            new: true
+        })
+        .then( () => {
             res.status(200).json({
-                status: "success" }
-            )}
-        )
+                status : 'success'
+            })
+        })
 });
-
 
 // Add Follower user
 module.exports.addFollower = catchAsync ( async (req, res, next) =>{

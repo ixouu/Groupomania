@@ -12,11 +12,16 @@ header{
         height: 15vh;
         margin-top: 0;
     }
+    @include tablettes-only{
+        flex-direction:  column;
+        height: 10vh;
+        margin-top: 0;
+    }
     .header-logo{
         height: 80%;
         width: 300px;
         @include mobile-only{
-            width: 100px;
+            width: 90%;
             height: auto;
         }
     }
@@ -30,21 +35,32 @@ header{
     }
     h1{
         font-size: 20px;
-        letter-spacing: 0.2px;
-        word-spacing: 6px;
+        word-spacing: 3px;
         @include mobile-only{
-            font-size: 16px;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+        }
+        @include tablettes-only{
+            padding-bottom: 16px;
         }
     }
     nav{
         @include mobile-only{
-            font-size: 14px;
+            font-size: 16px;
+        }
+        @include tablettes-only{
+            font-size: 18px;
+            padding-bottom: 8px;
+        }
+        .admin-link{
+            @include mobile-only{
+                position: absolute;
+                top : 0;
+                right: 0;
+            }
         }
         ul{
             display: flex;
             flex-direction: row;
-
         }
         li{
             padding: 0 15px;
@@ -68,7 +84,7 @@ header{
                     color: $color-8;
                 }
                 @include mobile-only{
-                    font-size: 14px;
+                    font-size: 16px;
                 }
             }
         }

@@ -5,7 +5,7 @@ import {
     ADD_FOLLOWER, 
     ADD_FOLLOWING,
     REMOVE_FOLLOWER,
-    REMOVE_FOLLOWING 
+    REMOVE_FOLLOWING
 } from "../actions/user.actions";
 
 const initialSate = {};

@@ -24,8 +24,8 @@ router.get('/:id', auth, userController.getUser);
 // Update
 router.put('/:id', auth, multer, userController.updateUser);
 
-// Admin delete one user
-router.delete('/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.deleteUser);
+// Admin Update
+router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.adminUpdateUser); 
 
 // Add Follower user
 router.put('/add-follower-user/:id', auth, userController.addFollower);

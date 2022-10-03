@@ -27,7 +27,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     @include mobile-only{
-        width: 100%;
+        width: 90%;
     }
     @include largeScreen-only{
         width: 70%;
@@ -67,7 +67,7 @@
         height: 60px;
         display: inline-block;
         border: none;
-        border-radius: 50px;
+        border-radius: 5px;
         background-color: $color-1;
         color : $color-5 ;
         font-size: 20px;
@@ -84,6 +84,10 @@
         }
         @include mobile-only{
             @include mobile-btn
+        }
+        @include tablettes-only{
+            @include tablettes-btn;
+            margin-top: 32px;
         }
         @include largeScreen-only{
             @include largeScreen-btn

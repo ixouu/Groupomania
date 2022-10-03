@@ -109,3 +109,4 @@ export const removeFollowing = (userId, data, userIdToRemove) => {
         .catch((err) => console.log(err))
     }
 }
+

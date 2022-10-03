@@ -1,5 +1,5 @@
 
-// main
+// MAIN CONTAINER
 .home{
     width: 100%;
     height: 100%;
@@ -10,10 +10,19 @@
         flex-direction: column-reverse;
         padding: 2% 5%;
     }
+    @include tablettes-only{
+        flex-direction: column-reverse;
+        padding:  2% 5%;
+    }
     .home-left{
         width: 20%;
         @include mobile-only{
             width: 100%;
+            padding-top: 2%;
+        }
+        @include tablettes-only{
+            width: 100%;
+            padding-top: 2%;
         }
     }
     .home-center{
@@ -22,6 +31,12 @@
         @include mobile-only{
             width: 100%;
             padding: 0;
+            order: 1;
+        }
+        @include tablettes-only{
+            width: 100%;
+            padding: 0;
+            order: 1;
         }
     }
     .home-right{
@@ -29,9 +44,12 @@
         @include mobile-only{
             width: 100%;
         }
+        @include tablettes-only{
+            width: 100%;
+        }
     }
 }
-
+// ELEMENT TO CREATE A NEW POST
 .newPost{
     width: 100%;
     min-height: 430px;
@@ -122,7 +140,7 @@
         }
     }
 }
-// All Posts
+// FEED WHO DISPLAY ALL POSTS
 .feed{
     width: 100%;
     min-height: 500px;
@@ -132,16 +150,16 @@
     align-items: center;
 }
 
-// Trending
+// TRENDING ELEMENT
 .trending{
     @include sideElement
 }
-// Last Comments
+// LAST COMMENT ELEMENT
 .lastComments{
     @include sideElement;
     margin-top: 20px
 }
-// Last SignUp
+// LAST SIGN UP ELEMENT
 .LastSignUp{
     @include sideElement;
 
@@ -150,8 +168,9 @@
         flex-direction: row;
         align-items: center;
         padding: 15px 0;
+        overflow-x: hidden;
         .LastSignUp-Name{
-            font-size: 18px;
+            font-size: 16px;
             margin: 0;
             color: $color-1;
             &:hover{

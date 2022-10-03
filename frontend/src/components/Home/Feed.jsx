@@ -1,12 +1,10 @@
-import React , {useEffect} from 'react';
-import { useSelector } from 'react-redux';
 import Post from '../Post/Index';
 import { isEmpty } from '../../utils/isEmpty'
 
 const Feed = ({ posts }) => {
 
     return (
-        <div className='feed'>
+        <section className='feed'>
             {!isEmpty(posts[0]) && posts.map((post) => 
                  <Post 
                 key={post._id}
@@ -17,7 +15,7 @@ const Feed = ({ posts }) => {
                 createdAt={post.createdAt} 
                 likes={post.likes}/>
             )}
-        </div>
+        </section>
     );
 }
 

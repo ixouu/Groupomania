@@ -1,5 +1,5 @@
 .admin-title{
-    padding:  32px 0 32px 10%;
+     padding:  32px 0 32px 10%;
     @include mobile-only{
         font-size: $title-mobile-size;
         padding: 16px 0 16px 10%;
@@ -9,12 +9,11 @@
 .admin{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding: 0 10% 0 10%
+    padding: 0 10% 0 10%;
 }
 
 .admin-panel, .admin-content{
-    width: 100%;
+    // width: 100%;
     height: auto;
 }
 
@@ -22,15 +21,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 .admin-actions{
     height: 100%;
     display: flex;
     justify-content: space-between;
-    width: 100%;
     @include mobile-only{
         flex-direction: column;
+    }
+    @include tablettes-only{
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -54,6 +55,13 @@
         height: 50px;
         min-width: 200px;
         margin: 0 10% 8px 10%;
+        font-size: 16px;
+    }
+    @include tablettes-only{
+        height: 60px;
+        margin: 0 10% 16px 10%;
+        font-size: 18px;
+        max-width: 400px;
     }
 }
 
@@ -66,7 +74,6 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    padding:10px;
 
     @include largeScreen-only{
         min-height: 600px;
@@ -82,7 +89,6 @@
         padding: 15px;
     }
     // DELETE BTN
-    .admin-user_delete, 
     .admin-post_delete, 
     .admin-comment_delete, 
     .admin-comment_update,
@@ -90,7 +96,8 @@
     .admin-comment_btnSend,
     .admin-post_btnSend,
     .admin-post_btnCancel,
-    .admin-post_update{
+    .admin-post_update,
+    .admin-user_update{
         margin: 5px 10px 5px 5px;
         width: 20px;
         height: 20px;
@@ -99,7 +106,7 @@
         cursor: pointer;
     }
 
-    .admin-user_delete, .admin-post_delete, .admin-comment_delete{
+    .admin-post_delete, .admin-comment_delete{
         background-color: $color-8 ;
         right: 10px;
                 @include mobile-only{
@@ -110,17 +117,79 @@
     // USERS
     .admin-user{
         margin: 10px;
-        padding: 10px ;
-        height: 50px;
-        min-width: 30%;
+        padding: 10px;
+        width: 40%;
+        min-height: 90px;
         position: relative;
+        font-size: 20px;
         display: flex;
         justify-content: center;
-        font-size: 20px;
+
         @include mobile-only{
             width: 90%;
-            font-size: 18px;
+            font-size: 16px;
+            min-height: 50px;
         }
+
+        @include tablettes-only{
+            width: 90%;
+        }
+    }
+
+    // EDIT USER
+
+    .aUser-updateForm_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        background-color: $color-6;
+        padding: 5px;
+        border-radius: 5px;
+        .aUser-updateForm{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            width: 80%;
+            label{
+                font-size: 20px;
+            }
+            input, textarea{
+                font-size: 18px;
+                font-family: $font-1;
+                width: 100%;
+                margin: 5px;
+            }
+            input{
+                height: 30px;
+            }
+            textarea{
+                min-height: 90px;
+            }
+            img{
+                padding-top: 10px;
+                max-width: 300px;
+                align-self: center;
+                border-radius: 5px;
+            }
+        }
+        .aUser-btnContainer{
+            padding: 24px 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .aUser-cancelBtn, .aUser-UpdateBtn, .aUser-deleteBtn{
+                width: 30%;
+            } 
+            .aUser-cancelBtn{
+                background-color: $color-8;
+            }
+            .aUser-UpdateBtn{
+                background-color: $color-9;
+            }
+        }
+        
     }
 
     // POSTS 
@@ -154,6 +223,10 @@
         .admin-post_img{
             max-width: 200px;
         }
+        @include mobile-only{
+            flex-direction: column;
+            align-items: center;
+        }
     }
     .admin-post_imgBtnContainer {
         display: flex;
@@ -161,6 +234,9 @@
         justify-content: center;
         align-items: center;
         padding-left: 16px;
+        @include mobile-only{
+            padding: 8px 0 0 0;
+        }
         .admin-post_deleteImgBtn{
             width: 150px;
             font-size: 16px;
@@ -183,13 +259,24 @@
             width: 90%;
             font-size: 16px;
         }
+        @include tablettes-only{
+            font-size: 16px;
+        }
         @include largeScreen-only{
             width: 60%;
+        }
+        p {
+            @include mobile-only{
+                padding-right: 10%;
+            }
+            @include tablettes-only{
+                padding-right: 10%;
+            }
         }
     }
 }
     // UPDATE BTNS
-    .admin-comment_update, .admin-post_update {
+    .admin-comment_update, .admin-post_update , .admin-user_update{
         right: 10px;
         top: 40px;
         background-color: $color-4;
@@ -199,6 +286,12 @@
     }
     .admin-post_update{
         top: 50px;
+    }
+    .admin-user_update{
+        top: 30px;
+        @include mobile-only{
+            top: 10px;
+        }
     }
 
 
