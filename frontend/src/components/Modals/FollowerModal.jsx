@@ -26,7 +26,7 @@ const FollowerModal = ({ followers, onClose, open}) => {
                 <div className="modal-content">
                     {
                         followersUsers.map((user, index) => {
-                            return <Link to={`./user/?id=${user._id}`} relative="path" key={index} className='followerModal-userCard'  onClick={onClose}>
+                            return <Link to={`../user/?id=${user._id}`} relative="path" key={index} className='followerModal-userCard'  onClick={onClose}>
                                 <span>{user.firstName} {user.lastName}</span>
                             </Link>
                         })

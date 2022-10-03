@@ -16,38 +16,32 @@ const AUsers = ({users}) => {
     const [photo, setPhoto] = useState('');
     const [isPhoto, setIsPhoto] = useState(true);
     
-    const validateDelete = () => toast.success('Post supprimé', {
-        duration : 2000
-    })
+
     const validateUpdate = () => toast.success('Post edité', {
         duration : 2000
     })
 
-    const handleDelete = (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
-        if (window.confirm('Êtes-vous sûr de vouloir bannir cet utilisateur? ') === true) {
-            console.log("delete")
-        } else {
-            return
+        if (isEditing === true){
+            setFirstName('');
+            setLastName('');
+            setBio('');
+            setPhoto('');
+            setIsEditing(false)
         }
-    }
-
-    const handleUpdate = (e) => {
-        e.preventDefault();
-        setCurrentUserId(e.target.closest('section').id);
-        console.log(currentUserId);
-        const userToFilter = users.filter(user => user._id === currentUserId)
+        const userToFilter = await users.filter(user => user._id === e.target.closest('section').id);
         setUserToEdit(userToFilter)
-        setFirstName(userToEdit[0].firstName);
-        setLastName(userToEdit[0].lastName);
-        setBio(userToEdit[0].bio);
-        setPhoto(userToEdit[0].photo);
+        setFirstName(userToFilter[0].firstName);
+        setLastName(userToFilter[0].lastName);
+        setCurrentUserId(userToEdit[0]._id);
+        setBio(userToFilter[0].bio);
+        setPhoto([0].photo);
         setIsEditing(true);
     }
 
     const cancelUpdate = () => {
         setIsEditing(false);
-        
     }
 
     const updateUser = (e) => {
@@ -123,7 +117,6 @@ const AUsers = ({users}) => {
             {users.map((user) => {
                 return (
                     <section key={user._id} id={user._id} className='admin-user'>
-                        <button className='admin-user_delete' onClick={(e) => handleDelete(e)}><i className="fa-solid fa-xmark"></i></button>
                         <button className='admin-user_update' onClick={(e) => handleUpdate(e)}><i className="fa-solid fa-pen-to-square"></i></button>
                         <p>{user.firstName} {user.lastName}</p>
                     </section>

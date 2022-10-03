@@ -156,7 +156,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     }
     // POST 
     return (
-        <div className='postContainer' id={`${postId}`}>
+        <article className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
                 <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo'/>
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
@@ -222,7 +222,7 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                 </div>
             }
             {showCommentsList && commentsList()}
-        </div>
+        </article>
     );
 }
 

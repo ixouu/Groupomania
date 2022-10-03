@@ -86,22 +86,6 @@ module.exports.adminUpdateUser = catchAsync ( async (req, res, next) => {
         })
 });
 
-// delete user
-module.exports.deleteUser = catchAsync (async (req, res, next) =>{
-    // check if the user is in the database
-    if (!ObjectID.isValid(req.params.id)){
-        return res.status(400).send("ID unknown");
-    }
-    const userToDelete = await userModel.findById({_id: req.params.id})
-    await userToDelete.deleteOne({_id: req.params.id})
-        .then( () =>{
-            res.status(200).json({
-                status: "success" }
-            )}
-        )
-});
-
-
 // Add Follower user
 module.exports.addFollower = catchAsync ( async (req, res, next) =>{
     // check if the user is in the database

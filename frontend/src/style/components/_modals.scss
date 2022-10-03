@@ -37,7 +37,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 5px;
-
+        @include mobile-only{
+            width: 90%;
+        }
+        @include tablettes-only{
+            width: 60%;
+        }
         h3{
             text-align: center;
             @include mobile-only{

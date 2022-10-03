@@ -52,6 +52,9 @@
             @include mobile-only{
                 width: 80%;
             }
+            @include tablettes-only{
+                width: 80%;
+            }
         }
         h2{
             font-size: 24px;
@@ -156,6 +159,9 @@
     @include btn;
     @include mobile-only{
         @include mobile-btn
+    }
+    @include tablettes-only{
+        @include tablettes-btn
     }
     @include largeScreen-only{
         @include largeScreen-btn

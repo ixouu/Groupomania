@@ -34,7 +34,7 @@ const Header = () => {
                 <ul>
                     {accountServices.isAdmin() &&
                         <li>
-                            <Link to ="/admin">Administration</Link>
+                            <Link to ="/admin" className="admin-link">Administration</Link>
                         </li>
                     }
                     <li>
