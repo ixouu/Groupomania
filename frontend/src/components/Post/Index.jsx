@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import LikesPhotos from './LikesPhotos';
 
+import DeletePost from './DeletePost';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
 import { getComments } from '../../redux/actions/comment.actions';
@@ -36,6 +38,8 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     const author = users.find((user) =>  user._id === posterId);
     const date = accountServices.transformDate(createdAt);
     const time = accountServices.getTime(createdAt);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newContent, setNewContent] = useState("");
 
     // COMMENTS
     const [postingComment, setPostingComment] = useState(false);
@@ -78,6 +82,8 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
         allComments.forEach((comment) => {
             if ( postId === comment.post._id){
                 postCommentsFound.push(comment)
+            } else {
+                return 
             }
         })
         return postCommentsFound
@@ -156,18 +162,52 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     }
     // POST 
     return (
-        <article className='postContainer' id={`${postId}`}>
+        <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
                 <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo'/>
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>
+            {/* CONTENT  */}
             <div className="postContainer-content">
-                <p className='post-content'>{content}</p>
-                {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img'/>}
+                {isEditing 
+                // IS EDITING
+                ?<form>
+                    <label htmlFor="post-content_textArea"> Modifiez votre publication :</label>
+                    <textarea 
+                        name="" 
+                        id='post-content_textArea' 
+                        defaultValue={content} 
+                        onChange={(e) => setNewContent(e.target.value)}
+                    ></textarea>
+                    
+                    {imageUrl
+                    ?(<div className='post-content-imgContainer'>
+                        <img src={imageUrl} alt="Image du post" style={{width: '100px'}}></img>
+                        <div className='imgContainer-btns'>
+                            <button className='post-content_editImgBtn btn'>Modifier mon image</button>
+                            <button className='post-content_deleteImgBtn btn'>Supprimer mon image</button>
+                        </div>
+                    </div>)
+                    :(<div className='post-content-imgContainer'>
+                        <button>Ajouter une image</button>
+                    </div>)
+                    }
+                    {/* EDIT FORM BUTTONS */}
+                    <div className='post-content_editBtnContainer'>
+                        <button className='post-content_editBtn btn'>Annuler l'édition</button>
+                        <button className='post-content_confirmBtn btn'>Valider les changements</button>
+                    </div>
+                </form>
+                // NOT EDITING 
+                :<>
+                    <p className='post-content'>{content}</p>
+                    {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img'/>}
+                </>
+            }
             </div>
             <div className='postContainer-footer'>
-
+                
                 <div className="post-counts">
                     <LikesPhotos likes={likes} likesLength={likes.length}/>
                     <span className='likes_count'>{likes.length} J'aime</span>
@@ -177,7 +217,6 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                         : <span> commentaire</span>}
                     </span>
                 </div>
-
                 <div className="post-actions">
                     {/* Add Like */}
                     <div className="post-actions_addLike">
@@ -221,8 +260,16 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                     {errorComment && <p>Votre commentaire est trop long, 400 caratères maximum svp</p>}
                 </div>
             }
+                <div className='post-actionEdit'>
+                    {posterId === user._id 
+                    ? <button className='post-editBtn' onClick={ () => setIsEditing(true)}>Modifier votre publication</button> 
+                    : null
+                    }
+                </div>
+                <DeletePost postId={postId} posterId={posterId} user={user}/>
+             
             {showCommentsList && commentsList()}
-        </article>
+        </div>
     );
 }
 

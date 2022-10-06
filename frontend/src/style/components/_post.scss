@@ -263,3 +263,82 @@
         }
     }
 }
+
+// BTN EDIT POST 
+.post-editBtn {
+    font-size: 14px;
+    background-color: $color-3;
+    color: $color-5;
+    padding: 5px;
+    border-radius: 30px;
+    margin : 0 5px 5px 5px ;
+    cursor: pointer;
+    transition: all .2s ease-out;
+    &:hover{
+        filter: brightness(130%);
+    }
+}
+
+// BTN DELETE POST
+.post-deleteBtn {
+    font-size: 14px;
+    background-color: $color-8;
+    color: $color-5;
+    padding: 5px;
+    border-radius: 30px;
+    margin :  0 5px 5px 5px ;
+    cursor: pointer;
+    transition: all .2s ease-out;
+    &:hover{
+        filter: brightness(130%);
+    }
+}
+
+
+// POST EDITION 
+
+.postContainer-content form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    label{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #post-content_textArea{
+        width: 100%;
+        background-color: $color-6;
+        min-height: 150px;
+        font-family: $font-1;
+        padding: 10px;
+        font-size: 16px;
+    }
+    button{
+        width: 20%;
+    }
+    .post-content-imgContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imgContainer-btns{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            button{
+                width: 40%;
+            }
+
+        }
+    }
+    .post-content_editBtnContainer{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        .post-content_confirmBtn{
+            background-color: $color-9;
+        }
+        .post-content_editBtn{
+            background-color: $color-8;
+        }
+    }
+}

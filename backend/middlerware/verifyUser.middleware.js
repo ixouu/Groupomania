@@ -8,7 +8,6 @@ const getAuthUser = (req) => {
     /*** vérification et décodage du token avec la clé de sécurité ***/
     const decodedToken = jwt.verify(token, process.env.SECRETKEY)
     const userEmail = decodedToken.UserInfo.email
-    console.log(decodedToken);
     return userEmail;
 };
 

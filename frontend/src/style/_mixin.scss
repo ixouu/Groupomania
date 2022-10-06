@@ -19,7 +19,7 @@
 };
 
 @mixin btn {
-  width: 200px;
+  width: 30%;
   height: 60px;
   border: none;
   border-radius: 5px;
@@ -29,15 +29,19 @@
   font-family: 'Lato', sans-serif;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   transition: all .3s ease;
+  cursor: pointer;
   &:hover{
      transform: translateY(-1px); 
      box-shadow: rgba(0, 0, 0, 0.6) 0px 19px 38px, rgba(0, 0, 0, 0.44) 0px 15px 12px;
+     filter: brightness(110%);
   }
   &:disabled{
-      background-color: #0511f28a;
+      filter: brightness(60%);
+      cursor: not-allowed;
       &:hover{
           transform: none;
-          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          
       }
   }
 }
@@ -49,7 +53,7 @@
 }
 
 @mixin tablettes-btn {
-  font-size : 16px ;
+  font-size : 16px!important ;
 }
 
 @mixin largeScreen-btn {

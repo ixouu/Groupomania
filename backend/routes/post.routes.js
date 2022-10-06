@@ -16,14 +16,17 @@ router.get('/:id',auth, postController.getOnePost);
 // create post
 router.post('/', auth, multer, postController.createPost);
 
-// Admin Update All posts
+// admin update all posts
 router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), multer, postController.adminEditPost);
 
-// user Update post
+// user update post
 router.put('/:id', auth, multer, postController.editPost);
 
-// Delete post
-router.delete('/:id',auth, verifyRoles(ROLE_LIST.Admin),  postController.deletePost);
+// admin delete post
+router.delete('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin),  postController.adminDeletePost);
+
+// user delete post
+router.delete('/:id', auth, postController.deletePost)
 
 // like a post
 router.put('/like-post/:id', auth, postController.likePost);

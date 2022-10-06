@@ -7,7 +7,8 @@ import { accountServices } from '../../utils/services/accountServices';
 import Axios from '../../utils/services/callerService';
 
 import { useDispatch } from "react-redux";
-import { getUser } from '../../redux/actions/user.actions'
+import { getUser } from '../../redux/actions/user.actions';
+
 import store from '../../redux/reducers/index'
 
 import NoAccount from './NoAccount';
@@ -48,7 +49,7 @@ const Login = () => {
             accountServices.saveRoles(response.data.roles);
             accountServices.saveUserId(response.data.userId);
             dispatch(getUser(response.data.userId));
-            store.dispatch(getUser());
+            store.dispatch(getUser(response.data.userId));
             // initialize the inputs
             setLoginData({
                 email: '',

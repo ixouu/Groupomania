@@ -19,7 +19,7 @@ router.post("/logout", authController.logout);
 router.get('/', userController.getAllUsers);
 
 // GET one user
-router.get('/:id', auth, userController.getUser);
+router.get('/:id', userController.getUser);
 
 // Update
 router.put('/:id', auth, multer, userController.updateUser);

@@ -118,15 +118,29 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         })
 });
 
-// delete post
+// Admin delete post
+module.exports.adminDeletePost = catchAsync (async (req, res, next) => {
+    if (!ObjectID.isValid(req.params.id )){
+        return res.status(400).send("post unknown");
+    }
+    await postModel.findByIdAndRemove(req.params.id)
+    res.status(200).json({ message: "Successfully deleted. " })
+});
+
+// user delete post
 module.exports.deletePost = catchAsync (async (req, res, next) => {
     if (!ObjectID.isValid(req.params.id )){
         return res.status(400).send("post unknown");
     }
-    const postToDelete = await postModel.findOne({_id: req.params.id})
-    await postModel.findByIdAndRemove(req.params.id)
-    res.status(200).json({ message: "Successfully deleted. " })
-});
+    const postToDelete = await postModel.findOne({_id: req.params.id});
+    const authorId = req.body.authorId;
+    if (postToDelete.posterId !== authorId){
+        return res.status(403).send('Unauthorized');
+    } else{
+        await postModel.findByIdAndRemove(req.params.id)
+        res.status(200).json({ message: "Successfully deleted. " })
+    }
+})
 
 // like post
 module.exports.likePost = catchAsync (async (req, res, next) => {

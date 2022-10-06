@@ -80,10 +80,11 @@
         padding: 0;
         cursor: pointer;
         &:disabled{
-            background-color: #0511f28a;
+            filter: brightness(60%);
+            cursor: not-allowed;
         }
         @include mobile-only{
-            @include mobile-btn
+            @include mobile-btn;
         }
         @include tablettes-only{
             @include tablettes-btn;
