@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import LikesPhotos from './LikesPhotos';
 
-import DeletePost from './DeletePost';
+import DeletePost from './DeletePost'
 import EditPost from './EditPost';
 
 import { useSelector, useDispatch } from 'react-redux';

@@ -23,7 +23,7 @@ const Trending = ({ posts }) => {
                 <p className='trending-rank'><span className='trending-star trending-silver'><i className="fa-solid fa-star"></i></span><span className='trending-likes'>{sortedPosts[1].likes.length} likes</span></p>
                 <div className="trending-post">
                     <p className='trending-content'>{sortedPosts[1].content}</p>
-                    <Link to={`./#${sortedPosts[1]._id}`} className="trending-link">Lire</Link>
+                    <a href={`#${sortedPosts[1]._id}`} className="trending-link">Lire</a>
                 </div>    
                 
             </div>
@@ -31,7 +31,7 @@ const Trending = ({ posts }) => {
                 <p className='trending-rank'><span className='trending-star trending-bronze'><i className="fa-solid fa-star"></i></span><span className='trending-likes'>{sortedPosts[2].likes.length} likes</span></p>
                 <div className="trending-post">
                     <p className='trending-content'>{sortedPosts[2].content}</p>
-                    <Link to={`./#${sortedPosts[2]._id}`} className="trending-link">Lire</Link>
+                    <a href={`#${sortedPosts[2]._id}`}className="trending-link">Lire</a>
                 </div>
             </div>
         </section>

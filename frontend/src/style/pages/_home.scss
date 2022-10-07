@@ -3,7 +3,7 @@
 .home{
     width: 100%;
     height: 100%;
-    padding: 2% 10%;
+    padding: 2% 8%;
     display: flex;
     flex-direction: row;
     @include mobile-only{
@@ -13,6 +13,9 @@
     @include tablettes-only{
         flex-direction: column-reverse;
         padding:  2% 5%;
+    }
+    @include largeScreen-only{
+        padding: 2% 10%;
     }
     .home-left{
         width: 20%;
@@ -62,6 +65,9 @@
     @include mobile-only{
         margin: 10px 0;
         padding: 10%;
+    }
+    @include largeScreen-only{
+        max-height: 430px;
     }
     form{
         margin: 10px 0;
@@ -146,6 +152,7 @@
         @include mobile-only{
             padding: 0;
         }
+
     }
     .newPost-errorContainer{
         height: 30px;
