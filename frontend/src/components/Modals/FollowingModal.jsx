@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const FollowingModal = ({ open, following, onClose}) => {
 
@@ -26,7 +26,7 @@ const FollowingModal = ({ open, following, onClose}) => {
                 <div className="modal-content">
                     {
                         followingUsers.map((user, index) => {
-                            return <Link to={`../user/?id=${user._id}`} relative="path" key={index} className='followingModal-userCard'  onClick={onClose}>
+                            return <Link to={`/user/?id=${user._id}`} relative="path" key={index} className='followingModal-userCard'  onClick={onClose}>
                                 <span>{user.firstName} {user.lastName}</span>
                             </Link>
                         })

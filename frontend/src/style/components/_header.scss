@@ -14,7 +14,7 @@ header{
     }
     @include tablettes-only{
         flex-direction:  column;
-        height: 10vh;
+        height: 15vh;
         margin-top: 0;
     }
     .header-logo{

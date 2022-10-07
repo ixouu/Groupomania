@@ -63,7 +63,7 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
     const updateContent = req.file ? {
     // parse to be able to update the image
     ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
     } : { ...req.body}
     await postModel.findByIdAndUpdate(
         req.params.id, {
@@ -92,8 +92,9 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         return res.status(400).send({message: "can not send an empty message"})
     }
     // check if the token provided is the user's token
-    const user = await userModel.findById(req.params.id);
-    if ( user.email !== getAuthUser(req)){
+    console.log(req.body.posterId)
+    const user = await userModel.findById(req.body.posterId);
+    if (user.email !== getAuthUser(req)){
         return res.status(403).json({
             status : "Unauthorized"
         })
@@ -101,7 +102,7 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
     const updateContent = req.file ? {
     // parse to be able to update the image
     ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
     } : { ...req.body}
     await postModel.findByIdAndUpdate(
         req.params.id, {
@@ -109,24 +110,36 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         }
     )
         .then(() => {
-            res.status(204).json({
+            res.send({
                 status : 'success',
-                data: {
-                    updateContent
-                }
+                data: updateContent
             })
         })
 });
 
-// delete post
+// Admin delete post
+module.exports.adminDeletePost = catchAsync (async (req, res, next) => {
+    if (!ObjectID.isValid(req.params.id )){
+        return res.status(400).send("post unknown");
+    }
+    await postModel.findByIdAndRemove(req.params.id)
+    res.status(200).json({ message: "Successfully deleted. " })
+});
+
+// user delete post
 module.exports.deletePost = catchAsync (async (req, res, next) => {
     if (!ObjectID.isValid(req.params.id )){
         return res.status(400).send("post unknown");
     }
-    const postToDelete = await postModel.findOne({_id: req.params.id})
-    await postModel.findByIdAndRemove(req.params.id)
-    res.status(200).json({ message: "Successfully deleted. " })
-});
+    const postToDelete = await postModel.findOne({_id: req.params.id});
+    const authorId = req.body.authorId;
+    if (postToDelete.posterId !== authorId){
+        return res.status(403).send('Unauthorized');
+    } else{
+        await postModel.findByIdAndRemove(req.params.id)
+        res.status(200).json({ message: "Successfully deleted. " })
+    }
+})
 
 // like post
 module.exports.likePost = catchAsync (async (req, res, next) => {

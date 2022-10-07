@@ -263,3 +263,39 @@
         }
     }
 }
+
+.post-actionEdit{
+    display: flex;
+    padding-top: 10px;
+    justify-content: space-evenly;
+    // BTN EDIT POST 
+    .post-editBtn {
+        font-size: 14px;
+        background-color: $color-3;
+        color: $color-5;
+        padding: 5px;
+        border-radius: 5px;
+        margin : 0 5px 5px 5px ;
+        cursor: pointer;
+        transition: all .2s ease-out;
+        &:hover{
+            filter: brightness(130%);
+        }
+    }
+
+    // BTN DELETE POST
+    .post-deleteBtn {
+        font-size: 14px;
+        background-color: $color-8;
+        color: $color-5;
+        padding: 5px;
+        border-radius: 5px;
+        margin :  0 5px 5px 5px ;
+        cursor: pointer;
+        transition: all .2s ease-out;
+        &:hover{
+            filter: brightness(130%);
+        }
+    }
+}
+

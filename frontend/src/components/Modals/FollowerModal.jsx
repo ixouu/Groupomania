@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const FollowerModal = ({ followers, onClose, open}) => {
+
+    const navigate = useNavigate()
 
     const allUsers = useSelector((state) => state.usersReducer);
     let followersUsers = [];
@@ -14,6 +16,11 @@ const FollowerModal = ({ followers, onClose, open}) => {
             }
         }
     })
+
+    const handleclick = (user) =>{
+        navigate(`/user/?id=${user._id}`)
+        onClose();
+    }
 
     if (!open) return null
 
@@ -26,9 +33,7 @@ const FollowerModal = ({ followers, onClose, open}) => {
                 <div className="modal-content">
                     {
                         followersUsers.map((user, index) => {
-                            return <Link to={`../user/?id=${user._id}`} relative="path" key={index} className='followerModal-userCard'  onClick={onClose}>
-                                <span>{user.firstName} {user.lastName}</span>
-                            </Link>
+                            return <span key={index} className='followerModal-userCard'  onClick={() => handleclick(user)}>{user.firstName} {user.lastName}</span>
                         })
                     }
                 </div>

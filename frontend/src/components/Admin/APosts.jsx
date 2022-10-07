@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../redux/actions/post.actions';
+import { adminDeletePost } from '../../redux/actions/post.actions';
 import toast, { Toaster } from 'react-hot-toast'; 
 import { adminEditPost } from '../../redux/actions/post.actions';
 
@@ -24,7 +24,7 @@ const APosts = ({ posts }) => {
         e.preventDefault();
         const postId = e.target.closest('section').id
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce post? ') === true) {
-            dispatch(deletePost(postId));
+            dispatch(adminDeletePost(postId));
             validateDelete();
         } else {
             return

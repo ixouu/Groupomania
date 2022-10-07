@@ -10,9 +10,6 @@ export default function usersReducer (state = initialSate, action){
         case GET_USERS :
             return [...action.payload];
         case ADMIN_UPDATE_USER : 
-        console.log(action.payload[0])
-        console.log(action.payload[1].data)
-        console.log(state)
             return state.map((user) => {
                 if (user._id === action.payload[0]){
                     return{

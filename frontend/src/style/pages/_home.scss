@@ -85,12 +85,23 @@
             justify-content: center;
             align-items: center;
         }
+        @include tablettes-only{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         button{
-            width: 180px;
+            width: 30%;
             height: 40px;
             border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
             @include mobile-only{
+                margin-bottom: 15px;
+                width: 100%;
+            }            
+            @include tablettes-only{
                 margin-bottom: 15px
             }
         }
@@ -99,15 +110,20 @@
         }
         label{
             @include btn;
-            width: 180px;
+            width: 30%;
             height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
             @include mobile-only{
+                margin-bottom: 15px;
+                font-size: 16px;
+                width: 100%;
+            }
+            @include tablettes-only{
                 margin-bottom: 15px;
                 font-size: 16px;
             }
@@ -123,6 +139,9 @@
         padding-top: 30px;
         img {
             max-width: 300px;
+            transform: scale(1.3);
+            animation: previewImg 2s ease-out 1 forwards;
+            opacity: 0;
         }
         @include mobile-only{
             padding: 0;
@@ -187,3 +206,19 @@
 
 }
 
+// IMAGE PREVIEW ANIMATION
+
+.imgPreviewIsActive{
+    animation: previewImg 3s ease-out 0 1;
+}
+
+@keyframes previewImg {
+    0% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -13,7 +13,7 @@ router.post('/', auth, commentController.createComment);
 router.get('/:id', auth, commentController.getOneComment)
 
 // get all comments
-router.get('/', auth, commentController.getComments)
+router.get('/', commentController.getComments)
 
 // edit a comment
 router.put('/:id', auth,commentController.editComment)

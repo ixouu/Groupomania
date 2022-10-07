@@ -72,8 +72,6 @@ module.exports.adminUpdateUser = catchAsync ( async (req, res, next) => {
         if (!ObjectID.isValid(req.params.id)){
             return res.status(400).send("ID unknown");
         }
-        console.log(req.body)
-        console.log(req.params.id)
         await userModel.findByIdAndUpdate(req.params.id, {
             ...req.body
         },{

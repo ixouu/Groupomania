@@ -1,4 +1,12 @@
-import {LIKE_POST, GET_POSTS, DISLIKE_POST, DELETE_POST, ADMIN_EDIT_POST } from "../actions/post.actions";
+import {
+  LIKE_POST, 
+  GET_POSTS, 
+  DISLIKE_POST,
+  ADMIN_DELETE_POST, 
+  ADMIN_EDIT_POST,
+  EDIT_POST, 
+  DELETE_POST 
+  } from "../actions/post.actions";
 
 const initialSate = {};
 
@@ -27,12 +35,15 @@ export default function postReducer (state = initialSate, action){
             }
             return post;
           });
+        case ADMIN_DELETE_POST : 
+          return state.filter((post) => 
+            post._id !== action.payload.id
+          )
         case DELETE_POST : 
           return state.filter((post) => 
             post._id !== action.payload.id
           )
         case ADMIN_EDIT_POST : 
-        console.log(action.payload.id)
           return state.map((post) => { 
               if (post._id === action.payload.id && action.payload.data.content !== undefined){
                 return{
@@ -46,6 +57,14 @@ export default function postReducer (state = initialSate, action){
                 }
               }else {
                 return post
+              }
+            })
+          case EDIT_POST:
+            return state.map((post) => {
+              return {
+                  ...post,
+                  content: action.payload.data.content,
+                  imageUrl: action.payload.data.imageUrl
               }
             })
         default : 

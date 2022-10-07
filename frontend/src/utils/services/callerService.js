@@ -8,5 +8,4 @@ const Axios = axios.create({
     timeout: 5000,
     headers : { Authorization: `Bearer ${token}` }
 })
-
 export default Axios

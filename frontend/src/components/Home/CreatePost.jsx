@@ -15,7 +15,10 @@ const CreatePost = () => {
     const [file, setFile] = useState(null);
     const [isPosting, setIsPosting] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isActive, setIsActive] = useState(false);
     
+    //handle image Animation
+    let activeImg = isActive ? 'imgPreviewIsActive' : 'imgPreviewIsNotActive'
 
     const posterId = accountServices.getUserId();
 
@@ -83,6 +86,7 @@ const CreatePost = () => {
                             onChange={function (e) {
                                 handleImage(e.target.files[0]);
                                 setIsPosting(true);
+                                setIsActive(true);
                             }}
                         />
                         {isPosting && (
@@ -103,7 +107,7 @@ const CreatePost = () => {
                 </form>
                 <div className="newPost-imgPreview">
                     {postImg && (
-                        <img src={postImg} alt="Previsualisation de l'image" />
+                        <img className={activeImg} src={postImg} alt="Previsualisation de l'image" />
                     )}
                 </div>
                 <div className="newPost-errorContainer">

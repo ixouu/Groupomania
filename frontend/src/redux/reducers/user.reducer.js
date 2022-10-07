@@ -30,13 +30,11 @@ export default function userReducer (state = initialSate, action){
                 followers : [action.payload,...state.user.followers]
             }
         case ADD_FOLLOWING: 
-            // console.log(state)
             return {
                 ...state,
                 following : [action.payload, ...state.user.following]
             }
         case REMOVE_FOLLOWER : 
-        console.log(state)
             return{
                 ...state,
                 followers : state.user.followers.filter(
@@ -44,7 +42,6 @@ export default function userReducer (state = initialSate, action){
                 )
             }
         case REMOVE_FOLLOWING :
-            console.log(state) 
             return {
                 ...state,
                 following : state.user.following.filter(

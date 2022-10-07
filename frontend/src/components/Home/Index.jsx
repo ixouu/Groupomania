@@ -1,3 +1,5 @@
+import React, {} from 'react';
+
 import { useSelector } from 'react-redux';
 
 
@@ -9,8 +11,8 @@ import Trending from './Trending';
 import LastComments from './LastComments';
 import Feed from './Feed'
 
-
 const Home = () => {
+
 
     const posts = useSelector((state) => state.postReducer);
 

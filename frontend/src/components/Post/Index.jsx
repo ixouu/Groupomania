@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 
 import LikesPhotos from './LikesPhotos';
 
+import DeletePost from './DeletePost';
+import EditPost from './EditPost';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
+import { likePost, getPosts, dislikePost} from '../../redux/actions/post.actions';
 import { getComments } from '../../redux/actions/comment.actions';
 import { createComment } from '../../redux/actions/comment.actions';
 
@@ -14,14 +17,15 @@ import { accountServices } from '../../utils/services/accountServices';
 import toast from 'react-hot-toast';
 
 
-const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
+const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) => {
 
     // REDUX
     const dispatch = useDispatch();
     const users = useSelector((state) => state.usersReducer);
     const user = useSelector((state) => state.userReducer).user
     const allComments = useSelector((state) => state.commentReducer).comments;
-    // HOT TOAST 
+
+    // TOAST 
     const validateComment = () => toast.success('Commentaire ajouté',{
         duration : 2000,
     })
@@ -78,6 +82,8 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
         allComments.forEach((comment) => {
             if ( postId === comment.post._id){
                 postCommentsFound.push(comment)
+            } else {
+                return 
             }
         })
         return postCommentsFound
@@ -156,18 +162,19 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     }
     // POST 
     return (
-        <article className='postContainer' id={`${postId}`}>
+        <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
                 <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo'/>
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>
+            {/* CONTENT  */}
             <div className="postContainer-content">
-                <p className='post-content'>{content}</p>
-                {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img'/>}
+                    <p className='post-content'>{content}</p>
+                    {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img'/>}
             </div>
             <div className='postContainer-footer'>
-
+                
                 <div className="post-counts">
                     <LikesPhotos likes={likes} likesLength={likes.length}/>
                     <span className='likes_count'>{likes.length} J'aime</span>
@@ -177,7 +184,6 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                         : <span> commentaire</span>}
                     </span>
                 </div>
-
                 <div className="post-actions">
                     {/* Add Like */}
                     <div className="post-actions_addLike">
@@ -221,8 +227,15 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                     {errorComment && <p>Votre commentaire est trop long, 400 caratères maximum svp</p>}
                 </div>
             }
-            {showCommentsList && commentsList()}
-        </article>
+                {showCommentsList && commentsList()}
+                {posterId === user._id 
+                ?<div className='post-actionEdit'>
+                    <EditPost post={post}/>
+                    <DeletePost postId={postId} posterId={posterId} user={user}/>
+                 </div>
+                : null
+                }
+        </div>
     );
 }
 

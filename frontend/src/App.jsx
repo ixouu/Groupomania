@@ -28,12 +28,11 @@ const App = () => {
   useEffect(() => {
     setUserId(accountServices.getUserId())
     if (userId) {
-      dispatch(getUser(userId))
+      dispatch(getUser(accountServices.getUserId()))
     }
   },[dispatch, userId])
 
   const currentUser = useSelector((state) => state.userReducer);
-
   
   return (
    <UidContext.Provider value={currentUser.user}>
