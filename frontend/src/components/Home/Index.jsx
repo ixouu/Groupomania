@@ -11,6 +11,7 @@ import Trending from './Trending';
 import LastComments from './LastComments';
 import Feed from './Feed'
 import SocialMedias from './SocialMedias';
+import FindUser from './FindUser';
 
 const Home = () => {
 
@@ -32,6 +33,7 @@ const Home = () => {
                 </div>
                 <aside className='home-right'>
                     <LastSignUp/>
+                    <FindUser/>
                     <SocialMedias/>
                 </aside>
             </main>
