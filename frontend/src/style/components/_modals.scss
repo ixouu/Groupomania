@@ -1,3 +1,4 @@
+
 .overlay{
     width: 100%;
     height: 100%;
@@ -22,7 +23,7 @@
 }
 
 
-.successModal, .errorModal, .followingModal, .followerModal {
+.successModal, .errorModal, .followingModal, .followerModal, .editPostModal {
         width: 30%;
         height: 400px;
         background-color: $color-5;
@@ -148,6 +149,135 @@
         &:hover{
             background-color: $color-10;
         }
+    }
+}
+
+// EDITPOST MODAL 
+.editPostModal{
+    width: 50%;       
+    height: auto;
+    min-height: 500px;
+    @include mobile-only{
+        width: 95%;
+        padding: 0;
+    }  
+    form{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+        @include mobile-only{
+            padding: 20px 10px;
+        }
+        label{
+            font-size: 20px;
+            font-weight: bold;
+            @include mobile-only{
+                margin-bottom: 10px;
+            }
+            @include tablettes-only{
+                margin-bottom : 20px ;
+            }
+        }
+        #editPostModal-uploadImg, #editPostModal-addImg{
+            display: none;
+        }
+
+        #editPostModal-textArea{
+            width: 100%;
+            background-color: $color-6;
+            min-height: 150px;
+            font-family: $font-1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .editPostModal-error{
+            font-size: 18px;
+            color : $color-8;
+        }
+        button{
+            width: 180px;
+            @include mobile-only{
+                width: 40%;
+                min-width: 0;
+            }
+            @include tablettes-only{
+                width: 40%;
+                min-width: 140px;
+            }
+        }
+        .editPostModal-previewImg{
+            padding-top: 10px;
+            align-self: center;
+            @include mobile-only{
+                width: 90%;
+            }
+        }
+        .editPostModal-imgContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .imgContainer-btns{
+                padding-top: 20px;
+                width: 50%;
+                display: flex;
+                justify-content: space-between;
+                @include mobile-only{
+                    flex-direction: column;
+                }
+                @include tablettes-only{
+                    flex-direction: column;
+                }
+                button{
+                    width: 40%;
+                    @include mobile-only{
+                        width: 100%;
+                        margin-top: 10px;
+                    }
+                    @include tablettes-only{
+                        width: 100%;
+                        margin-top: 10px;
+                    }
+                }
+            }
+            .editPostModal-labelUploadImg{
+                font-size: 20px;
+                font-weight: 400;
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                @include mobile-only{
+                    width: 100%;
+                    font-size: 16px;
+                }
+                @include tablettes-only{
+                    width: 100%;
+                    margin-top: 10px;
+                }
+
+            }
+        }
+        .editPostModal-editBtnContainer{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+
+            @include tablettes-only{
+                margin-top: 30px;
+            }
+            .editPostModal-confirmBtn{
+                background-color: $color-9;
+            }
+            .editPostModal-editBtn{
+                background-color: $color-8;
+            }
+        }
+        .editPostModal-imgContainer{
+            margin-top: 10px;
+        }
+      
     }
 }
 

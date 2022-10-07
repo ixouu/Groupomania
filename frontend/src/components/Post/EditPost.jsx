@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
+import EditPostModal from '../Modals/EditPostModal';
 
-const EditPost = ({ postId, posterId, user, setIsEditing}) => {
+const EditPost = ({ post }) => {
 
-    function editPost() {
-        setIsEditing(true)
-    }
+    const [isOpen, setIsOpen] = useState(false)
 
-        return (
-            <div className='post-actionEdit'>
-                {posterId === user._id ? <button className='post-editBtn' onClick={ () => editPost()}>Modifier votre publication</button> : null}
-            </div>
-        );
+   const displayEditModal = (e) => {
+    e.preventDefault();
+    setIsOpen(true);
+   }
+
+    return (<>
+                <button className='post-editBtn' onClick={ (e) => displayEditModal(e)}>Modifier votre publication</button> 
+                {isOpen && <EditPostModal open={isOpen}  onClose={()=> setIsOpen(false)} post={post} />}
+            </>
+    );
 }
 
 export default EditPost;

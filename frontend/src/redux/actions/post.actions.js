@@ -86,7 +86,6 @@ export const adminDeletePost = (id) => {
 }
 
 export const deletePost = (id, data) => {
-    console.log(data)
     return (dispatch) => {
         return Axios({
             method : 'delete',
@@ -122,7 +121,8 @@ export const editPost = (id, data) => {
             data
         })
         .then((res) => {
-            dispatch({type : EDIT_POST, payload : { id, data }})
+            console.log(res.data)
+            dispatch({type : EDIT_POST, payload : res.data })
         })
         .catch((err) => console.log(err))
     }

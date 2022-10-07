@@ -59,20 +59,12 @@ export default function postReducer (state = initialSate, action){
                 return post
               }
             })
-          case EDIT_POST: 
+          case EDIT_POST:
             return state.map((post) => {
-              if (post._id === action.payload.id && action.payload.data.content !== undefined){
-                return{
+              return {
                   ...post,
-                  content: action.payload.data.content
-                }
-              }else if (post._id === action.payload.id && action.payload.data.imageUrl !== undefined){
-                return {
-                  ...post,
+                  content: action.payload.data.content,
                   imageUrl: action.payload.data.imageUrl
-                }
-              }else {
-                return post
               }
             })
         default : 

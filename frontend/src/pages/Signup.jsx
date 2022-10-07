@@ -120,7 +120,6 @@ const Signup = () => {
             axios.post("http://localhost:5000/api/user/signup", newUser)
             .then(res => {
                 if (res.status === 201){
-                    console.log("success")
                     // show the sucess modal
                     setSuccessModalIsOpen(!successModalIsOpen)
                     // reset the form

@@ -59,7 +59,7 @@
 @mixin largeScreen-btn {
   width: 240px;
   height: 70px;
-  font-size: 22px;
+  font-size: 18px!important;
 }
 
 @mixin sideElement{

@@ -15,7 +15,7 @@ const Trending = ({ posts }) => {
                 <p className='trending-rank'><span className='trending-star trending-gold'><i className="fa-solid fa-star"></i></span><span className='trending-likes'>{sortedPosts[0].likes.length} likes</span></p>
                 <div className="trending-post">
                     <p className='trending-content'>{sortedPosts[0].content}</p>
-                    <Link to={`./#${sortedPosts[0]._id}`} className="trending-link">Lire</Link>
+                    <a href={`#${sortedPosts[0]._id}`} className="trending-link">Lire</a>
                 </div>
                
             </div>

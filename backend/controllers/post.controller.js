@@ -82,7 +82,6 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
 
 //  update post
 module.exports.editPost =  catchAsync (async (req, res, next) => {
-    console.log(req.body)
     // check if the post is in the database
     let postIsExisting = await postModel.findOne({_id: req.params.id});
     if (postIsExisting === null) {
@@ -93,8 +92,9 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         return res.status(400).send({message: "can not send an empty message"})
     }
     // check if the token provided is the user's token
+    console.log(req.body.posterId)
     const user = await userModel.findById(req.body.posterId);
-    if ( user.email !== getAuthUser(req)){
+    if (user.email !== getAuthUser(req)){
         return res.status(403).json({
             status : "Unauthorized"
         })
@@ -110,11 +110,9 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         }
     )
         .then(() => {
-            res.status(204).json({
+            res.send({
                 status : 'success',
-                data: {
-                    updateContent
-                }
+                data: updateContent
             })
         })
 });

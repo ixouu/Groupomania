@@ -8,6 +8,7 @@ const Feed = ({ posts }) => {
             {!isEmpty(posts[0]) && posts.map((post) => 
                  <Post 
                 key={post._id}
+                post={post}
                 postId= {post._id}
                 posterId={post.posterId} 
                 content={post.content} 

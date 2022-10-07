@@ -95,7 +95,7 @@ const Login = () => {
                     type="email"
                     placeholder='Entrez votre adresse email' 
                     value={email}
-                    onChange={ handleChange }
+                    onChange={handleChange}
                     required
                 />
             </div>

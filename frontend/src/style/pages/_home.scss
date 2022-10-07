@@ -98,7 +98,8 @@
             font-size: 18px;
             cursor: pointer;
             @include mobile-only{
-                margin-bottom: 15px
+                margin-bottom: 15px;
+                width: 100%;
             }            
             @include tablettes-only{
                 margin-bottom: 15px
@@ -120,6 +121,7 @@
             @include mobile-only{
                 margin-bottom: 15px;
                 font-size: 16px;
+                width: 100%;
             }
             @include tablettes-only{
                 margin-bottom: 15px;
