@@ -161,6 +161,9 @@
         width: 95%;
         padding: 0;
     }  
+    @include tablettes-only{
+        width: 90%;
+    }
     form{
         display: flex;
         flex-direction: column;
@@ -266,9 +269,14 @@
 
             @include tablettes-only{
                 margin-top: 30px;
+                flex-direction: column;
+                align-items: center;
             }
             .editPostModal-confirmBtn{
                 background-color: $color-9;
+                @include tablettes-only{
+                    margin-top: 10px;
+                }
             }
             .editPostModal-editBtn{
                 background-color: $color-8;
