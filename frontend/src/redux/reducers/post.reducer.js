@@ -1,4 +1,12 @@
-import {LIKE_POST, GET_POSTS, DISLIKE_POST, ADMIN_DELETE_POST, ADMIN_EDIT_POST, DELETE_POST } from "../actions/post.actions";
+import {
+  LIKE_POST, 
+  GET_POSTS, 
+  DISLIKE_POST,
+  ADMIN_DELETE_POST, 
+  ADMIN_EDIT_POST,
+  EDIT_POST, 
+  DELETE_POST 
+  } from "../actions/post.actions";
 
 const initialSate = {};
 
@@ -37,6 +45,22 @@ export default function postReducer (state = initialSate, action){
           )
         case ADMIN_EDIT_POST : 
           return state.map((post) => { 
+              if (post._id === action.payload.id && action.payload.data.content !== undefined){
+                return{
+                  ...post,
+                  content: action.payload.data.content
+                }
+              }else if (post._id === action.payload.id && action.payload.data.imageUrl !== undefined){
+                return {
+                  ...post,
+                  imageUrl: action.payload.data.imageUrl
+                }
+              }else {
+                return post
+              }
+            })
+          case EDIT_POST: 
+            return state.map((post) => {
               if (post._id === action.payload.id && action.payload.data.content !== undefined){
                 return{
                   ...post,

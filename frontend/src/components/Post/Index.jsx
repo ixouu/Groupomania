@@ -7,7 +7,7 @@ import LikesPhotos from './LikesPhotos';
 import DeletePost from './DeletePost';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { likePost, getPosts, dislikePost } from '../../redux/actions/post.actions';
+import { likePost, getPosts, dislikePost, editPost } from '../../redux/actions/post.actions';
 import { getComments } from '../../redux/actions/comment.actions';
 import { createComment } from '../../redux/actions/comment.actions';
 
@@ -23,7 +23,8 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     const users = useSelector((state) => state.usersReducer);
     const user = useSelector((state) => state.userReducer).user
     const allComments = useSelector((state) => state.commentReducer).comments;
-    // HOT TOAST 
+
+    // TOAST 
     const validateComment = () => toast.success('Commentaire ajouté',{
         duration : 2000,
     })
@@ -33,13 +34,65 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
     const validateUnlike= () => toast.success('Like supprimé',{
         duration : 2000,
     })
+    const validateUpdate= () => toast.success('Post édité',{
+        duration : 2000,
+    })
     
     // POSTS
     const author = users.find((user) =>  user._id === posterId);
     const date = accountServices.transformDate(createdAt);
     const time = accountServices.getTime(createdAt);
+
+    // POST EDITION 
     const [isEditing, setIsEditing] = useState(false);
     const [newContent, setNewContent] = useState("");
+    const [newPostImg, setNewPostImg] = useState(null);
+    const [newPostImgUrl, setNewPostImgUrl] = useState(null);
+    const [currentImgUrl , setCurrentImgUrl] = useState(imageUrl);
+
+    const handleNewPostImg = (e) => {
+        setNewPostImg(e.target.files[0]);
+        setNewPostImgUrl(URL.createObjectURL(e.target.files[0]))
+    }
+    
+    const handleDeletePostImg = (e) => {
+        e.preventDefault();
+        setNewPostImg(null);
+        setNewPostImgUrl(null);
+        setCurrentImgUrl(null)
+    }
+
+    const handleCancelEdit = (e) => {
+        e.preventDefault();
+        setIsEditing(false);
+        setNewPostImg(null);
+        setNewContent("");
+        setCurrentImgUrl(imageUrl)
+    }
+
+    const handleEditPost = async (e) => {
+        e.preventDefault();
+        const data = {
+            posterId,
+            content : newContent 
+        }
+        const dataWithImg = new FormData();
+        dataWithImg.append("posterId", posterId);
+        dataWithImg.append("content", content);
+        newPostImg && dataWithImg.append('file', newPostImg);
+
+        if (window.confirm('Êtes-vous sûr de vouloir modifier ce post ?') === true) {
+            newPostImg && await dispatch(editPost(postId, dataWithImg));
+            !newPostImg && await dispatch(editPost(postId, data));
+            validateUpdate();
+            setIsEditing(false);
+            setNewPostImg(null);
+            setNewContent("");
+            setCurrentImgUrl(imageUrl)
+        } else {
+            return
+        }
+    }
 
     // COMMENTS
     const [postingComment, setPostingComment] = useState(false);
@@ -180,13 +233,26 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                         defaultValue={content} 
                         onChange={(e) => setNewContent(e.target.value)}
                     ></textarea>
-                    
-                    {imageUrl
+                    {/* IMAGE */}
+                    {currentImgUrl
                     ?(<div className='post-content-imgContainer'>
-                        <img src={imageUrl} alt="Image du post" style={{width: '100px'}}></img>
+                        {newPostImg && <img src={newPostImgUrl} alt="Image du post" style={{maxWidth: '300px'}}></img>}
+                        {!newPostImg && <img src={imageUrl} alt="Image du post" style={{maxWidth: '300px'}}></img>}
                         <div className='imgContainer-btns'>
-                            <button className='post-content_editImgBtn btn'>Modifier mon image</button>
-                            <button className='post-content_deleteImgBtn btn'>Supprimer mon image</button>
+                            <label 
+                                htmlFor="post-content_uploadImg"
+                                className='btn post-content_labelUploadImg'
+                            >Modifier mon image</label>
+                            <input
+                                type='file' 
+                                id='post-content_uploadImg'
+                                name='image'
+                                accept='.jpg .jpeg .png'
+                                onChange={(e) => handleNewPostImg(e)}
+                            ></input>
+                            <button 
+                            className='post-content_deleteImgBtn btn'
+                            onClick={(e) => handleDeletePostImg(e)}>Supprimer mon image</button>
                         </div>
                     </div>)
                     :(<div className='post-content-imgContainer'>
@@ -195,8 +261,14 @@ const Post = ({posterId, postId, content, imageUrl, createdAt, likes }) => {
                     }
                     {/* EDIT FORM BUTTONS */}
                     <div className='post-content_editBtnContainer'>
-                        <button className='post-content_editBtn btn'>Annuler l'édition</button>
-                        <button className='post-content_confirmBtn btn'>Valider les changements</button>
+                        <button 
+                            className='post-content_editBtn btn'
+                            onClick={(e) => handleCancelEdit(e)}
+                        >Annuler l'édition</button>
+                        <button 
+                            className='post-content_confirmBtn btn'
+                            onClick={(e) => handleEditPost(e)}
+                        >Valider les changements</button>
                     </div>
                 </form>
                 // NOT EDITING 

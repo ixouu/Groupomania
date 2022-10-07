@@ -63,7 +63,7 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
     const updateContent = req.file ? {
     // parse to be able to update the image
     ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
     } : { ...req.body}
     await postModel.findByIdAndUpdate(
         req.params.id, {
@@ -82,6 +82,7 @@ module.exports.adminEditPost =  catchAsync (async (req, res, next) => {
 
 //  update post
 module.exports.editPost =  catchAsync (async (req, res, next) => {
+    console.log(req.body)
     // check if the post is in the database
     let postIsExisting = await postModel.findOne({_id: req.params.id});
     if (postIsExisting === null) {
@@ -92,7 +93,7 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
         return res.status(400).send({message: "can not send an empty message"})
     }
     // check if the token provided is the user's token
-    const user = await userModel.findById(req.params.id);
+    const user = await userModel.findById(req.body.posterId);
     if ( user.email !== getAuthUser(req)){
         return res.status(403).json({
             status : "Unauthorized"
@@ -101,7 +102,7 @@ module.exports.editPost =  catchAsync (async (req, res, next) => {
     const updateContent = req.file ? {
     // parse to be able to update the image
     ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
     } : { ...req.body}
     await postModel.findByIdAndUpdate(
         req.params.id, {
