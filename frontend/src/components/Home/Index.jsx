@@ -10,6 +10,7 @@ import LastSignUp from './LastSignUp';
 import Trending from './Trending';
 import LastComments from './LastComments';
 import Feed from './Feed'
+import SocialMedias from './SocialMedias';
 
 const Home = () => {
 
@@ -30,6 +31,7 @@ const Home = () => {
                 </div>
                 <aside className='home-right'>
                     <LastSignUp/>
+                    <SocialMedias/>
                 </aside>
             </main>
             <Footer/>

@@ -18,7 +18,7 @@ const LastSignUp = () => {
                             <img src={`${user.photo}`} alt={`photo de ${user.lastName}`} className='LastSignUp-img'/>
                             <Link to={`../user/?id=${user._id}`}><p className='LastSignUp-Name'>{user.firstName} {user.lastName}</p> </Link>
                         </div>
-                        )
+                    )
                 })
             }
         </section>

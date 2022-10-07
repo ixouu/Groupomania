@@ -178,5 +178,3 @@ const EditPostModal = ({ onClose, open, post }) => {
 }
 
 export default EditPostModal;
-
-    
