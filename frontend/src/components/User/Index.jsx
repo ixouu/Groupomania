@@ -11,6 +11,7 @@ import Following from './Following';
 import FollowBtns from './FollowBtns';
 
  const User = () => {
+    
 
     const users = useSelector((state) => state.usersReducer);
     const currentUrl = new URL(window.location.href);

@@ -14,7 +14,8 @@ import SocialMedias from './SocialMedias';
 
 const Home = () => {
 
-
+    document.title = 'Groupomania | Home';
+    
     const posts = useSelector((state) => state.postReducer);
 
     return (

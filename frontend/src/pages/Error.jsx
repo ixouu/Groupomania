@@ -3,6 +3,9 @@ import {ReactComponent as Logo} from "../images/logo.svg";
 import { Link } from 'react-router-dom';
 
 const Error = () => {
+
+    window.title = 'GROUPOMANIA | 404'
+
     return (
         <>
             <div className="error-logo">

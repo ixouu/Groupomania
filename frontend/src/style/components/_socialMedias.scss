@@ -19,6 +19,9 @@
             padding: 10px 0;
             width: 80%;
             transition: all .2s ease-in-out;
+            @include tablettes-only{
+                width: 60%;
+            }
             &:hover{
                 transform: scale(1.1);
             }

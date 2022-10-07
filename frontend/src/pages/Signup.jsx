@@ -10,12 +10,18 @@ const Signup = () => {
     document.title = "Groupomania | Création de compte";
     const navigate = useNavigate();
 
+    // loading
+    const [isLoading, setIsLoading] = useState(false);
+
+    // error
+    const [error, setError] = useState("")
+
     // firstName data 
     const [firstName, setFirstName] = useState('');
-
+    const [wrongFirstName, setWrongFirstName] = useState(false)
     // lastName data
     const [lastName, setLastName] = useState('');
-
+    const [wrongLastName, setWrongLastName] = useState(false)
     // email data
     const [email, setEmail] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(false)
@@ -38,13 +44,39 @@ const Signup = () => {
     //toggle Modals
     const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
     const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
-    
+
+    // firstName RegExp 
+    const firstNameRegExp = new RegExp('(^[a-zA-Zéè -]{2,55}$)');
+
+    // lastName RegExp
+    const lastNameRegExp = new RegExp('(^[a-zA-Z -]{2,55}$)');
+
     // Password RegExp
     const specialCharRegExp = new RegExp(/[$&+,:;=?@#|'<>.-^*()%!]+/);
     const CapLetterRegExp = new RegExp(/[A-Z\s]+/);
 
     // Email RegExp 
     const emailRegExp = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/)
+
+    // Handle firstName
+    const handleFirstName = (firstName) => {
+        setFirstName(firstName);
+        if( firstName.length < 2 || firstName.length > 55 || !firstNameRegExp.test(firstName)){
+            setWrongFirstName(true)
+        } else{
+            setWrongFirstName(false)
+        }
+    }
+
+    // Handle lastName 
+    const handleLastName = (lastName) => {
+        setLastName(lastName);
+        if( firstName.length < 2 || firstName.length > 55 || !lastNameRegExp.test(lastName)){
+            setWrongLastName(true)
+        } else{
+            setWrongLastName(false)
+        }
+    }
 
     // Handle email input changes
     const handleEmail = (email) =>{
@@ -94,7 +126,15 @@ const Signup = () => {
 
     // signup Button
     const signupBtn = firstName !== "" && lastName !== "" && email!== "" && password!=="" && passwordConfirm !== "" ?
-    (<button type="sumbit" className="btn btn-signup" onClick={ (e) => handleSignUpButton(e)}>S'inscrire</button>)
+    (isLoading
+        ?(  <div className='successModal-loader'>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        )
+        :<button type="sumbit" className="btn btn-signup" onClick={ (e) => handleSignUpButton(e)}>S'inscrire</button>
+    )
     :
     (<button type="sumbit" className="btn btn-signup" disabled={true}>S'inscrire</button>);
 
@@ -108,7 +148,8 @@ const Signup = () => {
     }
 
     // Signup Request
-    const sendSignUpRequest =  () => {
+    const sendSignUpRequest =  async() => {
+        setIsLoading(true)
         try{
             const newUser = {
                 firstName ,
@@ -117,7 +158,7 @@ const Signup = () => {
                 password ,
                 passwordConfirm 
             }
-            axios.post("http://localhost:5000/api/user/signup", newUser)
+            await axios.post("http://localhost:5000/api/user/signup", newUser)
             .then(res => {
                 if (res.status === 201){
                     // show the sucess modal
@@ -128,6 +169,7 @@ const Signup = () => {
                     setEmail('');
                     setPassword('');
                     setPasswordConfirm('');
+                    setIsLoading(false)
                     // redirection
                     const timer = setTimeout(() => {
                         setSuccessModalIsOpen(!successModalIsOpen);
@@ -141,7 +183,9 @@ const Signup = () => {
                 }
             })
             .catch(err => {
+                setError(err)
                 setErrorModalIsOpen(!errorModalIsOpen)
+                setIsLoading(false)
             })
         }
         catch(err) {
@@ -162,30 +206,35 @@ const Signup = () => {
                 <form className="signUp-form">
                     {/* first name */}
                     <div className="form-div">
+                        {wrongFirstName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
                         <label htmlFor="firstName">Prénom</label>
                         <input
                             id="firstName"
                             type="text"
                             placeholder="Renseignez votre prénom"
                             value={firstName}
-                            onChange={ (e) => setFirstName(e.target.value)}
+                            onChange={ (e) => handleFirstName(e.target.value)}
                             required
                         />
+                        {wrongFirstName === true && <p className="wrongInput">Le format de votre prénom est incorrect.</p>}
                     </div>
                     {/* last name */}
                     <div className="form-div">
+                    {wrongLastName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
                         <label htmlFor="lastName">Nom</label>
                         <input
                             id="lastName"
                             type="text"
                             placeholder="Renseignez votre nom de famille"
                             value={lastName}
-                            onChange={ (e) => setLastName(e.target.value)}
+                            onChange={ (e) => handleLastName(e.target.value)}
                             required
                         />
+                        {wrongLastName === true && <p className="wrongInput">Le format de votre nom est incorrect.</p>}
                     </div>
                     {/* email */}
                     <div className="form-div">
+                        {wrongFirstName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
                         <label htmlFor="email">Adresse Email</label>
                         <input
                             id="email"
@@ -197,7 +246,7 @@ const Signup = () => {
                             onBlur={(e) => handleBlur(e.target)}
                             required
                         />
-                        {emailRequisite &&  !emailIsValid ? <p className="invalidEmail">Le format renseigné n'est pas valide</p> : null}
+                        {emailRequisite &&  !emailIsValid ? <p className="wrongInput">Le format renseigné n'est pas valide</p> : null}
                     </div>
                     {/* password */}
                     <div className="form-div">
@@ -229,7 +278,7 @@ const Signup = () => {
                             required
                         />
                         {pwdNotMatching ?
-                            <p className="wrongPwd">Vos mots de passe ne correspondent pas</p>
+                            <p className="wrongInput">Vos mots de passe ne correspondent pas</p>
                             :
                             null
                         }
@@ -238,7 +287,7 @@ const Signup = () => {
                 </form>
             </div>
             <SucessModal email={email} firstName={firstName} open={successModalIsOpen} onClose={()=> setSuccessModalIsOpen(false)}/>
-            <ErrorModal open={errorModalIsOpen} onClose={()=> setErrorModalIsOpen(false)}/>
+            <ErrorModal open={errorModalIsOpen} error={error} onClose={()=> setErrorModalIsOpen(false)}/>
         </div>
     );
 };
