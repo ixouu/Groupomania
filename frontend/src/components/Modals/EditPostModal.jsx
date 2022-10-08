@@ -20,7 +20,8 @@ const EditPostModal = ({ onClose, open, post }) => {
 
     //Ref
     const textAreaRef = useRef(null)
-    // handle focus
+
+    //Handle focus
     useEffect(() => {
         textAreaRef.current.focus();
     },[])
@@ -71,7 +72,6 @@ const EditPostModal = ({ onClose, open, post }) => {
             setIsTooShort(true);
             return
         }
-        console.log(textAreaRef.current.value.length)
 
         const data = {
             posterId : post.posterId,

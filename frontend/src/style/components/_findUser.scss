@@ -2,19 +2,35 @@
     @include sideElement;
     margin-top: 20px;
     padding-bottom: 20px;
-    height: 130px;
+    height: 150px;
     min-height: fit-content;
     transition: all .3s ease-in-out;
     overflow-y: hidden;
+    @include mobile-only{
+        height: 120px;
+    }
+    @include largeScreen-only{
+        height: 130px;
+    }
+    @include tablettes-only{
+        align-items: center;
+        height: 120px;
+    }
 
     .findUser-title{
         display: inline;
         margin-bottom: 20px;
+        @include tablettes-only{
+            width: 100%;
+        }
     }
 
     form {
         position: relative;
         margin-top: 15px;
+        @include tablettes-only{
+            width: 80%;
+        }
     }
     label{
         position: absolute;
@@ -58,6 +74,9 @@
         width: 40px;
         border-radius: 50%;
         margin-right: 10px;
+    }
+    @include tablettes-only{
+        width: 50%;
     }
 }
 

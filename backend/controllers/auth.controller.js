@@ -6,7 +6,6 @@ const secretKey = process.env.SECRETKEY;
 //import bcrypt
 const bcrypt = require('bcrypt');
 
-
 // import validator
 const validator = require('validator');
 

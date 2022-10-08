@@ -12,7 +12,6 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import Unauthorized from './pages/Unauthorized';
 import User from "./components/User/Index";
 
-
 import AuthGuard from "./utils/AuthGuard";
 import AuthAdmin from "./utils/AuthAdmin";
 import { useSelector } from "react-redux";
@@ -35,7 +34,7 @@ const App = () => {
   const currentUser = useSelector((state) => state.userReducer);
   
   return (
-   <UidContext.Provider value={currentUser.user}>
+    <UidContext.Provider value={userId}>
       <Routes>
         <Route path="/" element={<Layout/>}>
           {/* Public Routes */}

@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 
 const FollowingModal = ({ open, following, onClose}) => {
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate()
+
     const allUsers = useSelector((state) => state.usersReducer);
+
     let followingUsers = [];
     following.forEach((id) => {
         for (let i = 0; i < allUsers.length; i++){
@@ -14,6 +18,14 @@ const FollowingModal = ({ open, following, onClose}) => {
             }
         }
     })
+
+    const handleClick = (userId) => {
+        onClose();
+        // setSearchParams({id : userId});
+        // searchParams.get('id');
+        navigate({ pathname: '../user', search: `?id=${userId}`})
+        console.log(userId);
+    }
 
     if (!open) return null
 
@@ -26,9 +38,9 @@ const FollowingModal = ({ open, following, onClose}) => {
                 <div className="modal-content">
                     {
                         followingUsers.map((user, index) => {
-                            return <Link to={`/user/?id=${user._id}`} relative="path" key={index} className='followingModal-userCard'  onClick={onClose}>
+                            return <button type='button' key={index} className='followingModal-userCard'  onClick={() => handleClick(user._id)}>
                                 <span>{user.firstName} {user.lastName}</span>
-                            </Link>
+                            </button>
                         })
                     }
                 </div>   

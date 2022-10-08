@@ -31,12 +31,12 @@ const Login = () => {
 
     const [loginData, setLoginData] = useState(data)
     const {email, password} = loginData
-
+    const [error, setError] = useState(null)
     // error Modal
     const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
 
     // wrong user informations
-    const [wrongInformations, setWrongInformations] = useState(false)
+    const [wrongInformations, setWrongInformations] = useState(false);
 
     // Login request
     const handleSubmit = async (e) =>{
@@ -64,10 +64,11 @@ const Login = () => {
             return () => clearTimeout(timer)
         }
         catch(err){
-            if(!err.response.status === 400 || !err.response.status === 403){
-                setErrorModalIsOpen(!errorModalIsOpen)
-            } else {
+            setError(err)
+            if(err.response.status === 400 || err.response.status === 403){
                 setWrongInformations(true);
+            } else {
+                setErrorModalIsOpen(!errorModalIsOpen)
             }
         }
         
@@ -121,7 +122,7 @@ const Login = () => {
             </div>
         </form>
         <NoAccount/>
-        <ErrorModal open={errorModalIsOpen} onClose={()=> setErrorModalIsOpen(false)}/>
+        <ErrorModal open={errorModalIsOpen} error={error} onClose={()=> setErrorModalIsOpen(false)}/>
     </>
   )
 }
