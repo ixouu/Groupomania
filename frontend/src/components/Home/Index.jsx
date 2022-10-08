@@ -1,7 +1,5 @@
 import React, {} from 'react';
-
 import { useSelector } from 'react-redux';
-
 
 import CreatePost from './CreatePost'
 import Footer from '../Layout/Footer'

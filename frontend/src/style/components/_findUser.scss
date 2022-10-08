@@ -5,6 +5,7 @@
     height: 130px;
     min-height: fit-content;
     transition: all .3s ease-in-out;
+    overflow-y: hidden;
 
     .findUser-title{
         display: inline;
@@ -30,6 +31,7 @@
         border: 1px solid $color-1;
         font-size: 18px;
         padding: 10px;
+        width: 100%;
     }
 
     .findUser-form:focus-within label,
@@ -42,6 +44,21 @@
 .findUser-active{
     height: auto;
     animation: growDiv .5s ease-out 1 forwards;
+}
+
+.findUser-result{
+    display: flex;
+    background-color: $color-7;
+    padding: 10px;
+    margin: 25px 0;
+    border-radius: 5px;
+    align-items: center;
+    color: $color-5;
+    img{
+        width: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
 }
 
 @keyframes growDiv {
