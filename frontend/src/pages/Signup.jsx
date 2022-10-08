@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -13,18 +13,23 @@ const Signup = () => {
     // loading
     const [isLoading, setIsLoading] = useState(false);
 
+    
+    
     // error
     const [error, setError] = useState("")
-
+    
     // firstName data 
     const [firstName, setFirstName] = useState('');
-    const [wrongFirstName, setWrongFirstName] = useState(false)
+    const [wrongFirstName, setWrongFirstName] = useState(false);
+    const [firstNameIsEditing, setFirstNameIsEditing] = useState(false);
     // lastName data
     const [lastName, setLastName] = useState('');
-    const [wrongLastName, setWrongLastName] = useState(false)
+    const [wrongLastName, setWrongLastName] = useState(false);
+    const [lastNameIsEditing, setLastNameIsEditing] = useState(false);
     // email data
     const [email, setEmail] = useState('');
-    const [emailIsValid, setEmailIsValid] = useState(false)
+    const [emailIsValid, setEmailIsValid] = useState(false);
+    const [emailIsEditing, setEmailIsEditing] = useState(false);
 
     // Email error span
     const [emailRequisite, setEmailRequisite] = useState(false)
@@ -60,6 +65,7 @@ const Signup = () => {
 
     // Handle firstName
     const handleFirstName = (firstName) => {
+        setFirstNameIsEditing(true);
         setFirstName(firstName);
         if( firstName.length < 2 || firstName.length > 55 || !firstNameRegExp.test(firstName)){
             setWrongFirstName(true)
@@ -70,6 +76,7 @@ const Signup = () => {
 
     // Handle lastName 
     const handleLastName = (lastName) => {
+        setLastNameIsEditing(true)
         setLastName(lastName);
         if( firstName.length < 2 || firstName.length > 55 || !lastNameRegExp.test(lastName)){
             setWrongLastName(true)
@@ -80,7 +87,8 @@ const Signup = () => {
 
     // Handle email input changes
     const handleEmail = (email) =>{
-        setEmail(email)
+        setEmail(email);
+        setEmailIsEditing(true);
         if(emailRegExp.test(email)){
             setEmailIsValid(true)
         } else {
@@ -104,6 +112,7 @@ const Signup = () => {
     }
 
     // Handle password input Focus
+   
     const handleFocus = (target) =>{
         if(target.id === "password"){
             setPwdRequisite(true)
@@ -206,7 +215,7 @@ const Signup = () => {
                 <form className="signUp-form">
                     {/* first name */}
                     <div className="form-div">
-                        {wrongFirstName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
+                        {firstNameIsEditing ? (wrongFirstName ? <div className="checkIcon checkIcon-invalid" ><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>) : null}
                         <label htmlFor="firstName">Prénom</label>
                         <input
                             id="firstName"
@@ -220,7 +229,7 @@ const Signup = () => {
                     </div>
                     {/* last name */}
                     <div className="form-div">
-                    {wrongLastName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
+                    {lastNameIsEditing ? (wrongLastName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>) : null}
                         <label htmlFor="lastName">Nom</label>
                         <input
                             id="lastName"
@@ -234,7 +243,7 @@ const Signup = () => {
                     </div>
                     {/* email */}
                     <div className="form-div">
-                        {wrongFirstName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>}
+                        {emailIsEditing? (emailIsValid ? <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div> : <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div>) : null}
                         <label htmlFor="email">Adresse Email</label>
                         <input
                             id="email"

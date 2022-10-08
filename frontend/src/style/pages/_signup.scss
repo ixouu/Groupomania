@@ -48,7 +48,7 @@
         background: #a698981a;
         border-bottom: 1px solid $color-4;
         width: 100%;
-        margin: 18px 0 0 0;
+        margin: 8px 0 0 0;
         padding: 10px 0 0 5px;
         border-radius: 5px;
         font-size: 18px;
@@ -100,7 +100,7 @@
 
 
     .form-div{
-        height: 90px;
+        height: 100px;
         width: 100%;
         position: relative;
     }
@@ -114,7 +114,7 @@
 .checkIcon{
     position: absolute;
     left : -25px;
-    top : 55%;
+    top : 40%;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -130,10 +130,12 @@
 .checkIcon-valid {
     background-color: $color-9;
     opacity: 1;
-    transform: rotate(0);
 }
 .checkIcon-invalid{
     background-color: $color-8;
     opacity: 1;
-    transform: rotate(0);
+}
+
+.invisible {
+    opacity: 0;
 }

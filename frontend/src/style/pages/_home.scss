@@ -67,7 +67,7 @@
         padding: 10%;
     }
     @include largeScreen-only{
-        min-height: 430px;
+        max-height: 430px;
     }
     form{
         margin: 10px 0;

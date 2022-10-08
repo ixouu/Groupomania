@@ -22,9 +22,7 @@
             @include tablettes-only{
                 width: 60%;
             }
-            &:hover{
-                transform: scale(1.1);
-            }
+
             i{
                 padding: 0 10px;
                 font-size: 24px;
@@ -38,6 +36,11 @@
                 font-size: 20px;
                 width: 100%;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                transition: all .2s ease-in-out;
+                &:hover{
+                    background-color: $color-10;
+                    transform: scale(1.1);
+                }
             }
         }
     }
