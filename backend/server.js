@@ -1,5 +1,5 @@
 // load env variables
-require('dotenv').config({path: './config/.env'})
+require('dotenv').config({ path: './config/.env' })
 
 // Define the port form env Variable
 const developmentPort = process.env.PORT;
@@ -47,7 +47,7 @@ const errorHandler = error => {
     }
 };
 
-// create the serv , call of app 
+// create the server , call of app 
 const server = http.createServer(app);
 
 // event handler

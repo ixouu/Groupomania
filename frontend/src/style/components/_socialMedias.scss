@@ -1,48 +1,53 @@
-.socialMedias{
+.socialMedias {
     @include sideElement;
     margin-top: 20px;
     height: auto;
     min-height: fit-content;
     padding-bottom: 20px;
 
-    .socialMedias-title{
+    .socialMedias-title {
         display: inline;
         margin-bottom: 20px;
     }
-    ul{
+
+    ul {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
+
         li {
             padding: 10px 0;
             width: 80%;
             transition: all .2s ease-in-out;
-            @include tablettes-only{
+
+            @include tablettes-only {
                 width: 60%;
             }
 
-            i{
+            i {
                 padding: 0 10px;
                 font-size: 24px;
             }
-            .socialMedia-Link{
+
+            .socialMedia-Link {
                 display: inline-block;
                 background-color: $color-7 ;
                 color: $color-5;
-                padding : 5px 10px;
+                padding: 5px 10px;
                 border-radius: 10px;
                 font-size: 20px;
                 width: 100%;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 transition: all .2s ease-in-out;
-                &:hover{
+
+                &:hover {
                     background-color: $color-10;
                     transform: scale(1.1);
                 }
             }
         }
     }
-    
+
 }

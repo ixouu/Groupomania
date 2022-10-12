@@ -1,4 +1,4 @@
-.postContainer{
+.postContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -7,98 +7,114 @@
     border-radius: 5px;
     background-color: $color-5;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    @include mobile-only{
+
+    @include mobile-only {
         padding: 16px;
     }
 
 
-    .postContainer-header{
+    .postContainer-header {
         display: flex;
         flex-direction: row;
         align-items: center;
-        @include mobile-only{
+
+        @include mobile-only {
             flex-direction: column;
         }
 
-        .post-author_photo{
+        .post-author_photo {
             width: 70px;
             border-radius: 15px;
             margin-right: 5px;
         }
-        .post-author{
+
+        .post-author {
             font-size: 20px;
             font-weight: bold;
-            color : $color-1;
-            &:hover{
+            color: $color-1;
+
+            &:hover {
                 text-decoration: underline;
             }
         }
-        .post-date{
+
+        .post-date {
             margin-left: auto;
             font-size: 14px;
             font-style: italic;
-            @include mobile-only{
+
+            @include mobile-only {
                 margin-left: 0;
             }
         }
     }
 
-    .postContainer-content{
+    .postContainer-content {
         display: flex;
         flex-direction: column;
         padding-top: 16px;
-        .post-content{
+
+        .post-content {
             font-size: 20px;
             padding-bottom: 10px;
         }
     }
-    .postContainer-footer{
+
+    .postContainer-footer {
         padding-top: 16px;
         display: flex;
         flex-direction: column;
 
-        .post-counts{
+        .post-counts {
             width: 100%;
             display: flex;
             justify-content: flex-end;
             font-size: 18px;
             margin-bottom: 15px;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: 16px;
             }
-            .likes_count{
+
+            .likes_count {
                 margin-right: 10px;
             }
+
             // MINI PHOTOS
-            .post-counts_photos{
+            .post-counts_photos {
                 display: flex;
                 position: relative;
                 margin-right: 5px;
-                img:nth-of-type(1){
+
+                img:nth-of-type(1) {
                     bottom: -8px;
                     right: 0
                 }
-                img:nth-of-type(2){
+
+                img:nth-of-type(2) {
                     bottom: -8px;
                     right: 15px
                 }
-                img:nth-of-type(3){
+
+                img:nth-of-type(3) {
                     bottom: -8px;
                     right: 30px
                 }
+
                 img {
                     width: 35px;
                     border-radius: 50%;
                     position: absolute;
                 }
-                .post-counts_miniNumber{
+
+                .post-counts_miniNumber {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     width: 35px;
                     height: 35px;
                     position: absolute;
-                    color : $color-5;
+                    color: $color-5;
                     background-color: $color-1;
                     border-radius: 50%;
                     bottom: -8px;
@@ -107,8 +123,9 @@
                     filter: brightness(75%);
                     font-size: 16px;
                 }
+
                 // LIKERS LIST
-                .post-counts_likersNames{
+                .post-counts_likersNames {
                     position: absolute;
                     display: flex;
                     flex-direction: column-reverse;
@@ -118,27 +135,31 @@
                     min-width: 150px;
                     padding: 10px;
                     background-color: rgba(0, 0, 0, 0.478);
-                    color : $color-5;
+                    color: $color-5;
                     font-size: 14px;
                     border: 1px dotted $color-5;
                     border-radius: 5px;
                     transform-origin: top;
                 }
-                .fa-plus{
+
+                .fa-plus {
                     font-size: 14px;
                 }
             }
         }
-        .post-actions{
+
+        .post-actions {
             display: flex;
             justify-content: space-evenly;
             font-size: 18px;
             padding-top: 10px;
             position: relative;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: 16px;
             }
-            &::before{
+
+            &::before {
                 content: '';
                 height: 1px;
                 background-color: $color-4;
@@ -148,38 +169,47 @@
                 left: 0;
             }
         }
-        .post-showComments{
+
+        .post-showComments {
             transition: .2s all;
             cursor: pointer;
-            &:hover{
+
+            &:hover {
                 text-decoration: underline;
             }
         }
-        button{
+
+        button {
             background-color: transparent;
             font-family: $font-1;
             font-size: 18px;
             color: $color-4;
             transition: .2s all;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: 16px;
             }
-            &:hover{
+
+            &:hover {
                 text-decoration: underline;
             }
-            i{
+
+            i {
                 margin-right: 5px;
             }
         }
     }
-    .post-newComment{
+
+    .post-newComment {
         margin-top: 10px;
-        form{
+
+        form {
             display: flex;
             align-items: center;
             position: relative;
         }
-        #newComment{
+
+        #newComment {
             width: 100%;
             min-height: 30px;
             overflow: hidden;
@@ -190,12 +220,14 @@
             border-radius: 10px;
             padding: 15px 30px 15px 15px;
             font-family: $font-1;
-            &::placeholder{
+
+            &::placeholder {
                 font-family: $font-1;
                 color: $color-4;
             }
         }
-        .sendComment{
+
+        .sendComment {
             font-size: 18px;
             background-color: transparent;
             text-align: center;
@@ -204,49 +236,58 @@
             position: absolute;
             right: 10px;
             cursor: pointer;
-            &:hover{
+
+            &:hover {
                 font-size: 20px;
             }
-            &:disabled{
+
+            &:disabled {
                 color: $color-2;
             }
         }
-        .post-comment_error{
-            color : $color-8;
+
+        .post-comment_error {
+            color: $color-8;
             padding-left: 20px;
         }
     }
-   
+
 }
 
 // COMMENTS LIST
-.post-commentsList{
+.post-commentsList {
     padding-top: 10px;
-    h4{
+
+    h4 {
         font-size: 18px;
-        @include mobile-only{
+
+        @include mobile-only {
             font-size: 16px;
         }
     }
 
-    .post-comment_container{
+    .post-comment_container {
         margin: 10px;
         padding: 10px;
         position: relative;
         width: 95%;
         background-color: $color-6;
         border-radius: 5px;
-        @include mobile-only{
+
+        @include mobile-only {
             display: flex;
             flex-direction: column;
         }
+
         // COMMENTER NAME
-        h5{
+        h5 {
             font-size: 18px;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: 16px;
             }
         }
+
         // COMMENT DATE
         span {
             position: absolute;
@@ -254,7 +295,8 @@
             right: 10px;
             font-style: italic;
             font-size: 14px;
-            @include mobile-only{
+
+            @include mobile-only {
                 position: relative;
                 top: 0;
                 left: 0;
@@ -264,10 +306,11 @@
     }
 }
 
-.post-actionEdit{
+.post-actionEdit {
     display: flex;
     padding-top: 10px;
     justify-content: space-evenly;
+
     // BTN EDIT POST 
     .post-editBtn {
         font-size: 14px;
@@ -275,10 +318,11 @@
         color: $color-5;
         padding: 5px;
         border-radius: 5px;
-        margin : 0 5px 5px 5px ;
+        margin: 0 5px 5px 5px;
         cursor: pointer;
         transition: all .2s ease-out;
-        &:hover{
+
+        &:hover {
             filter: brightness(130%);
         }
     }
@@ -290,12 +334,12 @@
         color: $color-5;
         padding: 5px;
         border-radius: 5px;
-        margin :  0 5px 5px 5px ;
+        margin: 0 5px 5px 5px;
         cursor: pointer;
         transition: all .2s ease-out;
-        &:hover{
+
+        &:hover {
             filter: brightness(130%);
         }
     }
 }
-

@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { } from 'react';
 import { useSelector } from 'react-redux';
 
 import CreatePost from './CreatePost'
@@ -14,30 +14,30 @@ import FindUser from './FindUser';
 const Home = () => {
 
     document.title = 'Groupomania | Home';
-    
+
     const posts = useSelector((state) => state.postReducer);
 
     return (
         <>
-            <Header/>
+            <Header />
             <main className='home'>
                 <aside className='home-left'>
-                   <Trending posts={posts}/>
-                   <LastComments/>
+                    <Trending posts={posts} />
+                    <LastComments />
                 </aside>
                 <div className='home-center'>
-                    <CreatePost/>
-                    <Feed posts={posts}/>
+                    <CreatePost />
+                    <Feed posts={posts} />
                 </div>
                 <aside className='home-right'>
-                    <LastSignUp/>
-                    <FindUser/>
-                    <SocialMedias/>
+                    <LastSignUp />
+                    <FindUser />
+                    <SocialMedias />
                 </aside>
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
-} 
+}
 
 export default Home;

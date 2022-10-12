@@ -6,7 +6,7 @@ const verifyRoles = (...allowedRoles) => {
         const rolesArray = [...allowedRoles];
         // Define if the roles sent by jwt and return the role(s) found
         const result = req.roles.map(role => rolesArray.includes(role)).find(value => value === true);
-        if(!result){
+        if (!result) {
             return res.sendStatus(401)
         }
         next();

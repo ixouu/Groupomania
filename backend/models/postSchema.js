@@ -7,8 +7,8 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const postSchema = new mongoose.Schema(
     {
-        posterId : {
-            type : String,
+        posterId: {
+            type: String,
             required: true
         },
         content: {
@@ -25,13 +25,13 @@ const postSchema = new mongoose.Schema(
             default: []
         },
         comments: [{
-            type : Schema.Types.ObjectId,
-            ref : 'comment',
+            type: Schema.Types.ObjectId,
+            ref: 'comment',
             required: true
         }],
-    },{
-        timestamps : true
-    }
+    }, {
+    timestamps: true
+}
 )
 
 postSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator' });

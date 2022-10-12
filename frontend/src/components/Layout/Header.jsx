@@ -1,4 +1,4 @@
-import {ReactComponent as Logo} from "../../images/logo.svg";
+import { ReactComponent as Logo } from "../../images/logo.svg";
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -8,24 +8,24 @@ const Header = () => {
 
     const currentUser = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    const validateLogout = () => toast.success('Déconnexion en cours...',{
-        duration : 2000,
+    const validateLogout = () => toast.success('Déconnexion en cours...', {
+        duration: 2000,
     })
     const userId = accountServices.getUserId()
 
     const logout = () => {
         validateLogout()
-        const timer = setTimeout(() =>{
-                localStorage.clear();
-                navigate('/');
-            },2000)
-            return () => clearTimeout(timer)
+        const timer = setTimeout(() => {
+            localStorage.clear();
+            navigate('/');
+        }, 2000)
+        return () => clearTimeout(timer)
     }
     return (
         <header>
-            <div><Toaster/></div>
+            <div><Toaster /></div>
             <div className="header-logo">
-                <Link to="/home"> <Logo className="header-logo"/> </Link>
+                <Link to="/home"> <Logo className="header-logo" /> </Link>
             </div>
             <div className="header-title">
                 <h1>Bienvenue {currentUser.user.firstName}</h1>
@@ -34,7 +34,7 @@ const Header = () => {
                 <ul>
                     {accountServices.isAdmin() &&
                         <li>
-                            <Link to ="/admin" className="admin-link">Administration</Link>
+                            <Link to="/admin" className="admin-link">Administration</Link>
                         </li>
                     }
                     <li>

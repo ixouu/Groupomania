@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -13,11 +13,11 @@ const Signup = () => {
     // loading
     const [isLoading, setIsLoading] = useState(false);
 
-    
-    
+
+
     // error
     const [error, setError] = useState("")
-    
+
     // firstName data 
     const [firstName, setFirstName] = useState('');
     const [wrongFirstName, setWrongFirstName] = useState(false);
@@ -42,7 +42,7 @@ const Signup = () => {
     const [pwdLength, setPwdLength] = useState(0);
     const [pwdSpecialChar, setPwdSpecailChar] = useState(false);
     const [pwdCapLetter, setpwdCapLetter] = useState(false);
-    
+
     // Password progress modal
     const [pwdRequisite, setPwdRequisite] = useState(false);
 
@@ -67,9 +67,9 @@ const Signup = () => {
     const handleFirstName = (firstName) => {
         setFirstNameIsEditing(true);
         setFirstName(firstName);
-        if( firstName.length < 2 || firstName.length > 55 || !firstNameRegExp.test(firstName)){
+        if (firstName.length < 2 || firstName.length > 55 || !firstNameRegExp.test(firstName)) {
             setWrongFirstName(true)
-        } else{
+        } else {
             setWrongFirstName(false)
         }
     }
@@ -78,33 +78,33 @@ const Signup = () => {
     const handleLastName = (lastName) => {
         setLastNameIsEditing(true)
         setLastName(lastName);
-        if( firstName.length < 2 || firstName.length > 55 || !lastNameRegExp.test(lastName)){
+        if (firstName.length < 2 || firstName.length > 55 || !lastNameRegExp.test(lastName)) {
             setWrongLastName(true)
-        } else{
+        } else {
             setWrongLastName(false)
         }
     }
 
     // Handle email input changes
-    const handleEmail = (email) =>{
+    const handleEmail = (email) => {
         setEmail(email);
         setEmailIsEditing(true);
-        if(emailRegExp.test(email)){
+        if (emailRegExp.test(email)) {
             setEmailIsValid(true)
         } else {
             setEmailIsValid(false)
         }
     }
     // Handle password input changes
-    const handleChange = (pwd) =>{
+    const handleChange = (pwd) => {
         setPassword(pwd)
         setPwdLength(pwd.length)
-        if(specialCharRegExp.test(pwd)){
+        if (specialCharRegExp.test(pwd)) {
             setPwdSpecailChar(true)
         } else {
             setPwdSpecailChar(false)
         }
-        if(CapLetterRegExp.test(pwd)){
+        if (CapLetterRegExp.test(pwd)) {
             setpwdCapLetter(true)
         } else {
             setpwdCapLetter(false)
@@ -112,92 +112,92 @@ const Signup = () => {
     }
 
     // Handle password input Focus
-   
-    const handleFocus = (target) =>{
-        if(target.id === "password"){
+
+    const handleFocus = (target) => {
+        if (target.id === "password") {
             setPwdRequisite(true)
         }
-        if(target.id === "email"){
+        if (target.id === "email") {
             setEmailRequisite(true)
         }
-        
+
     }
 
     // handle password input Blur
-    const handleBlur = (target) =>{
-        if(target.id === "password"){
+    const handleBlur = (target) => {
+        if (target.id === "password") {
             setPwdRequisite(false)
         }
-        if(target.id === "email"){
+        if (target.id === "email") {
             setEmailRequisite(false)
         }
     }
 
     // signup Button
-    const signupBtn = firstName !== "" && lastName !== "" && email!== "" && password!=="" && passwordConfirm !== "" ?
-    (isLoading
-        ?(  <div className='successModal-loader'>
+    const signupBtn = firstName !== "" && lastName !== "" && email !== "" && password !== "" && passwordConfirm !== "" ?
+        (isLoading
+            ? (<div className='successModal-loader'>
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+            )
+            : <button type="sumbit" className="btn btn-signup" onClick={(e) => handleSignUpButton(e)}>S'inscrire</button>
         )
-        :<button type="sumbit" className="btn btn-signup" onClick={ (e) => handleSignUpButton(e)}>S'inscrire</button>
-    )
-    :
-    (<button type="sumbit" className="btn btn-signup" disabled={true}>S'inscrire</button>);
+        :
+        (<button type="sumbit" className="btn btn-signup" disabled={true}>S'inscrire</button>);
 
     // handle signup Button 
-    const handleSignUpButton = (e) =>{
+    const handleSignUpButton = (e) => {
         e.preventDefault();
-        if(password !== passwordConfirm){
+        if (password !== passwordConfirm) {
             setPwdNotMatching(true)
         }
         sendSignUpRequest();
     }
 
     // Signup Request
-    const sendSignUpRequest =  async() => {
+    const sendSignUpRequest = async () => {
         setIsLoading(true)
-        try{
+        try {
             const newUser = {
-                firstName ,
-                lastName ,
-                email ,
-                password ,
-                passwordConfirm 
+                firstName,
+                lastName,
+                email,
+                password,
+                passwordConfirm
             }
             await axios.post("http://localhost:5000/api/user/signup", newUser)
-            .then(res => {
-                if (res.status === 201){
-                    // show the sucess modal
-                    setSuccessModalIsOpen(!successModalIsOpen)
-                    // reset the form
-                    setFirstName('');
-                    setLastName('');
-                    setEmail('');
-                    setPassword('');
-                    setPasswordConfirm('');
-                    setIsLoading(false)
-                    // redirection
-                    const timer = setTimeout(() => {
-                        setSuccessModalIsOpen(!successModalIsOpen);
-                        navigate('/')
-                    },3000)
-                    return () => {
-                        clearTimeout(timer)
+                .then(res => {
+                    if (res.status === 201) {
+                        // show the sucess modal
+                        setSuccessModalIsOpen(!successModalIsOpen)
+                        // reset the form
+                        setFirstName('');
+                        setLastName('');
+                        setEmail('');
+                        setPassword('');
+                        setPasswordConfirm('');
+                        setIsLoading(false)
+                        // redirection
+                        const timer = setTimeout(() => {
+                            setSuccessModalIsOpen(!successModalIsOpen);
+                            navigate('/')
+                        }, 3000)
+                        return () => {
+                            clearTimeout(timer)
+                        }
+                    } else {
+                        setErrorModalIsOpen(!errorModalIsOpen)
                     }
-                } else {
+                })
+                .catch(err => {
+                    setError(err)
                     setErrorModalIsOpen(!errorModalIsOpen)
-                }
-            })
-            .catch(err => {
-                setError(err)
-                setErrorModalIsOpen(!errorModalIsOpen)
-                setIsLoading(false)
-            })
+                    setIsLoading(false)
+                })
         }
-        catch(err) {
+        catch (err) {
             setErrorModalIsOpen(!errorModalIsOpen)
         }
     }
@@ -222,28 +222,28 @@ const Signup = () => {
                             type="text"
                             placeholder="Renseignez votre prénom"
                             value={firstName}
-                            onChange={ (e) => handleFirstName(e.target.value)}
+                            onChange={(e) => handleFirstName(e.target.value)}
                             required
                         />
                         {wrongFirstName === true && <p className="wrongInput">Le format de votre prénom est incorrect.</p>}
                     </div>
                     {/* last name */}
                     <div className="form-div">
-                    {lastNameIsEditing ? (wrongLastName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>) : null}
+                        {lastNameIsEditing ? (wrongLastName ? <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>) : null}
                         <label htmlFor="lastName">Nom</label>
                         <input
                             id="lastName"
                             type="text"
                             placeholder="Renseignez votre nom de famille"
                             value={lastName}
-                            onChange={ (e) => handleLastName(e.target.value)}
+                            onChange={(e) => handleLastName(e.target.value)}
                             required
                         />
                         {wrongLastName === true && <p className="wrongInput">Le format de votre nom est incorrect.</p>}
                     </div>
                     {/* email */}
                     <div className="form-div">
-                        {emailIsEditing? (emailIsValid ? <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div> : <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div>) : null}
+                        {emailIsEditing ? (emailIsValid ? <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div> : <div className="checkIcon checkIcon-invalid"><i className="fa-solid fa-xmark"></i></div>) : null}
                         <label htmlFor="email">Adresse Email</label>
                         <input
                             id="email"
@@ -255,7 +255,7 @@ const Signup = () => {
                             onBlur={(e) => handleBlur(e.target)}
                             required
                         />
-                        {emailRequisite &&  !emailIsValid ? <p className="wrongInput">Le format renseigné n'est pas valide</p> : null}
+                        {emailRequisite && !emailIsValid ? <p className="wrongInput">Le format renseigné n'est pas valide</p> : null}
                     </div>
                     {/* password */}
                     <div className="form-div">
@@ -265,14 +265,14 @@ const Signup = () => {
                             type="password"
                             placeholder="Renseignez votre mot de passe"
                             value={password}
-                            onChange={ (e) => handleChange(e.target.value)}
+                            onChange={(e) => handleChange(e.target.value)}
                             onFocus={(e) => handleFocus(e.target)}
                             onBlur={(e) => handleBlur(e.target)}
                             required
                         />
                     </div>
-                    {pwdRequisite && <Progress pwdLength={pwdLength} pwdSpecialChar={pwdSpecialChar}  pwdCapLetter={pwdCapLetter}/>}
-                  
+                    {pwdRequisite && <Progress pwdLength={pwdLength} pwdSpecialChar={pwdSpecialChar} pwdCapLetter={pwdCapLetter} />}
+
 
                     <div className="form-div">
                         <label htmlFor="confirmPassword">
@@ -283,7 +283,7 @@ const Signup = () => {
                             type="password"
                             placeholder="Renseignez votre mot de passe"
                             value={passwordConfirm}
-                            onChange={ (e) => setPasswordConfirm(e.target.value)}
+                            onChange={(e) => setPasswordConfirm(e.target.value)}
                             required
                         />
                         {pwdNotMatching ?
@@ -295,8 +295,8 @@ const Signup = () => {
                     {signupBtn}
                 </form>
             </div>
-            <SucessModal email={email} firstName={firstName} open={successModalIsOpen} onClose={()=> setSuccessModalIsOpen(false)}/>
-            <ErrorModal open={errorModalIsOpen} error={error} onClose={()=> setErrorModalIsOpen(false)}/>
+            <SucessModal email={email} firstName={firstName} open={successModalIsOpen} onClose={() => setSuccessModalIsOpen(false)} />
+            <ErrorModal open={errorModalIsOpen} error={error} onClose={() => setErrorModalIsOpen(false)} />
         </div>
     );
 };

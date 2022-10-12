@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FollowingModal from '../Modals/FollowingModal';
 
 const Following = ({ following }) => {
@@ -7,8 +7,8 @@ const Following = ({ following }) => {
 
   return (
     <>
-      <button className='user-following_btn'onClick={() => setfollowingModalIsOpen(!followingModalisOpen)}> Abonnement(s) :  {following.length}</button>
-      {followingModalisOpen && <FollowingModal open={followingModalisOpen} following={following} onClose={() => setfollowingModalIsOpen(false)}/>}
+      <button className='user-following_btn' onClick={() => setfollowingModalIsOpen(!followingModalisOpen)}> Abonnement(s) :  {following.length}</button>
+      {followingModalisOpen && <FollowingModal open={followingModalisOpen} following={following} onClose={() => setfollowingModalIsOpen(false)} />}
     </>
   )
 }

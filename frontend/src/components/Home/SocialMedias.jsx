@@ -22,7 +22,7 @@ const SocialMedias = () => {
                     </a>
                 </li>
                 <li>
-                    <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/'  className='socialMedia-Link'>
+                    <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/' className='socialMedia-Link'>
                         <i className="fa-brands fa-linkedin"></i>Linkedin
                     </a>
                 </li>

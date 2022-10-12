@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
         token,
         process.env.SECRETKEY,
         (err, decoded) => {
-            console.log(err)
             if (err) return res.sendStatus(403); //invalid token
             req.user = decoded.UserInfo.userId;
             req.roles = decoded.UserInfo.roles;

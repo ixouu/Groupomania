@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NoAccount = () => {
 
-    const navigate = useNavigate()    
+    const navigate = useNavigate()
     const displaySignup = () => {
         navigate("/signup")
-        }    
+    }
 
     return (
         <div className='no-account'>

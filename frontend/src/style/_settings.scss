@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,21 +6,24 @@
     outline: none;
     border: none;
     text-decoration: none;
+
     &::selection {
         background-color: $color-6;
     }
 }
 
-body{
+body {
     font-family: $font-1;
     color: $color-4;
-    background-color: #F1F1F1; 
+    background-color: #F1F1F1;
 }
 
-html{
+html {
     scroll-behavior: smooth;
+
     ::-webkit-scrollbar {
         width: 0px;
-        background: transparent; /* make scrollbar transparent */
+        background: transparent;
+        /* make scrollbar transparent */
     }
 }

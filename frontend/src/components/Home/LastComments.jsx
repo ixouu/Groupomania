@@ -8,8 +8,8 @@ const LastComments = () => {
     return (
         <section className='lastComments'>
             <h2 className='lastComment-title'>Les derniers commentaires</h2>
-            { 
-                lastComments.map((comment, index) =>{
+            {
+                lastComments.map((comment, index) => {
                     return (
                         <div className="lastComment-container" key={index}>
                             <span className="lastComment-timer">{commentServices.getTimeDifference(comment.updatedAt)}</span>
@@ -23,6 +23,3 @@ const LastComments = () => {
 }
 
 export default LastComments;
-
-
-//<span className='lastComment-postLink' onClick={() => window.location.replace(`./home/#${comment.post._id}`)}>Voir le post</span>

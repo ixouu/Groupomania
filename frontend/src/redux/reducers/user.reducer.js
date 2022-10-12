@@ -1,8 +1,8 @@
-import { 
-    GET_USER, 
-    UPDATE_USER, 
+import {
+    GET_USER,
+    UPDATE_USER,
     UPLOAD_PHOTO,
-    ADD_FOLLOWER, 
+    ADD_FOLLOWER,
     ADD_FOLLOWING,
     REMOVE_FOLLOWER,
     REMOVE_FOLLOWING
@@ -10,45 +10,45 @@ import {
 
 const initialSate = {};
 
-export default function userReducer (state = initialSate, action){
+export default function userReducer(state = initialSate, action) {
     switch (action.type) {
-        case GET_USER :
+        case GET_USER:
             return action.payload;
         case UPDATE_USER:
             return {
                 ...state,
-                bio : action.payload
+                bio: action.payload
             }
-        case UPLOAD_PHOTO : 
+        case UPLOAD_PHOTO:
             return {
                 ...state,
-                photo : action.payload
+                photo: action.payload
             }
-        case ADD_FOLLOWER :
+        case ADD_FOLLOWER:
             return {
                 ...state,
-                followers : [action.payload,...state.user.followers]
+                followers: [action.payload, ...state.user.followers]
             }
-        case ADD_FOLLOWING: 
+        case ADD_FOLLOWING:
             return {
                 ...state,
-                following : [action.payload, ...state.user.following]
+                following: [action.payload, ...state.user.following]
             }
-        case REMOVE_FOLLOWER : 
-            return{
+        case REMOVE_FOLLOWER:
+            return {
                 ...state,
-                followers : state.user.followers.filter(
+                followers: state.user.followers.filter(
                     (id) => id !== action.payload
                 )
             }
-        case REMOVE_FOLLOWING :
+        case REMOVE_FOLLOWING:
             return {
                 ...state,
-                following : state.user.following.filter(
+                following: state.user.following.filter(
                     (id) => id !== action.payload
                 )
             }
-        default : 
+        default:
             return state
     }
 }

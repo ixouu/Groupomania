@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -10,8 +10,8 @@ import Followers from './Followers';
 import Following from './Following';
 import FollowBtns from './FollowBtns';
 
- const User = () => {
-    
+const User = () => {
+
 
     const users = useSelector((state) => state.usersReducer);
     const currentUrl = new URL(window.location.href);
@@ -19,24 +19,24 @@ import FollowBtns from './FollowBtns';
     const userIdToFind = params.get("id")
 
     const user = () => {
-        return  users.filter(user => user._id === `${userIdToFind}`)
+        return users.filter(user => user._id === `${userIdToFind}`)
     }
 
-    document.title = `Groupomania | Profil de ${user()[0].firstName} ${user()[0].LastName}` 
+    document.title = `Groupomania | Profil de ${user()[0].firstName} ${user()[0].LastName}`
 
 
     const userBio = () => {
-        if (user()[0].bio === ''){
+        if (user()[0].bio === '') {
             return <span> {user()[0].firstName} n'a pas encore écrit sa bio</span>
         } else {
             return <span>{user()[0].bio}</span>
         }
     }
 
-    
-  return (
-    <>
-        <Header/>
+
+    return (
+        <>
+            <Header />
             <main className='user'>
                 <div className="user-card">
                     <div className="user-card_left">
@@ -51,20 +51,20 @@ import FollowBtns from './FollowBtns';
                         <div className="user-follow_bloc">
                             <div className="user-follow">
                                 <Followers followers={user()[0].followers} />
-                                <FollowBtns followers={user()[0].followers} currentUser={userIdToFind}/>
+                                <FollowBtns followers={user()[0].followers} currentUser={userIdToFind} />
                             </div>
-                            <Following following={user()[0].following}/>
+                            <Following following={user()[0].following} />
                         </div>
                     </div>
                     <div className="user-card_right">
                         <img src={`${user()[0].photo}`} alt={`Photo de ${user()[0].lastName}`} />
                     </div>
                 </div>
-                
+
             </main>
-        <Footer/>
-    </>
-  )
+            <Footer />
+        </>
+    )
 
 }
 

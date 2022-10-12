@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
             max: 1024,
             minlength: 8,
         },
-        passwordConfirm : {
+        passwordConfirm: {
             type: String,
             required: true,
             max: 1024,
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
         },
         bio: {
             type: String,
-            default : '',
+            default: '',
             max: 1024,
         },
         photo: {
@@ -69,16 +69,16 @@ const userSchema = new mongoose.Schema(
         },
         roles: {
             type: Object,
-            required : true,
-            default : {
-                "User" : 2001
+            required: true,
+            default: {
+                "User": 2001
             }
         },
     }, {
-        timestamps: true
-    }
+    timestamps: true
+}
 )
 
-userSchema.plugin(uniqueValidator, {type: 'mongoose-unique-validator'});
+userSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator' });
 
 module.exports = mongoose.model('user', userSchema);

@@ -1,4 +1,4 @@
-let saveToken = (token) =>{
+let saveToken = (token) => {
     localStorage.setItem('token', token)
 }
 
@@ -35,7 +35,7 @@ let isAdmin = () => {
 }
 
 let transformDate = (date) => {
-    const options = { year: "numeric", month:"short", day:"numeric"};
+    const options = { year: "numeric", month: "short", day: "numeric" };
     const rawDate = Date.parse(date);
     const dateToReturn = new Date(rawDate).toLocaleDateString('fr-FR', options)
     return dateToReturn.toString()
@@ -43,7 +43,7 @@ let transformDate = (date) => {
 
 let getTime = (date) => {
     const rawDate = Date.parse(date);
-    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', {timeStyle: "short"})
+    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', { timeStyle: "short" })
     return timeToReturn.toString()
 }
 

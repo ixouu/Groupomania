@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import toast, { Toaster } from 'react-hot-toast'
@@ -20,17 +20,17 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const validateLogin = () => toast.success('Connexion établie',{
-        duration : 2000,
+    const validateLogin = () => toast.success('Connexion établie', {
+        duration: 2000,
     })
-    
+
     const data = {
-        email : "",
+        email: "",
         password: ""
     }
 
     const [loginData, setLoginData] = useState(data)
-    const {email, password} = loginData
+    const { email, password } = loginData
     const [error, setError] = useState(null)
     // error Modal
     const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
@@ -39,10 +39,10 @@ const Login = () => {
     const [wrongInformations, setWrongInformations] = useState(false);
 
     // Login request
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         setWrongInformations(false)
         e.preventDefault();
-        try{
+        try {
             const response = await Axios.post("/user/login", loginData)
             // store informations to the local storage
             accountServices.saveToken(response.data.accessToken);
@@ -56,26 +56,26 @@ const Login = () => {
                 password: ''
             })
             validateLogin();
-            const timer = setTimeout(() =>{
+            const timer = setTimeout(() => {
                 accountServices.isAdmin()
-                ? navigate('/admin')
-                : navigate('/home');
-            },2000)
+                    ? navigate('/admin')
+                    : navigate('/home');
+            }, 2000)
             return () => clearTimeout(timer)
         }
-        catch(err){
+        catch (err) {
             setError(err)
-            if(err.response.status === 400 || err.response.status === 403){
+            if (err.response.status === 400 || err.response.status === 403) {
                 setWrongInformations(true);
             } else {
                 setErrorModalIsOpen(!errorModalIsOpen)
             }
         }
-        
+
     }
 
     const handleChange = (e) => {
-        setLoginData({...loginData, [e.target.id]:e.target.value})
+        setLoginData({ ...loginData, [e.target.id]: e.target.value })
     }
 
     // Login btn
@@ -84,47 +84,47 @@ const Login = () => {
         :
         (<button className='btn btn-connect' disabled={true}> Se connecter </button>);
 
-  return (
-    <>
-        <div><Toaster/></div>
-        <form className='login-form'>
-            <div className='form-div'>
-                <label htmlFor="email">Adresse Email</label>
-                <i className="fa-solid fa-envelope"></i>
-                <input 
-                    id="email"
-                    type="email"
-                    placeholder='Entrez votre adresse email' 
-                    value={email}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className='form-div'>
-                <label htmlFor="password">Mot de passe</label>
-                <i className="fa-solid fa-key"></i>
-                <input 
-                    id="password" 
-                    type="password" 
-                    placeholder='Entrez votre mot de passe'
-                    value={password} 
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            {loginBtn}
-            <div className="wrongInformations-container">
-            {wrongInformations ? 
-                <p className='wrongInformations'>Veuillez renseigner un mot de passe et une adresse email valide</p>
-                : 
-                null
-            }
-            </div>
-        </form>
-        <NoAccount/>
-        <ErrorModal open={errorModalIsOpen} error={error} onClose={()=> setErrorModalIsOpen(false)}/>
-    </>
-  )
+    return (
+        <>
+            <div><Toaster /></div>
+            <form className='login-form'>
+                <div className='form-div'>
+                    <label htmlFor="email">Adresse Email</label>
+                    <i className="fa-solid fa-envelope"></i>
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder='Entrez votre adresse email'
+                        value={email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className='form-div'>
+                    <label htmlFor="password">Mot de passe</label>
+                    <i className="fa-solid fa-key"></i>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder='Entrez votre mot de passe'
+                        value={password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                {loginBtn}
+                <div className="wrongInformations-container">
+                    {wrongInformations ?
+                        <p className='wrongInformations'>Veuillez renseigner un mot de passe et une adresse email valide</p>
+                        :
+                        null
+                    }
+                </div>
+            </form>
+            <NoAccount />
+            <ErrorModal open={errorModalIsOpen} error={error} onClose={() => setErrorModalIsOpen(false)} />
+        </>
+    )
 }
 
 export default Login

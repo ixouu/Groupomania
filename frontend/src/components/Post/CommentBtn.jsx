@@ -1,14 +1,14 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 const CommentBtn = () => {
 
     const [postingComment, setPostingComment] = useState(false);
     const handleAddCommentButton = () => {
-        postingComment ? setPostingComment(false) : setPostingComment(true) 
+        postingComment ? setPostingComment(false) : setPostingComment(true)
     }
 
     return (
-        <button 
+        <button
             onClick={() => handleAddCommentButton()}
         ><i className="fa-regular fa-message"></i> Commenter</button>
     );

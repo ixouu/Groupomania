@@ -78,36 +78,36 @@ export const adminDeletePost = (id) => {
             method: 'delete',
             url: `post/admin/${id}`
         })
-        .then((res) => {
-           dispatch({type: ADMIN_DELETE_POST, payload: { id } }) 
-        })
-        .catch((err) => console.log(err))
+            .then((res) => {
+                dispatch({ type: ADMIN_DELETE_POST, payload: { id } })
+            })
+            .catch((err) => console.log(err))
     }
 }
 
 export const deletePost = (id, data) => {
     return (dispatch) => {
         return Axios({
-            method : 'delete',
+            method: 'delete',
             url: `post/${id}`,
             data
         })
-        .then((res)=> {
-            dispatch({type: DELETE_POST, payload : {id} })
-        })
-        .catch((err) => console.log(err))
+            .then((res) => {
+                dispatch({ type: DELETE_POST, payload: { id } })
+            })
+            .catch((err) => console.log(err))
     }
 }
 
 export const adminEditPost = (id, data) => {
     return (dispatch) => {
         return Axios({
-            method : 'put',
-            url : `post/admin/${id}`,
+            method: 'put',
+            url: `post/admin/${id}`,
             data
         })
-        .then((res) => {
-            dispatch({type: ADMIN_EDIT_POST, payload: { id, data }}) 
+            .then((res) => {
+                dispatch({ type: ADMIN_EDIT_POST, payload: { id, data } })
             })
             .catch((err) => console.log(err))
     }
@@ -116,14 +116,14 @@ export const adminEditPost = (id, data) => {
 export const editPost = (id, data) => {
     return (dispatch) => {
         return Axios({
-            method : 'put',
-            url : `post/${id}`,
+            method: 'put',
+            url: `post/${id}`,
             data
         })
-        .then((res) => {
-            console.log(res.data)
-            dispatch({type : EDIT_POST, payload : res.data })
-        })
-        .catch((err) => console.log(err))
+            .then((res) => {
+                console.log(res.data)
+                dispatch({ type: EDIT_POST, payload: res.data })
+            })
+            .catch((err) => console.log(err))
     }
 }

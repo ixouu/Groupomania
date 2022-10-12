@@ -16,7 +16,7 @@ const CreatePost = () => {
     const [isPosting, setIsPosting] = useState(false);
     const [isError, setIsError] = useState(false);
     const [isActive, setIsActive] = useState(false);
-    
+
     //handle image Animation
     let activeImg = isActive ? 'imgPreviewIsActive' : 'imgPreviewIsNotActive'
 
@@ -39,8 +39,8 @@ const CreatePost = () => {
             await dispatch(createPost(data));
             dispatch(getPosts());
             cancel();
-            toast.success('Poste créé',{
-                duration : 2000,
+            toast.success('Poste créé', {
+                duration: 2000,
             })
         }
     };
@@ -57,7 +57,7 @@ const CreatePost = () => {
 
     return (
         <>
-            <div><Toaster/></div>
+            <div><Toaster /></div>
             <section className="newPost">
                 <h3>Creer une nouvelle publiation :</h3>
                 <form>

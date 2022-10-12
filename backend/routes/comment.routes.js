@@ -16,10 +16,10 @@ router.get('/:id', auth, commentController.getOneComment)
 router.get('/', commentController.getComments)
 
 // edit a comment
-router.put('/:id', auth,commentController.editComment)
+router.put('/:id', auth, commentController.editComment)
 
 // delete a comment
-router.delete('/:id',auth , verifyRoles(ROLE_LIST.Admin), commentController.deleteComment);
+router.delete('/:id', auth, verifyRoles(ROLE_LIST.Admin), commentController.deleteComment);
 
 
 module.exports = router;

@@ -11,20 +11,20 @@ const FollowBtns = ({ followers, currentUser }) => {
   const dispatch = useDispatch()
   const uid = accountServices.getUserId()
   const [isFollowing, setIsFollowing] = useState(false);
-  
+
   useEffect(() => {
-    if (followers.includes(uid)){
+    if (followers.includes(uid)) {
       setIsFollowing(true);
-    } else  setIsFollowing(false);
-  },[])
+    } else setIsFollowing(false);
+  }, [])
 
   const followUser = async (e) => {
     e.preventDefault()
     const data = {
-      followerId : uid
+      followerId: uid
     }
     const data2 = {
-      userIdToFollow : currentUser
+      userIdToFollow: currentUser
     }
     await dispatch(addFollower(currentUser, data, uid));
     await dispatch(addFollowing(uid, data2, currentUser));
@@ -36,10 +36,10 @@ const FollowBtns = ({ followers, currentUser }) => {
   const unfollowUser = async (e) => {
     e.preventDefault();
     const data = {
-      followerId : uid
+      followerId: uid
     }
     const data2 = {
-      userIdToUnfollow : currentUser
+      userIdToUnfollow: currentUser
     }
     await dispatch(removeFollower(currentUser, data, uid));
     await dispatch(removeFollowing(uid, data2, currentUser));
@@ -50,14 +50,14 @@ const FollowBtns = ({ followers, currentUser }) => {
 
   const followBtn = <button className='followUser-btn' onClick={(e) => followUser(e)}><i className="fa-solid fa-user-plus"></i></button>
 
-  const unfollowBtn = <button className='unfollowUser-btn'onClick={(e) => unfollowUser(e)}><i className="fa-solid fa-user-minus"></i></button>
-  
+  const unfollowBtn = <button className='unfollowUser-btn' onClick={(e) => unfollowUser(e)}><i className="fa-solid fa-user-minus"></i></button>
 
-    return (
-      <> 
-        {currentUser === uid ? null : (isFollowing === true ? unfollowBtn : followBtn)}
-      </>
-    )
+
+  return (
+    <>
+      {currentUser === uid ? null : (isFollowing === true ? unfollowBtn : followBtn)}
+    </>
+  )
 }
 
 export default FollowBtns

@@ -25,13 +25,13 @@ router.get('/:id', userController.getUser);
 router.put('/:id', auth, multer, userController.updateUser);
 
 // Admin Update
-router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.adminUpdateUser); 
+router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.adminUpdateUser);
 
 // Add Follower user
 router.put('/add-follower-user/:id', auth, userController.addFollower);
 
 // Add following user
-router.put('/add-following-user/:id',auth,  userController.followUser);
+router.put('/add-following-user/:id', auth, userController.followUser);
 
 // Remove follower user
 router.put('/remove-follower/:id', auth, userController.removeFollower);

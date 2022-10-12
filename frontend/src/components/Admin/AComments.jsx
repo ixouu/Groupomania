@@ -14,18 +14,18 @@ const AComments = ({ comments }) => {
 
 
     const validateDelete = () => toast.success('Commentaire supprimé', {
-        duration : 2000
+        duration: 2000
     })
     const validateUpdate = () => toast.success('Commentaire édité', {
-        duration : 2000
+        duration: 2000
     })
 
     const handleDelete = (e) => {
         e.preventDefault();
         const commentId = e.target.closest('section').id
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?') === true) {
-           dispatch(deleteComment(commentId));
-           validateDelete();
+            dispatch(deleteComment(commentId));
+            validateDelete();
         } else {
             return
         }
@@ -47,7 +47,7 @@ const AComments = ({ comments }) => {
     const sumbitUpdate = (e) => {
         e.preventDefault();
         const data = {
-            content : commentContent
+            content: commentContent
         }
         if (window.confirm('Êtes-vous sûr de vouloir modifier ce commentaire ?') === true) {
             dispatch(updateComment(currentCommentId, data));
@@ -59,16 +59,16 @@ const AComments = ({ comments }) => {
     }
 
     return (
-           <>
-            <div><Toaster/></div>
-            {isUpdating && 
+        <>
+            <div><Toaster /></div>
+            {isUpdating &&
                 <form className='admin-comment_form'>
                     <label htmlFor="admin-comment_textarea" className='admin-comment_label'>Edition du commentaire</label>
                     <textarea id="admin-comment_textarea" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
                     <button className='admin-comment_btnCancel' onClick={() => cancelUpdate()}><i className="fa-solid fa-arrow-rotate-left"></i></button>
-                    <button className='admin-comment_btnSend' onClick={ (e) => sumbitUpdate(e)}><i className="fa-solid fa-paper-plane"></i></button>
+                    <button className='admin-comment_btnSend' onClick={(e) => sumbitUpdate(e)}><i className="fa-solid fa-paper-plane"></i></button>
                 </form>
-            } 
+            }
             {comments.map((comment) => {
                 return (
                     <section key={comment._id} id={comment._id} className='admin-comment'>
@@ -79,7 +79,7 @@ const AComments = ({ comments }) => {
                 )
             })
             }
-            </>
+        </>
     );
 }
 

@@ -22,10 +22,10 @@ const commentSchema = new mongoose.Schema(
             required: true
         },
     }, {
-        timestamps : true
-    }
+    timestamps: true
+}
 )
 
-commentSchema.plugin(uniqueValidator, {type: 'mongoose-unique-validator'});
+commentSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator' });
 
 module.exports = mongoose.model('comment', commentSchema)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route}  from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { UidContext } from './components/AppContext'
 
 import Layout from "./components/Layout";
@@ -29,59 +29,59 @@ const App = () => {
     if (userId) {
       dispatch(getUser(accountServices.getUserId()))
     }
-  },[dispatch, userId])
+  }, [dispatch, userId])
 
   const currentUser = useSelector((state) => state.userReducer);
-  
+
   return (
     <UidContext.Provider value={userId}>
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<Layout />}>
           {/* Public Routes */}
-          <Route path='/' element={<Welcome />}/>
-          <Route path='signup' element={<Signup />}/>
-          <Route path='unauthorized' element={<Unauthorized />}/>
+          <Route path='/' element={<Welcome />} />
+          <Route path='signup' element={<Signup />} />
+          <Route path='unauthorized' element={<Unauthorized />} />
 
           {/* Protected Routes */}
-            
-            {currentUser.user && <> <Route path='home' element={
+
+          {currentUser.user && <> <Route path='home' element={
             <AuthGuard>
               <Home />
-            </AuthGuard>}/>
+            </AuthGuard>} />
 
             <Route path='profil' element={
-            <AuthGuard>
-              <Profil />
-            </AuthGuard>}/>
-            
-            <Route path='profil/:id' element={ 
-            <AuthGuard>
-              <Profil />
-            </AuthGuard>}/>
+              <AuthGuard>
+                <Profil />
+              </AuthGuard>} />
 
-            <Route path='user/' element={ 
-            <AuthGuard>
-              <User />
-            </AuthGuard>}/> 
+            <Route path='profil/:id' element={
+              <AuthGuard>
+                <Profil />
+              </AuthGuard>} />
 
-            <Route path='user/:id' element={ 
-            <AuthGuard>
-              <User />
-            </AuthGuard>}/> 
-            
-            <Route path='user/*' element={ 
-            <AuthGuard>
-              <Error />
-            </AuthGuard>}/> 
+            <Route path='user/' element={
+              <AuthGuard>
+                <User />
+              </AuthGuard>} />
+
+            <Route path='user/:id' element={
+              <AuthGuard>
+                <User />
+              </AuthGuard>} />
+
+            <Route path='user/*' element={
+              <AuthGuard>
+                <Error />
+              </AuthGuard>} />
 
             <Route path='admin' element={
-            <AuthAdmin>
-              <AdminDashboard />
-            </AuthAdmin>
-            }/> </>}
-            
+              <AuthAdmin>
+                <AdminDashboard />
+              </AuthAdmin>
+            } /> </>}
+
           {/* Error */}
-          <Route path='*' element={<Error />}/>
+          <Route path='*' element={<Error />} />
 
         </Route>
       </Routes>

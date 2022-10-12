@@ -1,5 +1,4 @@
-
-.overlay{
+.overlay {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.584);
@@ -8,7 +7,7 @@
     top: 0;
 }
 
-.modal-close{
+.modal-close {
     position: absolute;
     top: -40px;
     right: 0;
@@ -17,109 +16,130 @@
     font-size: 45px;
     cursor: pointer;
     transition: all .3s ease-out;
-    &:hover{
+
+    &:hover {
         color: $color-8;
     }
 }
 
 // PROGRESS MODAL
-.progressModal{
+.progressModal {
     background-color: $color-5;
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
     border: 1px dotted $color-7;
-    .passwordRequirments{
+
+    .passwordRequirments {
         font-size: 18px;
     }
 }
 
 
-.successModal, .errorModal, .followingModal, .followerModal, .editPostModal {
-        width: 30%;
-        height: 400px;
-        background-color: $color-5;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 40px;
-        z-index: 1200;
+.successModal,
+.errorModal,
+.followingModal,
+.followerModal,
+.editPostModal {
+    width: 30%;
+    height: 400px;
+    background-color: $color-5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    z-index: 1200;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+
+    @include mobile-only {
+        width: 90%;
+    }
+
+    @include tablettes-only {
+        width: 60%;
+    }
+
+    h3 {
+        text-align: center;
+
+        @include mobile-only {
+            font-size: $title-mobile-size;
+        }
+
+        @include largeScreen-only {
+            font-size: $title-largescreen-size;
+        }
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .successModal-icon,
+    .errorModal-icon {
+        font-size: 60px;
+        width: 75px;
+        height: 75px;
+        padding: 10px;
+        border-radius: 50%;
         position: absolute;
-        top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 5px;
-        @include mobile-only{
-            width: 90%;
-        }
-        @include tablettes-only{
-            width: 60%;
-        }
-        h3{
-            text-align: center;
-            @include mobile-only{
-                font-size: $title-mobile-size;
-            }
-            @include largeScreen-only{
-                font-size: $title-largescreen-size;
-            }
+        top: -40px;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        animation: validate .2s linear 1 forwards;
+
+        i {
+            color: $color-5
         }
 
-        p{
-            text-align: center;
-        }
-        .successModal-icon, .errorModal-icon{
-            font-size: 60px;
-            width: 75px;
-            height: 75px;
-            padding: 10px;
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            top: -40px;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            animation: validate .2s linear  1 forwards ;
-            i{
-                color: $color-5
-            }
+    }
 
-        }
-        .successModal-icon{
-            background-color : $color-9;
-        }
-        .errorModal-icon{
-            background-color: $color-8;
-        }
-        .successModal-redirect{
-            padding-top: 20px;
-           
-        }
-        .successModal-manualRedirect{
-            a{
-                color: $color-4;
-                font-weight: 800;
-                margin: 15px;
-                display: inline-block;
-                background-color: $color-6;
-                padding: 5px 10px;
-                border-radius: 5px;
-                transition: all .3s ease-out;
-                &:hover{
-                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                }
+    .successModal-icon {
+        background-color: $color-9;
+    }
+
+    .errorModal-icon {
+        background-color: $color-8;
+    }
+
+    .successModal-redirect {
+        padding-top: 20px;
+
+    }
+
+    .successModal-manualRedirect {
+        a {
+            color: $color-4;
+            font-weight: 800;
+            margin: 15px;
+            display: inline-block;
+            background-color: $color-6;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all .3s ease-out;
+
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             }
         }
-        
+    }
+
 }
-.successModal-loader{
+
+.successModal-loader {
     display: flex;
     width: 100%;
     justify-content: center;
     padding: 20px;
-    span{
+
+    span {
         display: block;
         width: 10px;
         height: 10px;
@@ -127,28 +147,36 @@
         background-color: $color-1;
         margin: 0 5px;
         animation: loaderAnim 2s linear infinite forwards;
-        &:nth-child(2){
-            animation-delay : .3s;
+
+        &:nth-child(2) {
+            animation-delay: .3s;
         }
-        &:nth-child(3){
-            animation-delay : .6s;
+
+        &:nth-child(3) {
+            animation-delay: .6s;
         }
     }
 }
+
 // FOLLOWING MODAL, FOLLOWER MODAL
-.followingModal, .followerModal{
+.followingModal,
+.followerModal {
     justify-content: flex-start;
     height: auto;
-    h3{
+
+    h3 {
         padding-bottom: 10px;
     }
-    .modal-content{
+
+    .modal-content {
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
-        
+
     }
-    .followingModal-userCard, .followerModal-userCard{
+
+    .followingModal-userCard,
+    .followerModal-userCard {
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
@@ -159,47 +187,57 @@
         min-width: 50%;
         text-align: center;
         transition: all .2s ease-in-out;
-        &:hover{
+
+        &:hover {
             background-color: $color-10;
         }
     }
 }
 
 // EDITPOST MODAL 
-.editPostModal{
-    width: 50%;       
+.editPostModal {
+    width: 50%;
     height: auto;
     min-height: 500px;
-    @include mobile-only{
+
+    @include mobile-only {
         width: 95%;
         padding: 0;
-    }  
-    @include tablettes-only{
+    }
+
+    @include tablettes-only {
         width: 90%;
     }
-    form{
+
+    form {
         display: flex;
         flex-direction: column;
         padding: 20px;
         width: 100%;
-        @include mobile-only{
+
+        @include mobile-only {
             padding: 20px 10px;
         }
-        label{
+
+        label {
             font-size: 20px;
             font-weight: bold;
-            @include mobile-only{
+
+            @include mobile-only {
                 margin-bottom: 10px;
             }
-            @include tablettes-only{
-                margin-bottom : 20px ;
+
+            @include tablettes-only {
+                margin-bottom: 20px;
             }
         }
-        #editPostModal-uploadImg, #editPostModal-addImg{
+
+        #editPostModal-uploadImg,
+        #editPostModal-addImg {
             display: none;
         }
 
-        #editPostModal-textArea{
+        #editPostModal-textArea {
             width: 100%;
             background-color: $color-6;
             min-height: 150px;
@@ -207,56 +245,70 @@
             padding: 10px;
             font-size: 16px;
         }
-        .editPostModal-error{
+
+        .editPostModal-error {
             font-size: 18px;
-            color : $color-8;
+            color: $color-8;
         }
-        button{
+
+        button {
             width: 180px;
-            @include mobile-only{
+
+            @include mobile-only {
                 width: 40%;
                 min-width: 0;
             }
-            @include tablettes-only{
+
+            @include tablettes-only {
                 width: 40%;
                 min-width: 140px;
             }
         }
-        .editPostModal-previewImg{
+
+        .editPostModal-previewImg {
             padding-top: 10px;
             align-self: center;
-            @include mobile-only{
+
+            @include mobile-only {
                 width: 90%;
             }
         }
-        .editPostModal-imgContainer{
+
+        .editPostModal-imgContainer {
             display: flex;
             flex-direction: column;
             align-items: center;
-            .imgContainer-btns{
+
+            .imgContainer-btns {
                 padding-top: 20px;
                 width: 50%;
                 display: flex;
                 justify-content: space-between;
-                @include mobile-only{
+
+                @include mobile-only {
                     flex-direction: column;
                 }
-                @include tablettes-only{
+
+                @include tablettes-only {
                     flex-direction: column;
                 }
-                button{
+
+                button {
                     width: 40%;
-                    @include mobile-only{
+
+                    @include mobile-only {
                         width: 100%;
                         margin-top: 10px;
                     }
-                    @include tablettes-only{
+
+                    @include tablettes-only {
                         width: 100%;
                         margin-top: 10px;
                     }
                 }
             }
-            .editPostModal-labelUploadImg{
+
+            .editPostModal-labelUploadImg {
                 font-size: 20px;
                 font-weight: 400;
                 width: 40%;
@@ -264,52 +316,61 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                @include mobile-only{
+
+                @include mobile-only {
                     width: 100%;
                     font-size: 16px;
                 }
-                @include tablettes-only{
+
+                @include tablettes-only {
                     width: 100%;
                     margin-top: 10px;
                 }
 
             }
         }
-        .editPostModal-editBtnContainer{
+
+        .editPostModal-editBtnContainer {
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
 
-            @include tablettes-only{
+            @include tablettes-only {
                 margin-top: 30px;
                 flex-direction: column;
                 align-items: center;
             }
-            .editPostModal-confirmBtn{
+
+            .editPostModal-confirmBtn {
                 background-color: $color-9;
-                @include tablettes-only{
+
+                @include tablettes-only {
                     margin-top: 10px;
                 }
             }
-            .editPostModal-editBtn{
+
+            .editPostModal-editBtn {
                 background-color: $color-8;
             }
         }
-        .editPostModal-imgContainer{
+
+        .editPostModal-imgContainer {
             margin-top: 10px;
         }
-      
+
     }
 }
 
 @keyframes loaderAnim {
-    0%{
+    0% {
         opacity: 1;
     }
-    50%{
+
+    50% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
     }
 }

@@ -1,41 +1,45 @@
-.admin-title{
-     padding:  32px 0 32px 10%;
-    @include mobile-only{
+.admin-title {
+    padding: 32px 0 32px 10%;
+
+    @include mobile-only {
         font-size: $title-mobile-size;
         padding: 16px 0 16px 10%;
     }
 }
 
-.admin{
+.admin {
     display: flex;
     flex-direction: column;
     padding: 0 10% 0 10%;
 }
 
-.admin-panel, .admin-content{
-    // width: 100%;
+.admin-panel,
+.admin-content {
     height: auto;
 }
 
-.admin-panel{
+.admin-panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.admin-actions{
+
+.admin-actions {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    @include mobile-only{
+
+    @include mobile-only {
         flex-direction: column;
     }
-    @include tablettes-only{
+
+    @include tablettes-only {
         flex-direction: column;
         align-items: center;
     }
 }
 
-.admin-action{
+.admin-action {
     min-width: 300px;
     height: 100px;
     border-radius: 5px;
@@ -46,18 +50,21 @@
     padding: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     cursor: pointer;
-    i{
+
+    i {
         padding: 0 16px 0 8px;
         font-size: 35px;
         color: $color-8
     }
-    @include mobile-only{
+
+    @include mobile-only {
         height: 50px;
         min-width: 200px;
         margin: 0 10% 8px 10%;
         font-size: 16px;
     }
-    @include tablettes-only{
+
+    @include tablettes-only {
         height: 60px;
         margin: 0 10% 16px 10%;
         font-size: 18px;
@@ -67,7 +74,7 @@
 
 // ADMIN CONTENT 
 
-.admin-content{
+.admin-content {
     background-color: transparent;
     min-height: 300px;
     display: flex;
@@ -75,29 +82,30 @@
     justify-content: flex-start;
     flex-direction: column;
 
-    @include largeScreen-only{
+    @include largeScreen-only {
         min-height: 600px;
     }
 
 
-    section{
+    section {
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-        display : flex;
+        display: flex;
         flex-direction: column;
         background-color: $color-5;
         border-radius: 5px;
         padding: 15px;
     }
+
     // DELETE BTN
-    .admin-post_delete, 
-    .admin-comment_delete, 
+    .admin-post_delete,
+    .admin-comment_delete,
     .admin-comment_update,
     .admin-comment_btnCancel,
     .admin-comment_btnSend,
     .admin-post_btnSend,
     .admin-post_btnCancel,
     .admin-post_update,
-    .admin-user_update{
+    .admin-user_update {
         margin: 5px 10px 5px 5px;
         width: 20px;
         height: 20px;
@@ -106,16 +114,18 @@
         cursor: pointer;
     }
 
-    .admin-post_delete, .admin-comment_delete{
+    .admin-post_delete,
+    .admin-comment_delete {
         background-color: $color-8 ;
         right: 10px;
-                @include mobile-only{
+
+        @include mobile-only {
             right: 5px;
         }
     }
 
     // USERS
-    .admin-user{
+    .admin-user {
         margin: 10px;
         padding: 10px;
         width: 40%;
@@ -125,20 +135,20 @@
         display: flex;
         justify-content: center;
 
-        @include mobile-only{
+        @include mobile-only {
             width: 90%;
             font-size: 16px;
             min-height: 50px;
         }
 
-        @include tablettes-only{
+        @include tablettes-only {
             width: 90%;
         }
     }
 
     // EDIT USER
 
-    .aUser-updateForm_container{
+    .aUser-updateForm_container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -146,50 +156,63 @@
         background-color: $color-6;
         padding: 5px;
         border-radius: 5px;
-        .aUser-updateForm{
+
+        .aUser-updateForm {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-self: center;
             width: 80%;
-            label{
+
+            label {
                 font-size: 20px;
             }
-            input, textarea{
+
+            input,
+            textarea {
                 font-size: 18px;
                 font-family: $font-1;
                 width: 100%;
                 margin: 5px;
             }
-            input{
+
+            input {
                 height: 30px;
             }
-            textarea{
+
+            textarea {
                 min-height: 90px;
             }
-            img{
+
+            img {
                 padding-top: 10px;
                 max-width: 300px;
                 align-self: center;
                 border-radius: 5px;
             }
         }
-        .aUser-btnContainer{
+
+        .aUser-btnContainer {
             padding: 24px 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
-            .aUser-cancelBtn, .aUser-UpdateBtn, .aUser-deleteBtn{
+
+            .aUser-cancelBtn,
+            .aUser-UpdateBtn,
+            .aUser-deleteBtn {
                 width: 30%;
-            } 
-            .aUser-cancelBtn{
+            }
+
+            .aUser-cancelBtn {
                 background-color: $color-8;
             }
-            .aUser-UpdateBtn{
+
+            .aUser-UpdateBtn {
                 background-color: $color-9;
             }
         }
-        
+
     }
 
     // POSTS 
@@ -202,42 +225,51 @@
         display: flex;
         flex-direction: column;
         padding: 24px 10%;
-        
-        @include mobile-only{
+
+        @include mobile-only {
             overflow-y: hidden;
         }
-        @include largeScreen-only{
+
+        @include largeScreen-only {
             width: 60%;
         }
-        .admin-post_content{
-            
+
+        .admin-post_content {
+
             overflow-y: scroll;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: 14px;
             }
         }
     }
-    .admin-post_imgContainer{
+
+    .admin-post_imgContainer {
         display: flex;
         padding-top: 16px;
-        .admin-post_img{
+
+        .admin-post_img {
             max-width: 200px;
         }
-        @include mobile-only{
+
+        @include mobile-only {
             flex-direction: column;
             align-items: center;
         }
     }
+
     .admin-post_imgBtnContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-left: 16px;
-        @include mobile-only{
+
+        @include mobile-only {
             padding: 8px 0 0 0;
         }
-        .admin-post_deleteImgBtn{
+
+        .admin-post_deleteImgBtn {
             width: 150px;
             font-size: 16px;
             height: 40px;
@@ -255,88 +287,108 @@
         min-height: 90px;
         position: relative;
         font-size: 20px;
-        @include mobile-only{
+
+        @include mobile-only {
             width: 90%;
             font-size: 16px;
         }
-        @include tablettes-only{
+
+        @include tablettes-only {
             font-size: 16px;
         }
-        @include largeScreen-only{
+
+        @include largeScreen-only {
             width: 60%;
         }
+
         p {
-            @include mobile-only{
+            @include mobile-only {
                 padding-right: 10%;
             }
-            @include tablettes-only{
+
+            @include tablettes-only {
                 padding-right: 10%;
             }
         }
     }
 }
-    // UPDATE BTNS
-    .admin-comment_update, .admin-post_update , .admin-user_update{
-        right: 10px;
-        top: 40px;
-        background-color: $color-4;
-        @include mobile-only{
-            right: 5px;
-        }
+
+// UPDATE BTNS
+.admin-comment_update,
+.admin-post_update,
+.admin-user_update {
+    right: 10px;
+    top: 40px;
+    background-color: $color-4;
+
+    @include mobile-only {
+        right: 5px;
     }
-    .admin-post_update{
-        top: 50px;
+}
+
+.admin-post_update {
+    top: 50px;
+}
+
+.admin-user_update {
+    top: 30px;
+
+    @include mobile-only {
+        top: 10px;
     }
-    .admin-user_update{
-        top: 30px;
-        @include mobile-only{
-            top: 10px;
-        }
-    }
+}
 
 
-    // UPDATE COMMENT - UPDATE POST FORM
-    .admin-comment_form, .admin-post_form {
-        display: flex;
-        flex-direction: column;
-        position: relative;
+// UPDATE COMMENT - UPDATE POST FORM
+.admin-comment_form,
+.admin-post_form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    min-height: 100px;
+    height: auto;
+
+    @include largeScreen-only {
+        width: 60%;
+    }
+
+    .admin-comment_label,
+    .admin-post_label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #admin-comment_textarea,
+    #admin-post_textarea {
         width: 100%;
-        margin-bottom: 10px;
-        min-height: 100px;
-        height: auto;
-        @include largeScreen-only{
-            width: 60%;
-        }
-        .admin-comment_label, .admin-post_label{
-            font-size: 18px;
-            font-weight: bold;
-        }
-        #admin-comment_textarea, #admin-post_textarea{
-            width: 100%;
-            display: block;
-            font-family: $font-1;
-            font-size: 18px;
-            background-color: $color-6 ;
-            border-radius: 5px;
-            padding: 10px 50px;
-            height: 100px;
-        }
-        #admin-post_textarea{
-            height: 300px;
-        }
-        .admin-comment_btnCancel, .admin-post_btnCancel{
-            background-color: $color-8 ;
-            right: 10px;
-            top: 20px;
-            cursor: pointer;
-        }
-        .admin-comment_btnSend, .admin-post_btnSend{
-            background-color: $color-9 ;
-            right: 10px;
-            top: 50px;
-            cursor: pointer;
-        }
+        display: block;
+        font-family: $font-1;
+        font-size: 18px;
+        background-color: $color-6 ;
+        border-radius: 5px;
+        padding: 10px 50px;
+        height: 100px;
     }
 
+    #admin-post_textarea {
+        height: 300px;
+    }
 
+    .admin-comment_btnCancel,
+    .admin-post_btnCancel {
+        background-color: $color-8 ;
+        right: 10px;
+        top: 20px;
+        cursor: pointer;
+    }
 
+    .admin-comment_btnSend,
+    .admin-post_btnSend {
+        background-color: $color-9 ;
+        right: 10px;
+        top: 50px;
+        cursor: pointer;
+    }
+}

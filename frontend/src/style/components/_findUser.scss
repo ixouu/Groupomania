@@ -1,4 +1,4 @@
-.findUser{
+.findUser {
     @include sideElement;
     margin-top: 20px;
     padding-bottom: 20px;
@@ -6,21 +6,25 @@
     min-height: fit-content;
     transition: all .3s ease-in-out;
     overflow-y: hidden;
-    @include mobile-only{
+
+    @include mobile-only {
         height: 120px;
     }
-    @include largeScreen-only{
+
+    @include largeScreen-only {
         height: 130px;
     }
-    @include tablettes-only{
+
+    @include tablettes-only {
         align-items: center;
         height: 120px;
     }
 
-    .findUser-title{
+    .findUser-title {
         display: inline;
         margin-bottom: 20px;
-        @include tablettes-only{
+
+        @include tablettes-only {
             width: 100%;
         }
     }
@@ -28,21 +32,23 @@
     form {
         position: relative;
         margin-top: 15px;
-        @include tablettes-only{
+
+        @include tablettes-only {
             width: 80%;
         }
     }
-    label{
+
+    label {
         position: absolute;
         top: 50%;
-        transform : translateY(-50%);
+        transform: translateY(-50%);
         padding-left: 10px;
-        transition : all 0.3s ease-in;
+        transition: all 0.3s ease-in;
         font-size: 18px;
     }
 
-    input{
-        height : 40px;
+    input {
+        height: 40px;
         border-radius: 5px;
         border: 1px solid $color-1;
         font-size: 18px;
@@ -51,18 +57,18 @@
     }
 
     .findUser-form:focus-within label,
-    .findUser-form.active-input label{
+    .findUser-form.active-input label {
         top: -15px;
         padding-left: 5px;
     }
 }
 
-.findUser-active{
+.findUser-active {
     height: auto;
     animation: growDiv .5s ease-out 1 forwards;
 }
 
-.findUser-result{
+.findUser-result {
     display: flex;
     background-color: $color-7;
     padding: 10px;
@@ -70,21 +76,24 @@
     border-radius: 5px;
     align-items: center;
     color: $color-5;
-    img{
+
+    img {
         width: 40px;
         border-radius: 50%;
         margin-right: 10px;
     }
-    @include tablettes-only{
+
+    @include tablettes-only {
         width: 50%;
     }
 }
 
 @keyframes growDiv {
-    0%{
+    0% {
         height: 130px;
     }
-    100%{
+
+    100% {
         height: 300px;
     }
 }
