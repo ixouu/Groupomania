@@ -1,10 +1,12 @@
 .user {
     padding: 30px 10% 0 10%;
-
+    min-height: 87vh;
     @include mobile-only {
         padding: 30px 5% 0 5%;
     }
-
+    @include tablettes-only{
+        min-height: 79vh;
+    }
     @include largeScreen-only {
         display: flex;
         justify-content: center;
@@ -16,6 +18,7 @@
     flex-direction: row;
     padding: 32px;
     border-radius: 20px;
+    height: fit-content;
     border: 1px solid $color-4;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
