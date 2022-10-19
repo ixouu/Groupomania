@@ -37,6 +37,7 @@
   transition: all .3s ease;
   cursor: pointer;
 
+
   &:hover {
     transform: translateY(-1px);
     box-shadow: rgba(0, 0, 0, 0.6) 0px 19px 38px, rgba(0, 0, 0, 0.44) 0px 15px 12px;
@@ -63,6 +64,7 @@
 
 @mixin tablettes-btn {
   font-size: 16px !important;
+  min-width: 150px!important;
 }
 
 @mixin largeScreen-btn {

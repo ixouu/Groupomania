@@ -9,7 +9,7 @@ import Axios from '../../utils/services/callerService';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../redux/actions/user.actions';
 
-import store from '../../redux/reducers/index'
+import store from '../../redux/reducers/index';
 
 import NoAccount from './NoAccount';
 import ErrorModal from '../Modals/ErrorModal';
@@ -18,7 +18,7 @@ const Login = () => {
 
     document.title = "Groupomania - Acceuil";
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const validateLogin = () => toast.success('Connexion établie', {
         duration: 2000,
@@ -50,6 +50,7 @@ const Login = () => {
             accountServices.saveUserId(response.data.userId);
             dispatch(getUser(response.data.userId));
             store.dispatch(getUser(response.data.userId));
+            
             // initialize the inputs
             setLoginData({
                 email: '',

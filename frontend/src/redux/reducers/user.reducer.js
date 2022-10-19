@@ -5,7 +5,8 @@ import {
     ADD_FOLLOWER,
     ADD_FOLLOWING,
     REMOVE_FOLLOWER,
-    REMOVE_FOLLOWING
+    REMOVE_FOLLOWING,
+    LOGOUT
 } from "../actions/user.actions";
 
 const initialSate = {};
@@ -47,6 +48,10 @@ export default function userReducer(state = initialSate, action) {
                 following: state.user.following.filter(
                     (id) => id !== action.payload
                 )
+            }
+        case LOGOUT : 
+            return{
+                ...state = initialSate
             }
         default:
             return state

@@ -8,6 +8,7 @@ export const ADD_FOLLOWER = 'ADD_FOLLOWER'
 export const ADD_FOLLOWING = 'ADD_FOLLOWING'
 export const REMOVE_FOLLOWER = 'REMOVE_FOLLOWER'
 export const REMOVE_FOLLOWING = 'REMOVE_FOLLOWING'
+export const LOGOUT = 'LOGOUT'
 
 
 export const getUser = (userId) => {
@@ -107,6 +108,12 @@ export const removeFollowing = (userId, data, userIdToRemove) => {
                 dispatch({ type: REMOVE_FOLLOWER, payload: userIdToRemove })
             })
             .catch((err) => console.log(err))
+    }
+}
+
+export const logoutRedux = () => {
+    return (dispatch) => {
+        dispatch({type: LOGOUT});
     }
 }
 

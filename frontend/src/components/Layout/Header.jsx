@@ -1,23 +1,27 @@
 import { ReactComponent as Logo } from "../../images/logo.svg";
-import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { accountServices } from '../../utils/services/accountServices';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutRedux } from "../../redux/actions/user.actions";
 
 const Header = () => {
 
     const currentUser = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const validateLogout = () => toast.success('Déconnexion en cours...', {
         duration: 2000,
     })
-    const userId = accountServices.getUserId()
+    const userId = accountServices.getUserId();
 
     const logout = () => {
-        validateLogout()
+        validateLogout();
         const timer = setTimeout(() => {
             localStorage.clear();
             navigate('/');
+            dispatch(logoutRedux())
         }, 2000)
         return () => clearTimeout(timer)
     }

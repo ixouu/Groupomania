@@ -221,6 +221,9 @@
     @include largeScreen-only {
         font-size: $text-largescreen-size;
     }
+    buttton{
+        min-width: 200px!important;
+    }
 }
 
 .wrongInformations-container {

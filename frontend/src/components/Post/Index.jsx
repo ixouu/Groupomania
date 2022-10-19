@@ -22,7 +22,7 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
     // REDUX
     const dispatch = useDispatch();
     const users = useSelector((state) => state.usersReducer);
-    const user = useSelector((state) => state.userReducer).user
+    const user = useSelector((state) => state.userReducer).user;
     const allComments = useSelector((state) => state.commentReducer).comments;
 
     // TOAST 
@@ -80,10 +80,10 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
     const findPostComments = () => {
         let postCommentsFound = [];
         allComments.forEach((comment) => {
-            if (postId === comment.post._id) {
-                postCommentsFound.push(comment)
-            } else {
+            if(comment.post === null){
                 return
+            }else if (postId === comment.post._id) {
+                postCommentsFound.push(comment)
             }
         })
         return postCommentsFound

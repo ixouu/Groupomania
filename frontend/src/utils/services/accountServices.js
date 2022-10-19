@@ -1,13 +1,13 @@
 let saveToken = (token) => {
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', token); 
 }
 
 let saveUserId = (userId) => {
-    localStorage.setItem('userId', userId)
+    localStorage.setItem('userId', userId);
 }
 
 let saveRoles = (roles) => {
-    localStorage.setItem('roles', roles)
+    localStorage.setItem('roles', roles);
 }
 
 let logout = () => {
@@ -15,12 +15,12 @@ let logout = () => {
 }
 
 let getUserId = () => {
-    let userid = localStorage.getItem('userId')
+    let userid = localStorage.getItem('userId');
     return userid
 }
 
 let getUserToken = () => {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
 }
 
 let isLog = () => {

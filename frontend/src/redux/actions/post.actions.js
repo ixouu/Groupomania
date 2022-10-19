@@ -122,7 +122,7 @@ export const editPost = (id, data) => {
         })
             .then((res) => {
                 console.log(res.data)
-                dispatch({ type: EDIT_POST, payload: res.data })
+                dispatch({ type: EDIT_POST, payload: res.data, id })
             })
             .catch((err) => console.log(err))
     }

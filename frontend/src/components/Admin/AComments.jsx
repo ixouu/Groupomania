@@ -10,7 +10,7 @@ const AComments = ({ comments }) => {
 
     const [isUpdating, setIsUpdating] = useState(false);
     const [commentContent, setCommentContent] = useState('');
-    const [currentCommentId, setCurrentCommentId] = useState('')
+    const [currentCommentId, setCurrentCommentId] = useState('');
 
 
     const validateDelete = () => toast.success('Commentaire supprimé', {

@@ -12,7 +12,7 @@ const NoAccount = () => {
     return (
         <div className='no-account'>
             <span> Vous n'avez pas encore de compte?</span>
-            <button className='btn btn-signup' onClick={displaySignup}> S'inscrire</button>
+            <button className='btn btn-signup' onClick={displaySignup} style={{ minWidth: '200px'}}> S'inscrire</button>
         </div>
     );
 }

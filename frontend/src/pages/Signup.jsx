@@ -6,9 +6,13 @@ import Progress from "../components/Signup/Prgoress";
 import SucessModal from "../components/Modals/SucessModal";
 import ErrorModal from "../components/Modals/ErrorModal";
 
+import { useDispatch } from "react-redux";
+import { getUsers } from "../redux/actions/users.actions";
+
 const Signup = () => {
     document.title = "Groupomania | Création de compte";
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // loading
     const [isLoading, setIsLoading] = useState(false);
@@ -178,7 +182,8 @@ const Signup = () => {
                         setEmail('');
                         setPassword('');
                         setPasswordConfirm('');
-                        setIsLoading(false)
+                        setIsLoading(false);
+                        dispatch(getUsers());
                         // redirection
                         const timer = setTimeout(() => {
                             setSuccessModalIsOpen(!successModalIsOpen);

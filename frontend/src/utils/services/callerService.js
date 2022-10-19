@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { accountServices } from './accountServices'
 
-const token = accountServices.getUserToken()
+let token = accountServices.getUserToken();
+console.log(token);
+
 
 const Axios = axios.create({
     baseURL: 'http://localhost:5000/api/',
