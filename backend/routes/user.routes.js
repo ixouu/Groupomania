@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth.controller');
 const userController = require('../controllers/user.controller');
-const multer = require('../middlerware/multerProfile.middleware');
-const auth = require('../middlerware/auth.middleware');
+const multer = require('../middleware/multerProfile.middleware');
+const auth = require('../middleware/auth.middleware');
 const ROLE_LIST = require('../config/roles_list');
-const verifyRoles = require('../middlerware/verifyRoles.middleware');
+const verifyRoles = require('../middleware/verifyRoles.middleware');
 
 // signup
 router.post("/signup", authController.signUp);
@@ -19,19 +19,19 @@ router.post("/logout", authController.logout);
 router.get('/', userController.getAllUsers);
 
 // GET one user
-router.get('/:id', auth, userController.getUser);
+router.get('/:id', userController.getUser);
 
 // Update
 router.put('/:id', auth, multer, userController.updateUser);
 
-// Admin delete one user
-router.delete('/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.deleteUser);
+// Admin Update
+router.put('/admin/:id', auth, verifyRoles(ROLE_LIST.Admin), userController.adminUpdateUser);
 
 // Add Follower user
 router.put('/add-follower-user/:id', auth, userController.addFollower);
 
 // Add following user
-router.put('/add-following-user/:id',auth,  userController.followUser);
+router.put('/add-following-user/:id', auth, userController.followUser);
 
 // Remove follower user
 router.put('/remove-follower/:id', auth, userController.removeFollower);

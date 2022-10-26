@@ -1,13 +1,16 @@
 // WELCOME 
 
-.welcome-container{
+.welcome-container {
     display: flex;
     overflow-x: hidden;
-    .home-left, .home-right{
+
+    .home-left,
+    .home-right {
         width: 100%;
         height: 100%;
     }
-    .welcome-left{
+
+    .welcome-left {
         background-image: url(../../images/buldings.jpg);
         background-position: center;
         background-size: cover;
@@ -16,56 +19,73 @@
         align-items: center;
         height: 100vh;
         width: 50%;
-        @include mobile-only{
+
+        @include mobile-only {
             width: 0;
         }
-        .welcome-title{
+
+        .welcome-title {
             color: $color-5;
             font-weight: 900;
             font-size: 45px;
             display: block;
             text-align: center;
-            text-shadow: 3px 3px 1px rgba(0,0,0,0.4);
+            text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.4);
             padding: 0 10%;
-            @include mobile-only{
+
+            @include mobile-only {
                 display: none;
             }
-            @include tablettes-only{
+
+            @include tablettes-only {
                 font-size: 40px;
             }
-            @include largeScreen-only{
+
+            @include largeScreen-only {
                 font-size: 55px;
             }
         }
     }
-    .welcome-right{
+
+    .welcome-right {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 50%;
         position: relative;
-        @include mobile-only{
-         width: 100%   
+
+        @include mobile-only {
+            width: 100%
         }
-        svg{
+
+        svg {
             padding-top: 10px;
-            @include mobile-only{
+
+            @include mobile-only {
+                width: 80%;
+            }
+
+            @include tablettes-only {
                 width: 80%;
             }
         }
-        h2{
+
+        h2 {
             font-size: 24px;
             padding-top: 15%;
             position: relative;
             text-align: center;
-            @include mobile-only{
+
+            @include mobile-only {
                 font-size: $title-mobile-size;
                 padding: 10% 10% 0 10%;
             }
-            @include largeScreen-only{
+
+            @include largeScreen-only {
                 font-size: $title-largescreen-size;
             }
-            &::after{
+
+            &::after {
                 content: '';
                 position: absolute;
                 left: 0;
@@ -76,115 +96,145 @@
                 opacity: 0;
                 transition: all .3s ease-out;
                 animation: showUnderLine 2s ease-in-out 1 forwards;
-                @include mobile-only{
+
+                @include mobile-only {
                     height: 0;
                 }
             }
         }
+
+        .form-div {
+            padding: 10px 0;
+            width: 70%;
+            position: relative;
+
+            @include largeScreen-only {
+                width: 50%;
+            }
+        }
     }
- 
-    .welcome-noaccount{
+
+    .welcome-noaccount {
         padding: 10% 0 0 0;
         font-size: 16px;
     }
 }
 
-.form-div{
-    padding: 10px 0;
-    width: 70%;
-    position: relative;
-}
+
 
 // LOGIN
 
-.login-form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            position: absolute;
-            top : 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            @include largeScreen-only{
-                width: 80%;
-            }
-            label{
-                display: block;
-                font-size: 20px;
-                font-weight: 700;
-                @include mobile-only{
-                    font-size: $label-mobile-size;
-                }
-                @include largeScreen-only{
-                    font-size: $label-largescreen-size;
-                }
-            }
-            input{
-                border: none;
-                background: transparent;
-                border-bottom: 1px solid $color-4;
-                width: 100%;
-                padding: 18px 0 0 5px;
-                font-size: 16px;
-                outline: none;
-                opacity: 0;
-                transform: translateX(9999px);
-                animation: showInput 1s ease-out 1 forwards;
-                &::placeholder{
-                    font-style: italic;
-                }
-                @include mobile-only{
-                    font-size: $input-mobile-size;
-                }
-                @include largeScreen-only{
-                    font-size: $input-largescreen-size;
-                }
-            }
-            .fa-envelope, .fa-key{
-                position: absolute;
-                left: -20px;
-                bottom : 15%;
-            }
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include largeScreen-only {
+        width: 80%;
+    }
+
+    label {
+        display: block;
+        font-size: 20px;
+        font-weight: 700;
+
+        @include mobile-only {
+            font-size: $label-mobile-size;
         }
 
-.btn{
+        @include largeScreen-only {
+            font-size: $label-largescreen-size;
+        }
+    }
+
+    input {
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid $color-4;
+        width: 100%;
+        padding: 18px 0 0 5px;
+        font-size: 16px;
+        outline: none;
+        opacity: 0;
+        transform: translateX(9999px);
+        animation: showInput 1s ease-out 1 forwards;
+
+        &::placeholder {
+            font-style: italic;
+        }
+
+        @include mobile-only {
+            font-size: $input-mobile-size;
+        }
+
+        @include largeScreen-only {
+            font-size: $input-largescreen-size;
+        }
+    }
+
+    .fa-envelope,
+    .fa-key {
+        position: absolute;
+        left: -20px;
+        bottom: 15%;
+    }
+}
+
+.btn {
     @include btn;
-    @include mobile-only{
+
+    @include mobile-only {
         @include mobile-btn
     }
-    @include largeScreen-only{
+
+    @include tablettes-only {
+        @include tablettes-btn
+    }
+
+    @include largeScreen-only {
         @include largeScreen-btn
     }
 }
+
 .btn-connect {
     margin-top: 25px;
 }
 
 // No account
-.no-account{
+.no-account {
     margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding-bottom: 20%;
-    span{
+
+    span {
         padding-bottom: 20px;
     }
-    @include largeScreen-only{
+
+    @include largeScreen-only {
         font-size: $text-largescreen-size;
+    }
+    buttton{
+        min-width: 200px!important;
     }
 }
 
-.wrongInformations-container{
+.wrongInformations-container {
     width: 100%;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding : 0 10%;
-    .wrongInformations{
+    padding: 0 10%;
+
+    .wrongInformations {
         display: block;
         color: $color-8;
         margin-top: 30px;
@@ -194,30 +244,35 @@
 
 
 @keyframes showUnderLine {
-    0%{
+    0% {
         width: 0;
     }
-    50%{
+
+    50% {
         opacity: 0.2;
     }
-    100%{
+
+    100% {
         width: 100%;
         opacity: 0.4;
     }
 }
 
 @keyframes showInput {
-    0%{
+    0% {
         opacity: 0;
         transform: translateX(9999px);
     }
-    30%{
+
+    30% {
         transform: translateX(99px);
     }
-    70%{
+
+    70% {
         // opacity: 0.5;
     }
-    100%{
+
+    100% {
         opacity: 1;
         transform: translateX(0);
     }

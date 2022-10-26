@@ -1,12 +1,15 @@
 import React from 'react';
-import {ReactComponent as Logo} from "../images/logo.svg";
+import { ReactComponent as Logo } from "../images/logo.svg";
 import { Link } from 'react-router-dom';
 
 const Error = () => {
+
+    window.title = 'GROUPOMANIA | 404'
+
     return (
         <>
             <div className="error-logo">
-                <Logo/>
+                <Logo />
             </div>
             <main className='error-main'>
                 <h1>DÉSOLÉ</h1>

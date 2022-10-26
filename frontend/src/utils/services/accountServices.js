@@ -1,14 +1,13 @@
-
-let saveToken = (token) =>{
-    localStorage.setItem('token', token)
+let saveToken = (token) => {
+    localStorage.setItem('token', token); 
 }
 
 let saveUserId = (userId) => {
-    localStorage.setItem('userId', userId)
+    localStorage.setItem('userId', userId);
 }
 
 let saveRoles = (roles) => {
-    localStorage.setItem('roles', roles)
+    localStorage.setItem('roles', roles);
 }
 
 let logout = () => {
@@ -16,12 +15,12 @@ let logout = () => {
 }
 
 let getUserId = () => {
-    let userid = localStorage.getItem('userId')
+    let userid = localStorage.getItem('userId');
     return userid
 }
 
 let getUserToken = () => {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
 }
 
 let isLog = () => {
@@ -36,7 +35,7 @@ let isAdmin = () => {
 }
 
 let transformDate = (date) => {
-    const options = { year: "numeric", month:"short", day:"numeric"};
+    const options = { year: "numeric", month: "short", day: "numeric" };
     const rawDate = Date.parse(date);
     const dateToReturn = new Date(rawDate).toLocaleDateString('fr-FR', options)
     return dateToReturn.toString()
@@ -44,7 +43,7 @@ let transformDate = (date) => {
 
 let getTime = (date) => {
     const rawDate = Date.parse(date);
-    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', {timeStyle: "short"})
+    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', { timeStyle: "short" })
     return timeToReturn.toString()
 }
 

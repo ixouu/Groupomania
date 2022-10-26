@@ -2,9 +2,13 @@
 @import './mixin';
 @import './settings';
 @import './components/post';
+@import './components/lastComments';
+@import './components/trending';
 @import './components/modals';
 @import './components/footer';
 @import './components/header';
+@import './components/socialMedias';
+@import './components/findUser';
 @import './pages/welcome';
 @import './pages/user';
 @import './pages/signup';

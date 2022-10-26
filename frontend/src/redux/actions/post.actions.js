@@ -1,17 +1,130 @@
 import Axios from "../../utils/services/callerService";
 
 export const CREATE_POST = 'CREATE_POST';
+export const LIKE_POST = 'LIKE_POST';
+export const DISLIKE_POST = 'DISLIKE_POST';
+export const GET_POSTS = 'GET_POSTS';
+export const DELETE_POST = 'DELETE_POST'
+export const ADMIN_DELETE_POST = 'ADMIN_DELETE_POST';
+export const ADMIN_EDIT_POST = 'ADMIN_EDIT_POST';
+export const EDIT_POST = 'EDIT_POST';
 
-export const createPost = (data) => {
+export const getPosts = () => {
     return (dispatch) => {
         return Axios({
-            method : 'post',
-            url : 'post',
+            method: 'get',
+            url: 'post'
+        })
+            .then((res) => {
+                dispatch({ type: GET_POSTS, payload: res.data.posts })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const createPost = (data) => {
+    console.log(data)
+    return (dispatch) => {
+        return Axios({
+            method: 'post',
+            url: 'post',
             data
         })
-        .then((res) => {
-            dispatch({type : CREATE_POST, payload : data})
+            .then((res) => {
+                dispatch({ type: CREATE_POST, payload: '' })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const likePost = (postId, data, userId) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'put',
+            url: `post/like-post/${postId}`,
+            data: {
+                userId: data.userId,
+                like: data.like
+            }
         })
-        .catch((err) => console.log(err))
+            .then((res) => {
+                // console.log({...data})
+                dispatch({ type: LIKE_POST, payload: { postId, userId } })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const dislikePost = (postId, data, userId) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'put',
+            url: `post/like-post/${postId}`,
+            data: {
+                userId: data.userId,
+                like: data.like
+            }
+        })
+            .then((res) => {
+                // console.log({...data})
+                dispatch({ type: DISLIKE_POST, payload: { postId, userId } })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const adminDeletePost = (id) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'delete',
+            url: `post/admin/${id}`
+        })
+            .then((res) => {
+                dispatch({ type: ADMIN_DELETE_POST, payload: { id } })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const deletePost = (id, data) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'delete',
+            url: `post/${id}`,
+            data
+        })
+            .then((res) => {
+                dispatch({ type: DELETE_POST, payload: { id } })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const adminEditPost = (id, data) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'put',
+            url: `post/admin/${id}`,
+            data
+        })
+            .then((res) => {
+                dispatch({ type: ADMIN_EDIT_POST, payload: { id, data } })
+            })
+            .catch((err) => console.log(err))
+    }
+}
+
+export const editPost = (id, data) => {
+    return (dispatch) => {
+        return Axios({
+            method: 'put',
+            url: `post/${id}`,
+            data
+        })
+            .then((res) => {
+                console.log(res.data)
+                dispatch({ type: EDIT_POST, payload: res.data, id })
+            })
+            .catch((err) => console.log(err))
     }
 }

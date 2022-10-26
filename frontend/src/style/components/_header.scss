@@ -1,5 +1,5 @@
 //header
-header{
+header {
     margin-top: 20px;
     height: 5vh;
     display: flex;
@@ -7,11 +7,30 @@ header{
     position: relative;
     justify-content: space-evenly;
     cursor: pointer;
-    .header-logo{
+
+    @include mobile-only {
+        flex-direction: column;
+        height: 15vh;
+        margin-top: 0;
+    }
+
+    @include tablettes-only {
+        flex-direction: column;
+        height: 15vh;
+        margin-top: 0;
+    }
+
+    .header-logo {
         height: 80%;
         width: 300px;
+
+        @include mobile-only {
+            width: 90%;
+            height: auto;
+        }
     }
-    &::after{
+
+    &::after {
         content: '';
         position: absolute;
         width: 100%;
@@ -19,33 +38,72 @@ header{
         background-color: $color-1;
         bottom: 0;
     }
-    h1{
+
+    h1 {
         font-size: 20px;
+        word-spacing: 3px;
+
+        @include mobile-only {
+            padding-bottom: 8px;
+        }
+
+        @include tablettes-only {
+            padding-bottom: 16px;
+        }
     }
-    nav{
-        ul{
+
+    nav {
+        @include mobile-only {
+            font-size: 16px;
+        }
+
+        @include tablettes-only {
+            font-size: 18px;
+            padding-bottom: 8px;
+        }
+
+        .admin-link {
+            @include mobile-only {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        ul {
             display: flex;
             flex-direction: row;
         }
-        li{
+
+        li {
             padding: 0 15px;
-            i{
+
+            i {
                 padding-right: 10px;
             }
-            a{
+
+            a {
                 color: $color-4 ;
                 transition: all .3s ease-out;
-                &:hover{
+
+                &:hover {
                     text-decoration: underline;
                 }
             }
-            .header-logout{
+
+            .header-logout {
                 color: $color-4 ;
                 transition: all .3s ease-out;
                 font-size: 1rem;
-                &:hover{
+                background-color: transparent;
+
+                &:hover {
                     text-decoration: underline;
                     color: $color-8;
+                }
+
+                @include mobile-only {
+                    font-size: 16px;
                 }
             }
         }

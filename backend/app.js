@@ -1,4 +1,4 @@
-require('dotenv').config({path: './config/.env'});
+require('dotenv').config({ path: './config/.env' });
 
 // import express
 const express = require('express');
@@ -59,14 +59,12 @@ app.use(mongoSanitize());
 // data sanitization against XSS
 app.use(xss());
 
+// use package cors
+app.use(cors());
+
 // Serving static files
 app.use('/upload/post', express.static(path.join(__dirname, "upload/post")));
 app.use('/upload/profile', express.static(path.join(__dirname, "upload/profile")));
-// use package cors
-
-app.use(cors());
-
-
 
 //routes
 const userRoutes = require("./routes/user.routes");

@@ -13,7 +13,8 @@ const commentSchema = new mongoose.Schema(
         },
         content: {
             type: String,
-            required: true
+            required: true,
+            maxlength: 400,
         },
         post: {
             type: Schema.Types.ObjectId,
@@ -21,10 +22,10 @@ const commentSchema = new mongoose.Schema(
             required: true
         },
     }, {
-        timestamps : true
-    }
+    timestamps: true
+}
 )
 
-commentSchema.plugin(uniqueValidator, {type: 'mongoose-unique-validator'});
+commentSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator' });
 
 module.exports = mongoose.model('comment', commentSchema)

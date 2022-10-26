@@ -1,23 +1,28 @@
 ///SIGNUP
 
-.signUp-right{
+.signUp-right {
     width: 50%;
     position: relative;
-    @include mobile-only{
+
+    @include mobile-only {
         width: 100%;
     }
-    h2{
+
+    h2 {
         text-align: center;
         padding-top: 10%;
-        @include mobile-only{
+
+        @include mobile-only {
             font-size: $title-mobile-size;
         }
-        @include largeScreen-only{
+
+        @include largeScreen-only {
             font-size: $title-largescreen-size;
         }
     }
 }
-.signUp-form{
+
+.signUp-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,50 +31,62 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @include mobile-only{
-        width: 100%;
+
+    @include mobile-only {
+        width: 90%;
     }
-    @include largeScreen-only{
+
+    @include largeScreen-only {
         width: 70%;
     }
-    label{
+
+    label {
         display: block;
         font-size: 20px;
         font-weight: 700;
-        @include mobile-only{
+
+        @include mobile-only {
             font-size: $label-mobile-size;
         }
-        @include largeScreen-only{
+
+        @include largeScreen-only {
             font-size: $label-largescreen-size;
         }
     }
-    input{
+
+    input {
         border: none;
-        background: transparent;
+        background: #a698981a;
         border-bottom: 1px solid $color-4;
         width: 100%;
-        padding: 18px 0 0 0;
-        font-size: 16px;
+        margin: 8px 0 0 0;
+        padding: 10px 0 0 5px;
+        border-radius: 5px;
+        font-size: 18px;
         outline: none;
-        &::placeholder{
+
+        &::placeholder {
             font-style: italic;
         }
-        @include mobile-only{
+
+        @include mobile-only {
             font-size: $input-mobile-size;
+
         }
-        @include largeScreen-only{
+
+        @include largeScreen-only {
             font-size: $input-largescreen-size;
         }
     }
 
-    .btn-signup{
+    .btn-signup {
         width: 200px;
         height: 60px;
         display: inline-block;
         border: none;
-        border-radius: 50px;
+        border-radius: 5px;
         background-color: $color-1;
-        color : $color-5 ;
+        color: $color-5 ;
         font-size: 20px;
         font-family: 'Lato', sans-serif;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -79,23 +96,66 @@
         align-self: center;
         padding: 0;
         cursor: pointer;
-        &:disabled{
-            background-color: #0511f28a;
+        
+
+        &:disabled {
+            filter: brightness(60%);
+            cursor: not-allowed;
         }
-        @include mobile-only{
-            @include mobile-btn
+
+        @include mobile-only {
+            @include mobile-btn;
         }
-        @include largeScreen-only{
+
+        @include tablettes-only {
+            @include tablettes-btn;
+            margin-top: 32px;
+        }
+
+        @include largeScreen-only {
             @include largeScreen-btn
         }
     }
 
-    .invalidEmail{
-        color: $color-8;
-        font-size: .9rem;
-    }
-    .form-div{
-        height: 80px;
-    }
-}    
 
+    .form-div {
+        height: 100px;
+        width: 100%;
+        position: relative;
+    }
+}
+
+.wrongInput {
+    color: $color-8;
+    font-size: .9rem;
+}
+
+.checkIcon {
+    position: absolute;
+    left: -25px;
+    top: 40%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: $color-5;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all .3s ease-out;
+}
+
+.checkIcon-valid {
+    background-color: $color-9;
+    opacity: 1;
+}
+
+.checkIcon-invalid {
+    background-color: $color-8;
+    opacity: 1;
+}
+
+.invisible {
+    opacity: 0;
+}
