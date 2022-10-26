@@ -23,6 +23,7 @@ export const getPosts = () => {
 }
 
 export const createPost = (data) => {
+    console.log(data)
     return (dispatch) => {
         return Axios({
             method: 'post',
