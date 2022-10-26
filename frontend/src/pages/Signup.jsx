@@ -216,8 +216,8 @@ const Signup = () => {
                 </h1>
             </div>
             <div className="signUp-right">
-                <h2>Creer un compte</h2>
                 <form className="signUp-form">
+                <h2>Creer un compte</h2>
                     {/* first name */}
                     <div className="form-div">
                         {firstNameIsEditing ? (wrongFirstName ? <div className="checkIcon checkIcon-invalid" ><i className="fa-solid fa-xmark"></i></div> : <div className="checkIcon checkIcon-valid"><i className="fa-solid fa-check"></i></div>) : null}

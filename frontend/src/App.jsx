@@ -34,7 +34,7 @@ const App = () => {
   const currentUser = useSelector((state) => state.userReducer);
 
   return (
-    <UidContext.Provider value={userId}>
+    <UidContext.Provider value={accountServices.getUserId()}>
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* Public Routes */}
