@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth.controller');
 const userController = require('../controllers/user.controller');
-const multer = require('../middlerware/multerProfile.middleware');
-const auth = require('../middlerware/auth.middleware');
+const multer = require('../middleware/multerProfile.middleware');
+const auth = require('../middleware/auth.middleware');
 const ROLE_LIST = require('../config/roles_list');
-const verifyRoles = require('../middlerware/verifyRoles.middleware');
+const verifyRoles = require('../middleware/verifyRoles.middleware');
 
 // signup
 router.post("/signup", authController.signUp);

@@ -1,7 +1,7 @@
 // import post schema
 const postModel = require('../models/postSchema')
 const ObjectID = require("mongoose").Types.ObjectId;
-const getAuthUser = require('../middlerware/verifyUser.middleware');
+const getAuthUser = require('../middleware/verifyUser.middleware');
 const userModel = require("../models/userSchema");
 
 // Middleware who catch errors Async function

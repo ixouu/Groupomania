@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
-const auth = require('../middlerware/auth.middleware');
-const multer = require('../middlerware/multerPost.middleware');
+const auth = require('../middleware/auth.middleware');
+const multer = require('../middleware/multerPost.middleware');
 const ROLE_LIST = require('../config/roles_list');
-const verifyRoles = require('../middlerware/verifyRoles.middleware');
+const verifyRoles = require('../middleware/verifyRoles.middleware');
 
 /*** POST DATABASE ***/
 

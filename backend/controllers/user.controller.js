@@ -1,6 +1,6 @@
 const userModel = require('../models/userSchema');
 const ObjectID = require("mongoose").Types.ObjectId;
-const getAuthUser = require('../middlerware/verifyUser.middleware');
+const getAuthUser = require('../middleware/verifyUser.middleware');
 
 // Middleware who catch errors Async function
 const catchAsync = fn => {

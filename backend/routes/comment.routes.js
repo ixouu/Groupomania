@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const auth = require('../middlerware/auth.middleware');
+const auth = require('../middleware/auth.middleware');
 const commentController = require('../controllers/comment.controller');
 const ROLE_LIST = require('../config/roles_list');
-const verifyRoles = require('../middlerware/verifyRoles.middleware');
+const verifyRoles = require('../middleware/verifyRoles.middleware');
 
 /*** COMMENTS DATABASE ***/
 
