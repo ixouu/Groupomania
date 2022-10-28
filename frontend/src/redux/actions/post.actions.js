@@ -1,4 +1,6 @@
 import Axios from "../../utils/services/callerService";
+import { accountServices } from "../../utils/services/accountServices";
+
 
 export const CREATE_POST = 'CREATE_POST';
 export const LIKE_POST = 'LIKE_POST';
@@ -10,10 +12,12 @@ export const ADMIN_EDIT_POST = 'ADMIN_EDIT_POST';
 export const EDIT_POST = 'EDIT_POST';
 
 export const getPosts = () => {
-    return (dispatch) => {
+    const token = accountServices.getUserToken();
+    return  (dispatch) => {
         return Axios({
             method: 'get',
-            url: 'post'
+            url: 'post',
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then((res) => {
                 dispatch({ type: GET_POSTS, payload: res.data.posts })
@@ -23,10 +27,12 @@ export const getPosts = () => {
 }
 
 export const createPost = (data) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'post',
             url: 'post',
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -37,17 +43,18 @@ export const createPost = (data) => {
 }
 
 export const likePost = (postId, data, userId) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `post/like-post/${postId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data: {
                 userId: data.userId,
                 like: data.like
             }
         })
             .then((res) => {
-                // console.log({...data})
                 dispatch({ type: LIKE_POST, payload: { postId, userId } })
             })
             .catch((err) => console.log(err))
@@ -55,10 +62,12 @@ export const likePost = (postId, data, userId) => {
 }
 
 export const dislikePost = (postId, data, userId) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `post/like-post/${postId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data: {
                 userId: data.userId,
                 like: data.like
@@ -73,10 +82,12 @@ export const dislikePost = (postId, data, userId) => {
 }
 
 export const adminDeletePost = (id) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'delete',
-            url: `post/admin/${id}`
+            url: `post/admin/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
         })
             .then((res) => {
                 dispatch({ type: ADMIN_DELETE_POST, payload: { id } })
@@ -86,10 +97,12 @@ export const adminDeletePost = (id) => {
 }
 
 export const deletePost = (id, data) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'delete',
             url: `post/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -100,10 +113,12 @@ export const deletePost = (id, data) => {
 }
 
 export const adminEditPost = (id, data) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `post/admin/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -114,10 +129,12 @@ export const adminEditPost = (id, data) => {
 }
 
 export const editPost = (id, data) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `post/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {

@@ -1,4 +1,5 @@
 import Axios from "../../utils/services/callerService";
+import { accountServices } from "../../utils/services/accountServices";
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
@@ -6,10 +7,12 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const UPDATE_COMMENT = ' UPDATE_COMMENT';
 
 export const getComments = () => {
+    const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
             method: 'get',
-            url: 'comment'
+            url: 'comment',
+            headers: { Authorization: `Bearer ${token}` },
         })
             .then((res) => {
                 dispatch({ type: GET_COMMENTS, payload: res.data.data })
@@ -19,10 +22,12 @@ export const getComments = () => {
 }
 
 export const createComment = (data) => {
+    const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
             method: 'post',
             url: 'comment',
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -33,10 +38,12 @@ export const createComment = (data) => {
 }
 
 export const deleteComment = (id) => {
+    const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
             method: 'delete',
-            url: `comment/${id}`
+            url: `comment/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
         })
             .then((res) => {
                 dispatch({ type: DELETE_COMMENT, payload: id })
@@ -46,10 +53,12 @@ export const deleteComment = (id) => {
 }
 
 export const updateComment = (id, data) => {
+    const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
             method: 'put',
             url: `comment/${id}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {

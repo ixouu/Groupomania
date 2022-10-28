@@ -1,4 +1,5 @@
 import Axios from "../../utils/services/callerService";
+import { accountServices } from "../../utils/services/accountServices";
 
 
 export const GET_USER = 'GET_USER';
@@ -12,8 +13,13 @@ export const LOGOUT = 'LOGOUT'
 
 
 export const getUser = (userId) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
-        return Axios.get(`user/${userId}`)
+        return Axios({
+            method: 'get',
+            url:`user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` }
+        })
             .then((res) => {
                 dispatch({ type: GET_USER, payload: res.data.data })
             })
@@ -22,10 +28,12 @@ export const getUser = (userId) => {
 }
 
 export const updateUser = (userId, bio) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data: { bio }
         })
             .then((res) => {
@@ -36,10 +44,12 @@ export const updateUser = (userId, bio) => {
 }
 
 export const uploadPhoto = (userId, data) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -56,10 +66,12 @@ export const uploadPhoto = (userId, data) => {
 }
 
 export const addFollower = (userId, data, followerId) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/add-follower-user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -70,10 +82,12 @@ export const addFollower = (userId, data, followerId) => {
 }
 
 export const addFollowing = (userId, data, userIdToFollow) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/add-following-user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -84,10 +98,12 @@ export const addFollowing = (userId, data, userIdToFollow) => {
 }
 
 export const removeFollower = (userId, data, followerId) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/remove-follower/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {
@@ -98,10 +114,12 @@ export const removeFollower = (userId, data, followerId) => {
 }
 
 export const removeFollowing = (userId, data, userIdToRemove) => {
+    const token = accountServices.getUserToken();
     return (dispatch) => {
         return Axios({
             method: 'put',
             url: `user/remove-following/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
             data
         })
             .then((res) => {

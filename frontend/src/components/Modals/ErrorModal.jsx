@@ -13,9 +13,9 @@ const ErrorModal = ({ open, onClose, error }) => {
                 {error.message &&
                     <>
                         <p>{error.message}</p>
-                        {
+                        {/* {
                             error.response.data !== undefined && <p>{error.response.data.message}</p>
-                        }
+                        } */}
                     </>
                 }
 
