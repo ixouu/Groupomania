@@ -1,5 +1,6 @@
 import Axios from "../../utils/services/callerService";
 import { accountServices } from "../../utils/services/accountServices";
+import toast from 'react-hot-toast';
 
 export const GET_USERS = 'GET_USERS';
 export const ADMIN_UPDATE_USER = 'ADMIN_UPDATE_USER';
@@ -32,6 +33,13 @@ export const adminUpdateUser = (userId, data) => {
             .then((res) => {
                 dispatch({ type: ADMIN_UPDATE_USER, payload: [userId, { data }] })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Utilisateur mis à jour', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }

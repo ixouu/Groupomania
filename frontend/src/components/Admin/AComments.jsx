@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteComment, updateComment } from '../../redux/actions/comment.actions';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 
 const AComments = ({ comments }) => {
@@ -13,19 +13,11 @@ const AComments = ({ comments }) => {
     const [currentCommentId, setCurrentCommentId] = useState('');
 
 
-    const validateDelete = () => toast.success('Commentaire supprimé', {
-        duration: 2000
-    })
-    const validateUpdate = () => toast.success('Commentaire édité', {
-        duration: 2000
-    })
-
     const handleDelete = (e) => {
         e.preventDefault();
         const commentId = e.target.closest('section').id
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?') === true) {
             dispatch(deleteComment(commentId));
-            validateDelete();
         } else {
             return
         }
@@ -52,7 +44,6 @@ const AComments = ({ comments }) => {
         if (window.confirm('Êtes-vous sûr de vouloir modifier ce commentaire ?') === true) {
             dispatch(updateComment(currentCommentId, data));
             cancelUpdate();
-            validateUpdate();
         } else {
             return
         }

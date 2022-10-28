@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { adminUpdateUser } from '../../redux/actions/users.actions'
 
@@ -17,9 +16,6 @@ const AUsers = ({ users }) => {
     const [isPhoto, setIsPhoto] = useState(true);
 
 
-    const validateUpdate = () => toast.success('Utilisateur edité', {
-        duration: 2000
-    })
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -59,7 +55,6 @@ const AUsers = ({ users }) => {
         }
         if (window.confirm('Êtes-vous sûr de vouloir modifier cet utilisateur? ') === true) {
             photo === undefined ? dispatch(adminUpdateUser(currentUserId, data)) : dispatch(adminUpdateUser(currentUserId, dataWithPhoto))
-            validateUpdate();
             cancelUpdate();
         } else {
             return

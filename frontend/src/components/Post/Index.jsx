@@ -14,7 +14,6 @@ import { createComment } from '../../redux/actions/comment.actions';
 
 import { accountServices } from '../../utils/services/accountServices';
 
-import toast from 'react-hot-toast';
 
 
 const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) => {
@@ -24,17 +23,6 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
     const users = useSelector((state) => state.usersReducer);
     const user = useSelector((state) => state.userReducer).user;
     const allComments = useSelector((state) => state.commentReducer).comments;
-
-    // TOAST 
-    const validateComment = () => toast.success('Commentaire ajouté', {
-        duration: 2000,
-    })
-    const validateLike = () => toast.success('Like ajouté', {
-        duration: 2000,
-    })
-    const validateUnlike = () => toast.success('Like supprimé', {
-        duration: 2000,
-    })
 
     // POSTS
     const author = users.find((user) => user._id === posterId);
@@ -71,7 +59,6 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
             dispatch(getPosts())
             dispatch(getComments())
             findPostComments();
-            validateComment();
             setComment('');
             setPostingComment(false);
         }
@@ -146,7 +133,6 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
         };
         dispatch(likePost(postId, data, user._id));
         setLiked(true);
-        validateLike();
     }
 
     const handleSumbitDislike = (e) => {
@@ -157,13 +143,12 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
         };
         dispatch(dislikePost(postId, data, user._id));
         setLiked(false);
-        validateUnlike();
     }
     // POST 
     return (
         <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
-                <img src={`${author.photo}`} alt={`photo de ${author.lastName}`} className='post-author_photo' />
+                <img src={`${author.photo}`} alt={`${author.lastName}`} className='post-author_photo' />
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>

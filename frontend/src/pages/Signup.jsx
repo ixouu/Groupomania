@@ -10,14 +10,14 @@ import { useDispatch } from "react-redux";
 import { getUsers } from "../redux/actions/users.actions";
 
 const Signup = () => {
+
     document.title = "Groupomania | Création de compte";
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // loading
     const [isLoading, setIsLoading] = useState(false);
-
-
 
     // error
     const [error, setError] = useState("")

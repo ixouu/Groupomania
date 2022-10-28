@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 
 module.exports = (req, res, next) => {
-    console.log(req.headers.authorization)
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if (!authHeader?.startsWith('Bearer ')) return res.sendStatus(401);
     const token = authHeader.split(' ')[1];

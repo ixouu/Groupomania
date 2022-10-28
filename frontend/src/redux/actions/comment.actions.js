@@ -1,12 +1,13 @@
 import Axios from "../../utils/services/callerService";
 import { accountServices } from "../../utils/services/accountServices";
+import toast from 'react-hot-toast';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const UPDATE_COMMENT = ' UPDATE_COMMENT';
 
-export const getComments = () => {
+export const getComments = (action) => {
     const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
@@ -17,7 +18,11 @@ export const getComments = () => {
             .then((res) => {
                 dispatch({ type: GET_COMMENTS, payload: res.data.data })
             })
-            .catch((err) => console.log(err))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -33,11 +38,18 @@ export const createComment = (data) => {
             .then((res) => {
                 dispatch({ type: CREATE_COMMENT, payload: data })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Commentaire créé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
-export const deleteComment = (id) => {
+export const deleteComment = (id, action) => {
     const token = accountServices.getUserToken();
     return async (dispatch) => {
         return await Axios({
@@ -47,8 +59,16 @@ export const deleteComment = (id) => {
         })
             .then((res) => {
                 dispatch({ type: DELETE_COMMENT, payload: id })
+                
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Commentaire supprimé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -64,6 +84,13 @@ export const updateComment = (id, data) => {
             .then((res) => {
                 dispatch({ type: UPDATE_COMMENT, payload: { id, data } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Commentaire modifié', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }

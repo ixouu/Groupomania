@@ -1,6 +1,6 @@
 import Axios from "../../utils/services/callerService";
 import { accountServices } from "../../utils/services/accountServices";
-
+import toast from 'react-hot-toast';
 
 export const CREATE_POST = 'CREATE_POST';
 export const LIKE_POST = 'LIKE_POST';
@@ -22,7 +22,11 @@ export const getPosts = () => {
             .then((res) => {
                 dispatch({ type: GET_POSTS, payload: res.data.posts })
             })
-            .catch((err) => console.log(err))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -38,7 +42,14 @@ export const createPost = (data) => {
             .then((res) => {
                 dispatch({ type: CREATE_POST, payload: '' })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Poste créé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -57,7 +68,14 @@ export const likePost = (postId, data, userId) => {
             .then((res) => {
                 dispatch({ type: LIKE_POST, payload: { postId, userId } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Post liké', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -77,7 +95,14 @@ export const dislikePost = (postId, data, userId) => {
                 // console.log({...data})
                 dispatch({ type: DISLIKE_POST, payload: { postId, userId } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Like supprimé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -92,7 +117,14 @@ export const adminDeletePost = (id) => {
             .then((res) => {
                 dispatch({ type: ADMIN_DELETE_POST, payload: { id } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Commentaire créé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -108,7 +140,14 @@ export const deletePost = (id, data) => {
             .then((res) => {
                 dispatch({ type: DELETE_POST, payload: { id } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Poste supprimé', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -124,7 +163,14 @@ export const adminEditPost = (id, data) => {
             .then((res) => {
                 dispatch({ type: ADMIN_EDIT_POST, payload: { id, data } })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Poste modifié', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 
@@ -141,6 +187,13 @@ export const editPost = (id, data) => {
                 console.log(res.data)
                 dispatch({ type: EDIT_POST, payload: res.data, id })
             })
-            .catch((err) => console.log(err))
+            .then( toast.success('Post modifié', {
+                duration: 2000
+            }))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }

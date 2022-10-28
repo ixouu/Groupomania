@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser, uploadPhoto } from '../redux/actions/user.actions';
 import { getUser } from '../redux/actions/user.actions';
 
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const Profil = () => {
 
@@ -28,9 +28,6 @@ const Profil = () => {
         await dispatch(updateUser(currentUser._id, bio))
         await dispatch(getUser(currentUser._id))
         setIsEditing(false);
-        toast.success('Bio mise à jour', {
-            duration: 2000,
-        })
     }
 
     const uploadPicture = async (e) => {
@@ -42,9 +39,6 @@ const Profil = () => {
         dispatch(uploadPhoto(currentUser._id, data));
         dispatch(getUser(currentUser._id));
         setImg(null);
-        toast.success('Photo mise à jour', {
-            duration: 2000,
-        })
     }
 
     const handlePhoto = (e) => {
@@ -93,7 +87,6 @@ const Profil = () => {
                         }
                         <div className='profile-bio_buttons'>
                             {isEditing ? <button className='profile-bio_cancel' onClick={() => setIsEditing(false)}> Annuler </button> : <button className='profile-bio_edit' onClick={() => setIsEditing(true)}> Modifier / Ajouter </button>}
-                            {/* <button className='profile-bio_edit' onClick={() => setIsEditing(true)}> Modifier / Ajouter </button> */}
                             {isEditing && <button className='profile-bio_save' onClick={() => saveBio()}>Enregistrer les changements</button>}
                         </div>
 
@@ -102,7 +95,7 @@ const Profil = () => {
                         <h3>Ma photo de profil :</h3>
                         {photoPreview !== null
                             ? <img src={photoPreview} alt="preview" className='profile-photo_img' />
-                            : <img src={`${currentUser.photo}`} alt={`Photo de ${currentUser.lastName}`} className='profile-photo_img' />
+                            : <img src={`${currentUser.photo}`} alt={`${currentUser.lastName}`} className='profile-photo_img' />
                         }
 
                         <form className="profile-photo_form">
