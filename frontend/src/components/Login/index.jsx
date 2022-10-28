@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 
 import { accountServices } from '../../utils/services/accountServices';
 import Axios from '../../utils/services/callerService';
+import { token } from '../../utils/services/callerService';
 
 import { useDispatch } from "react-redux";
 import { getUser } from '../../redux/actions/user.actions';
@@ -50,7 +51,10 @@ const Login = () => {
             accountServices.saveUserId(response.data.userId);
             dispatch(getUser(response.data.userId));
             store.dispatch(getUser(response.data.userId));
-            
+            console.log(token)
+            if(token === null){
+                token = accountServices.getUserToken();
+            }
             // initialize the inputs
             setLoginData({
                 email: '',
@@ -62,7 +66,9 @@ const Login = () => {
                     ? navigate('/admin')
                     : navigate('/home');
             }, 2000)
+
             return () => clearTimeout(timer)
+            
         }
         catch (err) {
             setError(err)

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { accountServices } from './accountServices'
 
-let token = accountServices.getUserToken();
-console.log(token);
+export const token = accountServices.getUserToken();
 
 
 const Axios = axios.create({
