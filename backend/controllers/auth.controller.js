@@ -12,12 +12,8 @@ const validator = require('validator');
 // import jwt
 const jwt = require('jsonwebtoken')
 
-// Middleware who catch errors Async function
-const catchAsync = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
+const catchAsync = require('../utils/catchAsync.js')
+
 // function that hides emails
 function hideEmails(email) {
     const startOfEmail = email.slice(0, 2)

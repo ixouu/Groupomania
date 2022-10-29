@@ -5,7 +5,6 @@ import toast, { Toaster } from 'react-hot-toast'
 
 import { accountServices } from '../../utils/services/accountServices';
 import Axios from '../../utils/services/callerService';
-import { token } from '../../utils/services/callerService';
 
 import { useDispatch } from "react-redux";
 import { getUser } from '../../redux/actions/user.actions';
@@ -51,10 +50,6 @@ const Login = () => {
             accountServices.saveUserId(response.data.userId);
             dispatch(getUser(response.data.userId));
             store.dispatch(getUser(response.data.userId));
-            console.log(token)
-            if(token === null){
-                token = accountServices.getUserToken();
-            }
             // initialize the inputs
             setLoginData({
                 email: '',
@@ -71,8 +66,9 @@ const Login = () => {
             
         }
         catch (err) {
+            console.log(err)
             setError(err)
-            if (err.response.status === 400 || err.response.status === 403) {
+            if (err.response !== undefined) {
                 setWrongInformations(true);
             } else {
                 setErrorModalIsOpen(!errorModalIsOpen)

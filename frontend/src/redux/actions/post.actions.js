@@ -117,7 +117,7 @@ export const adminDeletePost = (id) => {
             .then((res) => {
                 dispatch({ type: ADMIN_DELETE_POST, payload: { id } })
             })
-            .then( toast.success('Commentaire créé', {
+            .then( toast.success('Post supprimé', {
                 duration: 2000
             }))
             .catch((err) =>{

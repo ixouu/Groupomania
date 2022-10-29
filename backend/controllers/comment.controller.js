@@ -1,15 +1,7 @@
-// schemas import
 const commentModel = require('../models/commentSchema')
 const ObjectID = require("mongoose").Types.ObjectId;
 
-// Middleware who catch errors Async function
-const catchAsync = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
-
-/*** COMMENTS MIDDLEWARES ***/
+const catchAsync = require('../utils/catchAsync.js')
 
 // create comment
 module.exports.createComment = catchAsync(async (req, res, next) => {

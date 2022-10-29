@@ -11,19 +11,12 @@ const APosts = ({ posts }) => {
     const [postContent, setPostContent] = useState('');
     const [currentPostId, setCurrentPostId] = useState('');
 
-    const validateDelete = () => toast.success('Post supprimé', {
-        duration: 2000
-    })
-    const validateUpdate = () => toast.success('Post edité', {
-        duration: 2000
-    })
 
     const handleDelete = (e) => {
         e.preventDefault();
         const postId = e.target.closest('section').id
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce post? ') === true) {
             dispatch(adminDeletePost(postId));
-            validateDelete();
         } else {
             return
         }
@@ -46,7 +39,6 @@ const APosts = ({ posts }) => {
         if (window.confirm('Êtes-vous sûr de vouloir supprimer cette image ?') === true) {
             await dispatch(adminEditPost(postId, data));
             cancelUpdate();
-            validateUpdate();
         } else {
             return
         }
@@ -60,7 +52,6 @@ const APosts = ({ posts }) => {
         if (window.confirm('Êtes-vous sûr de vouloir modifier ce post ?') === true) {
             await dispatch(adminEditPost(currentPostId, data));
             cancelUpdate();
-            validateUpdate();
         } else {
             return
         }

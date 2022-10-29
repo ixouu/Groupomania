@@ -2,12 +2,8 @@ const userModel = require('../models/userSchema');
 const ObjectID = require("mongoose").Types.ObjectId;
 const getAuthUser = require('../middleware/verifyUser.middleware');
 
-// Middleware who catch errors Async function
-const catchAsync = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
+const {findAndUnlinkProfilImage } = require('../utils/unlinkImage');
+const catchAsync = require('../utils/catchAsync.js');
 
 // GET AllUsers
 module.exports.getAllUsers = catchAsync(async (req, res, next) => {
@@ -49,6 +45,7 @@ module.exports.updateUser = catchAsync(async (req, res, next) => {
             status: "Unauthorized"
         })
     }
+    user.photo && findAndUnlinkProfilImage(user);
     const userContent = req.file ? {
         // parse to be able to update image
         ...req.body,

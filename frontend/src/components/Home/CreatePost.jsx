@@ -5,7 +5,7 @@ import { accountServices } from "../../utils/services/accountServices";
 import { createPost, getPosts } from "../../redux/actions/post.actions";
 import { useDispatch } from "react-redux";
 
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
 
 const CreatePost = () => {
     const dispatch = useDispatch();
@@ -39,9 +39,7 @@ const CreatePost = () => {
             await dispatch(createPost(data));
             dispatch(getPosts());
             cancel();
-            toast.success('Poste créé', {
-                duration: 2000,
-            })
+        
         }
     };
 

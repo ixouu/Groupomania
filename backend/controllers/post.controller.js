@@ -1,17 +1,11 @@
-// import post schema
 const postModel = require('../models/postSchema')
-const ObjectID = require("mongoose").Types.ObjectId;
-const getAuthUser = require('../middleware/verifyUser.middleware');
 const userModel = require("../models/userSchema");
 
-// Middleware who catch errors Async function
-const catchAsync = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
+const ObjectID = require("mongoose").Types.ObjectId;
+const getAuthUser = require('../middleware/verifyUser.middleware');
 
-/*** POST MIDDLEWARES ***/
+const { findAndUnlinkPostImage } = require('../utils/unlinkImage')
+const catchAsync = require('../utils/catchAsync.js')
 
 // create post
 module.exports.createPost = catchAsync(async (req, res, next) => {
@@ -60,24 +54,27 @@ module.exports.adminEditPost = catchAsync(async (req, res, next) => {
     if (postIsExisting === null) {
         return res.status(400).json({ message: "post not found" });
     }
-    const updateContent = req.file ? {
-        // parse to be able to update the image
-        ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
-    } : { ...req.body }
-    await postModel.findByIdAndUpdate(
-        req.params.id, {
-        ...updateContent
-    }
-    )
-        .then(() => {
-            res.status(204).json({
-                status: 'success',
-                data: {
-                    updateContent
-                }
+    else{
+        postIsExisting.imageUrl && findAndUnlinkPostImage(postIsExisting);
+        const updateContent = req.file ? {
+            // parse to be able to update the image
+            ...req.body,
+            imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
+        } : { ...req.body }
+        await postModel.findByIdAndUpdate(
+            req.params.id, {
+            ...updateContent
+        }
+        )
+            .then(() => {
+                res.status(204).json({
+                    status: 'success',
+                    data: {
+                        updateContent
+                    }
+                })
             })
-        })
+    }
 });
 
 //  update post
@@ -98,22 +95,28 @@ module.exports.editPost = catchAsync(async (req, res, next) => {
             status: "Unauthorized"
         })
     }
-    const updateContent = req.file ? {
-        // parse to be able to update the image
-        ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
-    } : { ...req.body }
-    await postModel.findByIdAndUpdate(
-        req.params.id, {
-        ...updateContent
-    }
-    )
+    else{
+        if (postIsExisting.imageUrl !== undefined || postIsExisting.imageUrl !== null){
+            findAndUnlinkPostImage(postIsExisting);
+        };
+        const updateContent = req.file ? {
+            // parse to be able to update the image
+            ...req.body,
+            imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
+        } : { ...req.body }
+        await postModel.findByIdAndUpdate(
+            req.params.id, {
+                ...updateContent
+            }
+            )
         .then(() => {
             res.send({
                 status: 'success',
                 data: updateContent
             })
         })
+    } 
+   
 });
 
 // Admin delete post
@@ -121,6 +124,8 @@ module.exports.adminDeletePost = catchAsync(async (req, res, next) => {
     if (!ObjectID.isValid(req.params.id)) {
         return res.status(400).send("post unknown");
     }
+    const postToDelete = await postModel.findOne({ _id: req.params.id });
+    postToDelete.imageUrl && findAndUnlinkPostImage(postToDelete);
     await postModel.findByIdAndRemove(req.params.id)
     res.status(200).json({ message: "Successfully deleted. " })
 });
@@ -131,6 +136,7 @@ module.exports.deletePost = catchAsync(async (req, res, next) => {
         return res.status(400).send("post unknown");
     }
     const postToDelete = await postModel.findOne({ _id: req.params.id });
+    postToDelete.imageUrl && findAndUnlinkPostImage(postToDelete);
     const authorId = req.body.authorId;
     if (postToDelete.posterId !== authorId) {
         return res.status(403).send('Unauthorized');
