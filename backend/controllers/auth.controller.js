@@ -137,13 +137,3 @@ exports.login = catchAsync(async (req, res, next) => {
         })
     }
 });
-
-// middleware logout
-module.exports.logout = async (req, res, next) => {
-    try {
-
-    }
-    catch (error) {
-        return error => res.status(500).json({ error })
-    }
-}

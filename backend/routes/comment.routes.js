@@ -10,13 +10,13 @@ const verifyRoles = require('../middleware/verifyRoles.middleware');
 router.post('/', auth, commentController.createComment);
 
 // get a comment
-router.get('/:id', auth, commentController.getOneComment)
+router.get('/:id', auth, commentController.getOneComment);
 
 // get all comments
-router.get('/', commentController.getComments)
+router.get('/', commentController.getComments);
 
 // edit a comment
-router.put('/:id', auth, commentController.editComment)
+router.put('/:id', auth, commentController.editComment);
 
 // delete a comment
 router.delete('/:id', auth, verifyRoles(ROLE_LIST.Admin), commentController.deleteComment);

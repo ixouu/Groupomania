@@ -6,6 +6,8 @@ const auth = require('../middleware/auth.middleware');
 const ROLE_LIST = require('../config/roles_list');
 const verifyRoles = require('../middleware/verifyRoles.middleware');
 
+/*** USERS DATABASE ***/
+
 // signup
 router.post("/signup", authController.signUp);
 

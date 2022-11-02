@@ -37,14 +37,14 @@ let isAdmin = () => {
 let transformDate = (date) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     const rawDate = Date.parse(date);
-    const dateToReturn = new Date(rawDate).toLocaleDateString('fr-FR', options)
-    return dateToReturn.toString()
+    const dateToReturn = new Date(rawDate).toLocaleDateString('fr-FR', options);
+    return dateToReturn.toString();
 }
 
 let getTime = (date) => {
     const rawDate = Date.parse(date);
-    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', { timeStyle: "short" })
-    return timeToReturn.toString()
+    const timeToReturn = new Date(rawDate).toLocaleTimeString('fr-FR', { timeStyle: "short" });
+    return timeToReturn.toString();
 }
 
 export const accountServices = {
