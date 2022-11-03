@@ -69,7 +69,7 @@ app.use('/upload/profile', express.static(path.join(__dirname, "upload/profile")
 //routes
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
-const commentRoutes = require('./routes/comment.routes')
+const commentRoutes = require('./routes/comment.routes');
 
 app.use('/api/user', apiLimiter, userRoutes);
 app.use('/api/post', apiLimiter, postRoutes);
