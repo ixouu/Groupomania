@@ -26,8 +26,9 @@ const Header = () => {
         return () => clearTimeout(timer)
     }
     return (
+        <>
+        <div><Toaster /></div>
         <header>
-            <div><Toaster /></div>
             <div className="header-logo">
                 <Link to="/home"> <Logo className="header-logo" /> </Link>
             </div>
@@ -50,6 +51,7 @@ const Header = () => {
                 </ul>
             </nav>
         </header>
+        </>
     );
 }
 

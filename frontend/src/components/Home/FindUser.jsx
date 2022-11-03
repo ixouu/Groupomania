@@ -23,26 +23,12 @@ const FindUser = () => {
         }
     }, [searchValue, users])
 
-    const toggleInput = () => {
-        isActive ? setIsActive(false) : setIsActive(true);
-    }
 
     const handleChange = (e) => {
         setIsSearching(true);
         setSearchValue(e.target.value)
     }
 
-    const handleBlur = (e) => {
-        e.target.value = searchValue;
-        const timer = setTimeout(() => {
-            setIsActive(false);
-            setSearchValue('');
-            setIsSearching(false);
-        }, 2000)
-        return () => {
-            clearTimeout(timer)
-        }
-    }
 
     return (
         <section className={isActive ? "findUser findUser-active" : 'findUser'}>
@@ -53,9 +39,7 @@ const FindUser = () => {
                     type="search"
                     id='findUser-input'
                     value={searchValue}
-                    // defaultValue = {searchValue}
-                    onFocus={() => toggleInput()}
-                    onBlur={(e) => handleBlur(e)}
+                    onFocus={() => setIsActive(true)}
                     onChange={(e) => handleChange(e)}
                 ></input>
             </form>
@@ -68,7 +52,7 @@ const FindUser = () => {
             }
             {foundResult &&
                 <Link to={`../user/?id=${foundResult._id}`} className='findUser-result'>
-                    <img src={foundResult.photo} alt={`Photo de ${foundResult.lastName}`} />
+                    <img src={`${foundResult.photo}`} alt={`Photo de ${foundResult.lastName}`} />
                     <span>{foundResult.firstName} {foundResult.lastName}</span>
                 </Link>
             }

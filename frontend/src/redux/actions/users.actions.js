@@ -16,7 +16,11 @@ export const getUsers = () => {
             .then((res) => {
                 dispatch({ type: GET_USERS, payload: res.data.data.users })
             })
-            .catch((err) => console.log(err))
+            .catch((err) =>{
+                toast.error(`${err}`, {
+                    duration: 5000,
+                })
+            })
     }
 }
 

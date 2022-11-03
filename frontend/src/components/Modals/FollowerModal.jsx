@@ -25,10 +25,10 @@ const FollowerModal = ({ followers, onClose, open }) => {
                 <button className="modal-close" onClick={onClose}>&times;</button>
                 <h3>Follower(s) : </h3>
                 <div className="modal-content">
-                    {
-                        followersUsers.map((user, index) => {
+                    { followersUsers.length === 0 ? (<span> Pas encore de followers</span>) : ( followersUsers.map((user, index) => {
                             return <span key={index} className='followerModal-userCard'>{user.firstName} {user.lastName}</span>
-                        })
+                        }))
+                       
                     }
                 </div>
             </div>

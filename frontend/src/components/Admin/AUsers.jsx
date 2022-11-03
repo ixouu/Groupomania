@@ -88,8 +88,8 @@ const AUsers = ({ users }) => {
                             onChange={(e) => setBio(e.target.value)}
                         />
                         {isPhoto
-                            ? <img src={userToEdit.photo} alt="Photo de l'utilisateur" />
-                            : <img src='http://localhost:5000/upload/profile/random-user.png' alt="Photo de l'utilisateur" />
+                            ? <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${userToEdit.photo}`} alt="Photo de l'utilisateur" />
+                            : <img src={process.env.REACT_APP_BACKEND_SERVER_URL+'/upload/profile/random-user.png'} alt="utilisateur" />
                         }
                         <div className='aUser-btnContainer'>
                             <button
@@ -98,7 +98,7 @@ const AUsers = ({ users }) => {
                             </button>
                             <button onClick={(e) => {
                                 setIsPhoto(false);
-                                setPhoto('http://localhost:5000/upload/profile/random-user.png');
+                                setPhoto(process.env.REACT_APP_BACKEND_SERVER_URL+'/upload/profile/random-user.png');
                                 e.preventDefault();
                             }}
                                 className='btn aUser-deleteBtn'

@@ -55,7 +55,7 @@ module.exports.adminEditPost = catchAsync(async (req, res, next) => {
         return res.status(400).json({ message: "post not found" });
     }
     else{
-        postIsExisting.imageUrl && findAndUnlinkPostImage(postIsExisting);
+        req.file && findAndUnlinkPostImage(postIsExisting);
         const updateContent = req.file ? {
             // parse to be able to update the image
             ...req.body,
@@ -96,9 +96,7 @@ module.exports.editPost = catchAsync(async (req, res, next) => {
         })
     }
     else{
-        if (postIsExisting.imageUrl !== undefined || postIsExisting.imageUrl !== null){
-            findAndUnlinkPostImage(postIsExisting);
-        };
+        findAndUnlinkPostImage(postIsExisting);
         const updateContent = req.file ? {
             // parse to be able to update the image
             ...req.body,
@@ -136,7 +134,7 @@ module.exports.deletePost = catchAsync(async (req, res, next) => {
         return res.status(400).send("post unknown");
     }
     const postToDelete = await postModel.findOne({ _id: req.params.id });
-    postToDelete.imageUrl && findAndUnlinkPostImage(postToDelete);
+    findAndUnlinkPostImage(postToDelete);
     const authorId = req.body.authorId;
     if (postToDelete.posterId !== authorId) {
         return res.status(403).send('Unauthorized');

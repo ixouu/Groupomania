@@ -2,6 +2,7 @@
 .home {
     width: 100%;
     height: 100%;
+    min-height: 88vh;
     padding: 2% 8%;
     display: flex;
     flex-direction: row;
@@ -211,13 +212,13 @@
 
 // TRENDING ELEMENT
 .trending {
-    @include sideElement
+    @include sideElement;
 }
 
 // LAST COMMENT ELEMENT
 .lastComments {
     @include sideElement;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 // LAST SIGN UP ELEMENT

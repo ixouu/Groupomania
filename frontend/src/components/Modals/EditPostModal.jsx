@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux';
 
 import { editPost } from '../../redux/actions/post.actions';
@@ -29,10 +28,6 @@ const EditPostModal = ({ onClose, open, post }) => {
     //Redux
     const dispatch = useDispatch();
 
-    //Toast
-    const validateUpdate = () => toast.success('Post édité', {
-        duration: 2000,
-    })
 
     const handleEditPostImg = (e) => {
         setEditPostImg(e.target.files[0]);
@@ -90,7 +85,6 @@ const EditPostModal = ({ onClose, open, post }) => {
             } else {
                 await dispatch(editPost(post._id, data));
             }
-            validateUpdate();
             setEditPostImg(null);
             setNewContent(post.content);
             setCurrentImgUrl(post.imageUrl);
@@ -134,7 +128,6 @@ const EditPostModal = ({ onClose, open, post }) => {
                                     type='file'
                                     id='editPostModal-uploadImg'
                                     name='image'
-                                    accept='.JPG .JPEG .PNG'
                                     onChange={(e) => handleEditPostImg(e)}
                                 ></input>
                                 <button

@@ -66,7 +66,7 @@ export const uploadPhoto = (userId, data) => {
             .then((res) => {
                 return Axios({
                     method: 'get',
-                    url: `http://localhost:5000/api/user/${userId}`,
+                    url: process.env.REACT_APP_BACKEND_SERVER_URL+`/api/user/${userId}`,
                 })
                     .then((res) => {
                         dispatch({ type: UPLOAD_PHOTO, payload: res.data.photo })

@@ -45,7 +45,7 @@ module.exports.updateUser = catchAsync(async (req, res, next) => {
             status: "Unauthorized"
         })
     }
-    user.photo && findAndUnlinkProfilImage(user);
+    req.file && findAndUnlinkProfilImage(user);
     const userContent = req.file ? {
         // parse to be able to update image
         ...req.body,

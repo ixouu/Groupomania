@@ -10,8 +10,11 @@ import { updateUser, uploadPhoto } from '../redux/actions/user.actions';
 import { getUser } from '../redux/actions/user.actions';
 
 import { Toaster } from 'react-hot-toast';
+import { getUsers } from '../redux/actions/users.actions';
 
 const Profil = () => {
+    
+    const dispatch = useDispatch();
 
     document.title = "Groupomania | Mon profil";
     const currentUser = useSelector((state) => state.userReducer).user;
@@ -20,9 +23,6 @@ const Profil = () => {
     const [bio, setBio] = useState('');
     const [img, setImg] = useState(null);
     const [photoPreview, setPhotoPreview] = useState(null)
-
-    const dispatch = useDispatch();
-
 
     const saveBio = async () => {
         await dispatch(updateUser(currentUser._id, bio))
@@ -36,9 +36,10 @@ const Profil = () => {
         data.append("name", currentUser.name);
         data.append("userId", currentUser._id);
         data.append("photo", img);
-        dispatch(uploadPhoto(currentUser._id, data));
-        dispatch(getUser(currentUser._id));
+        await dispatch(uploadPhoto(currentUser._id, data));
+        await dispatch(getUser(currentUser._id));
         setImg(null);
+        await dispatch(getUsers())
     }
 
     const handlePhoto = (e) => {

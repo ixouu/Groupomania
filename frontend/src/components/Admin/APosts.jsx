@@ -82,7 +82,7 @@ const APosts = ({ posts }) => {
                         <p className='admin-post_content'>{post.content}</p>
                         {post.imageUrl &&
                             <div className='admin-post_imgContainer'>
-                                <img src={post.imageUrl} alt="Image du post" className='admin-post_img' />
+                                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${post.imageUrl}`} alt="Image du post" className='admin-post_img' />
                                 <div className='admin-post_imgBtnContainer'>
                                     <button className='btn admin-post_deleteImgBtn' onClick={(e) => handleDeleteImg(e)}>Supprimer la photo</button>
                                 </div>

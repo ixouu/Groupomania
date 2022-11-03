@@ -148,7 +148,7 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
     return (
         <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
-                <img src={`${author.photo}`} alt={`${author.lastName}`} className='post-author_photo' />
+                <img src={author.photo} alt={`${author.lastName}`} className='post-author_photo' />
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>
@@ -215,7 +215,7 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
             {posterId === user._id
                 ? <div className='post-actionEdit'>
                     <EditPost post={post} />
-                    <DeletePost postId={postId} posterId={posterId} user={user} />
+                    <DeletePost postId={postId} posterId={posterId} user={user}/>
                 </div>
                 : null
             }

@@ -171,7 +171,7 @@ const Signup = () => {
                 password,
                 passwordConfirm
             }
-            await axios.post("http://localhost:5000/api/user/signup", newUser)
+            await axios.post(process.env.REACT_APP_BACKEND_SERVER_URL+"/api/user/signup", newUser)
                 .then(res => {
                     if (res.status === 201) {
                         // show the sucess modal

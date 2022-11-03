@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import toast, { Toaster } from 'react-hot-toast'
@@ -16,9 +16,31 @@ import ErrorModal from '../Modals/ErrorModal';
 
 const Login = () => {
 
+
     document.title = "Groupomania - Acceuil";
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+     // navigate to the login page if the user's logged
+     useEffect(() => {
+        
+        // fetch userID from the localStorage, store into Redux and navigate to the page
+        const connectToHome = async() => {
+            try{
+            dispatch(getUser(accountServices.getUserId()));
+            navigate('/home');
+            }catch (err) {
+            setError(err)
+            if (err.response !== undefined) {
+                setWrongInformations(true);
+            } else {
+                setErrorModalIsOpen(!errorModalIsOpen)
+            }
+        }
+    }
+    // verifies if the token is available in the local storage and launch the function
+    accountServices.isLog() && connectToHome();
+     }, []);
 
     const validateLogin = () => toast.success('Connexion établie', {
         duration: 2000,
@@ -66,7 +88,6 @@ const Login = () => {
             
         }
         catch (err) {
-            console.log(err)
             setError(err)
             if (err.response !== undefined) {
                 setWrongInformations(true);

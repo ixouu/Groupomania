@@ -92,7 +92,6 @@ export const dislikePost = (postId, data, userId) => {
             }
         })
             .then((res) => {
-                // console.log({...data})
                 dispatch({ type: DISLIKE_POST, payload: { postId, userId } })
             })
             .then( toast.success('Like supprimé', {
