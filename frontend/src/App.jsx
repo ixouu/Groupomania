@@ -49,7 +49,10 @@ const App = () => {
               <Home />
             </AuthGuard>} />
 
-            
+            <Route path='profil' element={
+            <AuthGuard>
+              <Profil />
+            </AuthGuard>} />
 
             <Route path='profil/:id' element={
               <AuthGuard>
