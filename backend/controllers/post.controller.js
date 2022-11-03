@@ -14,13 +14,12 @@ module.exports.createPost = catchAsync(async (req, res, next) => {
         return res.status(400).send({ message: "can not send an empty message" })
     }
     const post = req.file ? {
-        imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
+        imageUrl: `/upload/post/${req.file.filename}`,
         ...req.body
     } : {
         ...req.body
     }
-    await postModel.create(post)
-        .then(() => {
+    await postModel.create(post)        .then(() => {
             res.status(201).json({
                 status: 'success',
                 data: {
@@ -59,7 +58,7 @@ module.exports.adminEditPost = catchAsync(async (req, res, next) => {
         const updateContent = req.file ? {
             // parse to be able to update the image
             ...req.body,
-            imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
+            imageUrl: `/upload/post/${req.file.filename}`,
         } : { ...req.body }
         await postModel.findByIdAndUpdate(
             req.params.id, {
@@ -100,7 +99,7 @@ module.exports.editPost = catchAsync(async (req, res, next) => {
         const updateContent = req.file ? {
             // parse to be able to update the image
             ...req.body,
-            imageUrl: `${req.protocol}://${req.get('host')}/upload/post/${req.file.filename}`,
+            imageUrl: `/upload/post/${req.file.filename}`,
         } : { ...req.body }
         await postModel.findByIdAndUpdate(
             req.params.id, {

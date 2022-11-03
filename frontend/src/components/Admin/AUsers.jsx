@@ -98,7 +98,7 @@ const AUsers = ({ users }) => {
                             </button>
                             <button onClick={(e) => {
                                 setIsPhoto(false);
-                                setPhoto(process.env.REACT_APP_BACKEND_SERVER_URL+'/upload/profile/random-user.png');
+                                setPhoto('/upload/profile/random-user.png');
                                 e.preventDefault();
                             }}
                                 className='btn aUser-deleteBtn'

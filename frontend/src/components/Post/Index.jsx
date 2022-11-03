@@ -148,14 +148,14 @@ const Post = ({ post, posterId, postId, content, imageUrl, createdAt, likes }) =
     return (
         <div className='postContainer' id={`${postId}`}>
             <div className="postContainer-header">
-                <img src={author.photo} alt={`${author.lastName}`} className='post-author_photo' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${author.photo}`} alt={`${author.lastName}`} className='post-author_photo' />
                 <Link to={`../user/?id=${author._id}`}><p className='post-author'>{author.firstName} {author.lastName}</p></Link>
                 <span className='post-date'>Posté le {date} à {time}</span>
             </div>
             {/* CONTENT  */}
             <div className="postContainer-content">
                 <p className='post-content'>{content}</p>
-                {imageUrl && <img src={`${imageUrl}`} alt='img' className='post-img' />}
+                {imageUrl && <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${imageUrl}`} alt='img' className='post-img' />}
             </div>
             <div className='postContainer-footer'>
 

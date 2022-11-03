@@ -49,7 +49,7 @@ module.exports.updateUser = catchAsync(async (req, res, next) => {
     const userContent = req.file ? {
         // parse to be able to update image
         ...req.body,
-        photo: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        photo: `/upload/profile/${req.file.filename}`,
     } : { ...req.body };
     await userModel.findByIdAndUpdate(
         req.params.id, {
@@ -77,7 +77,7 @@ module.exports.adminUpdateUser = catchAsync(async (req, res, next) => {
     const userContent = req.file ? {
         // parse to be able to update image
         ...req.body,
-        photo: `${req.protocol}://${req.get('host')}/upload/profile/${req.file.filename}`,
+        photo: `/upload/profile/${req.file.filename}`,
     } : { ...req.body };
     await userModel.findByIdAndUpdate(
         req.params.id, {

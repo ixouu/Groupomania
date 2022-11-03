@@ -57,7 +57,7 @@ const User = () => {
                         </div>
                     </div>
                     <div className="user-card_right">
-                        <img src={`${user()[0].photo}`} alt={`Photo de ${user()[0].lastName}`} />
+                        <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${user()[0].photo}`} alt={`Photo de ${user()[0].lastName}`} />
                     </div>
                 </div>
 

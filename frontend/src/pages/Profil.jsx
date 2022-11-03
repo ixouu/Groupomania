@@ -96,7 +96,7 @@ const Profil = () => {
                         <h3>Ma photo de profil :</h3>
                         {photoPreview !== null
                             ? <img src={photoPreview} alt="preview" className='profile-photo_img' />
-                            : <img src={`${currentUser.photo}`} alt={`${currentUser.lastName}`} className='profile-photo_img' />
+                            : <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${currentUser.photo}`} alt={`${currentUser.lastName}`} className='profile-photo_img' />
                         }
 
                         <form className="profile-photo_form">

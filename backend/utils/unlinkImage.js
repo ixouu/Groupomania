@@ -1,15 +1,14 @@
 const fs  = require('fs');
 
 exports.findAndUnlinkPostImage = (Post) => {
-    if (Post.imageUrl !== null){
-      const filename = Post.imageUrl.split(`upload/post`)[1];
-      fs.unlink(`upload/post/${filename}`, (err) => {
-          if (err) throw err
-      });
-    } else{
-      return
-    }
-    
+  if (Post.imageUrl == undefined) return;
+  else {
+    const filename = Post.imageUrl.split(`upload/post`)[1];
+    filename && fs.unlink(`upload/post/${filename}`, (err) => {
+      if (err) throw err;
+      else return;
+    });
+  }
 }
 
 exports.findAndUnlinkProfilImage = (User) => {

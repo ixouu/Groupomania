@@ -118,7 +118,7 @@ const EditPostModal = ({ onClose, open, post }) => {
                     {currentImgUrl
                         ? (<div className='editPostModal-imgContainer'>
                             {editPostImg && <img src={editPostImgUrl} alt="Image du post" style={{ maxWidth: '300px' }}></img>}
-                            {!editPostImg && <img src={post.imageUrl} alt="Image du post" style={{ maxWidth: '300px' }}></img>}
+                            {!editPostImg && <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${post.imageUrl}`} alt="Image du post" style={{ maxWidth: '300px' }}></img>}
                             <div className='imgContainer-btns'>
                                 <label
                                     htmlFor="editPostModal-uploadImg"

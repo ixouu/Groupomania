@@ -14,7 +14,7 @@ const LastSignUp = () => {
                 slicedUsers && slicedUsers.map((user, index) => {
                     return (
                         <div key={index} className="LastSignUp-user">
-                            <img src={user.photo} alt={`photo de ${user.lastName}`} className='LastSignUp-img' />
+                            <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${user.photo}`} alt={`photo de ${user.lastName}`} className='LastSignUp-img' />
                             <Link to={`../user/?id=${user._id}`}><p className='LastSignUp-Name'>{user.firstName} {user.lastName}</p> </Link>
                         </div>
                     )

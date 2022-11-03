@@ -44,7 +44,7 @@ const LikesPhotos = ({ likes, likesLength }) => {
                 onMouseLeave={() => setLikersAreVisible(!likersAreVisible)}
             >
                 {likersAreVisible && toggleLikersNames()}
-                <img src={`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
             </div>)
     };
 
@@ -57,8 +57,8 @@ const LikesPhotos = ({ likes, likesLength }) => {
                 onMouseLeave={() => setLikersAreVisible(!likersAreVisible)}
             >
                 {likersAreVisible && toggleLikersNames()}
-                <img src={`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
-                <img src={`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
             </div>)
     };
     // CASE 3 LIKES
@@ -70,9 +70,9 @@ const LikesPhotos = ({ likes, likesLength }) => {
                 onMouseLeave={() => setLikersAreVisible(!likersAreVisible)}
             >
                 {likersAreVisible && toggleLikersNames()}
-                <img src={`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
-                <img src={`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
-                <img src={`${likersPhotoLink[2]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[2]}`} alt='Photo de profil mignature' />
             </div>)
     };
 
@@ -86,9 +86,9 @@ const LikesPhotos = ({ likes, likesLength }) => {
             >
                 {likersAreVisible && toggleLikersNames()}
                 <div className='post-counts_miniNumber'><span><i className="fa-solid fa-plus"></i> {likesLength}</span></div>
-                <img src={`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
-                <img src={`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
-                <img src={`${likersPhotoLink[2]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[0]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[1]}`} alt='Photo de profil mignature' />
+                <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${likersPhotoLink[2]}`} alt='Photo de profil mignature' />
             </div>)
     };
 
