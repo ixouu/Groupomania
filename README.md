@@ -22,17 +22,17 @@ The project consists of building an internal social network for Groupomania empl
 ## How to start the project ?
 1. Clone the repo (https://github.com/ixouu/Chanon_Julien_7_Groupomania_092022.git) or download the zip file [here](https://github.com/ixouu/Groupomania/archive/refs/heads/main.zip).
 2. Install `Node.js`  (https://nodejs.org/)
-3. Switch to the backend folder
-4. Open your terminal
-5. Install project dependencies : `npm install`
+3. Switch to the backend folder.
+4. Open your terminal.
+5. Install backend dependencies : `npm install`.
 6. At the path backend/config/ add the file .env with the provided informations.
 7. If you want to run it into your own db, make sure to provide your environement viariables.
-8. Run the Node server with the command `nodemon server` 
-9. Switch to the frontend folder
-10. Open a new terminal
-11. Install front end dependencies : `npm install`
+8. Run the Node server with the command `npm start` .
+9. Switch to the frontend folder.
+10. Open a new terminal.
+11. Install front end dependencies : `npm install`.
 12. At the root of the file, add a file .env following the exemple or with the provided informations.
-13. Run React : `npm start`
+13. Run React : `npm start`.
 14. Try the App : http://localhost:3000/ 
 
 ___

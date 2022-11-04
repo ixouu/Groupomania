@@ -16,7 +16,7 @@ const User = () => {
     const users = useSelector((state) => state.usersReducer);
     const currentUrl = new URL(window.location.href);
     const params = new URLSearchParams(currentUrl.search);
-    const userIdToFind = params.get("id")
+    const userIdToFind = params.get("id");
 
     const user = () => {
         return users.filter(user => user._id === `${userIdToFind}`)

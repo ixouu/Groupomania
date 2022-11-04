@@ -64,7 +64,7 @@ const App = () => {
                 <User />
               </AuthGuard>} />
 
-            <Route path='user/:id' element={
+            <Route path='user/:id' exact element={
               <AuthGuard>
                 <User />
               </AuthGuard>} />

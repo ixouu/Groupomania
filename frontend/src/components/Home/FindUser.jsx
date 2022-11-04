@@ -52,7 +52,7 @@ const FindUser = () => {
             }
             {foundResult &&
                 <Link to={`../user/?id=${foundResult._id}`} className='findUser-result'>
-                    <img src={`${foundResult.photo}`} alt={`Photo de ${foundResult.lastName}`} />
+                    <img src={process.env.REACT_APP_BACKEND_SERVER_URL+`${foundResult.photo}`} alt={`Photo de ${foundResult.lastName}`} />
                     <span>{foundResult.firstName} {foundResult.lastName}</span>
                 </Link>
             }
