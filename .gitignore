@@ -26,3 +26,7 @@
 /frontendnpm-debug.log*
 /frontendyarn-debug.log*
 /frontendyarn-error.log*
+
+# packages locks
+/frontend/package-lock.json
+/backend/package-lock.json

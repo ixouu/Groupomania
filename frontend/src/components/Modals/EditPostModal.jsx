@@ -155,7 +155,7 @@ const EditPostModal = ({ onClose, open, post }) => {
                     <div className='editPostModal-editBtnContainer'>
                         <button
                             className='editPostModal-editBtn btn'
-                            onClick={(e) => handleCancelEdit(e)}
+                            onClick={onClose}
                         >Annuler l'édition</button>
                         <button
                             className='editPostModal-confirmBtn btn'

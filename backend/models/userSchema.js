@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema(
         },
         photo: {
             type: String,
-            default: process.env.DB_URL+'/upload/profile/random-user.png',
+            default: '/upload/profile/random-user.png',
             required: false,
         },
         followers: {

@@ -14,7 +14,9 @@ You have been a developer for more than a year at CONNECT-E, a small web agency 
 
 The project consists of building an internal social network for Groupomania employees. The purpose of this tool is to facilitate interactions between colleagues. Groupomania's HR department has devised several features to promote exchanges between colleagues.
 
-### Preview : 
+---
+
+## Preview : 
 ![previewing](/frontend//public/previewImg.png)
 
 ---
@@ -33,7 +35,7 @@ The project consists of building an internal social network for Groupomania empl
 11. Install front end dependencies : `npm install`.
 12. At the root of the file, add a file .env following the exemple or with the provided informations.
 13. Run React : `npm start`.
-14. Try the App : http://localhost:3000/ 
+14. Try the App.
 
 ___
 
